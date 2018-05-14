@@ -1,11 +1,5 @@
 <?php
 
-// TODOS
-// @TODO: Controller Messagerie Privée + vue correspondante.
-// @TODO: Controller GPX + vue correspondante.
-// @TODO: Controller Routes (Parcours) + vue correspondante.
-// @TODO: Tous les controllers administratifs.
-
 /////////////////////////////////////////
 ///
 ///           AUTH + HOMEPAGE
@@ -62,6 +56,19 @@ Route::delete('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
 
+// Messagerie privées
+
+Route::get('/messenger', 'MessengerController@index')
+    ->name('messenger')
+    ->middleware('auth');
+//@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
+Route::get('/messenger/{id}', 'MessengerController@conversation')
+    ->name('messenger')
+    ->middleware('auth');
+Route::post('/messenger', 'MessengerController@send')
+    ->name('messenger_send_new')
+    ->middleware('auth');
+
 // Statistiques
 Route::get('/statistics', 'StatisticsController@index')
     ->name('statistics')
@@ -83,7 +90,6 @@ Route::get('/routes', 'RoutesController@index')
     ->middleware('auth');
 
 
-
 /////////////////////////////////////////
 ///
 ///           ADMINISTRATION
@@ -91,7 +97,10 @@ Route::get('/routes', 'RoutesController@index')
 /////////////////////////////////////////
 
 
-
+Route::get('/admin', 'AdminController@index')
+    ->name('routes')
+    ->middleware('auth');
+//@TODO: Restreindre aux admin
 
 
 /////////////////////////////////////////
