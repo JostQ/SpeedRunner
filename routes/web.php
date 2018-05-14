@@ -27,7 +27,6 @@ Route::get('/profile', 'ProfileController@index')
 Route::get('/profile/edit', 'ProfileController@edit')
     ->name('user_profile_edit')
     ->middleware('auth');
-
 Route::delete('/profile/delete', 'ProfileController@delete')
     ->name('user_profile_delete')
     ->middleware('auth');
@@ -45,6 +44,7 @@ Route::put('/profile', 'ProfileController@update')
 Route::get('/tutorial', 'TutorialController@index')
     ->name('tutorial')
     ->middleware('auth');
+
 // Fonction Amis
 Route::get('/friends', 'FriendsController@index')
     ->name('friends')
@@ -55,18 +55,22 @@ Route::post('/friends', 'FriendsController@add')
 Route::delete('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
+
 // Statistiques
 Route::get('/statistics', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
+
 // Fil actu
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
+
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
     ->middleware('auth');
+
 // Arbre progression
 Route::get('/progression', 'ProgressionController@index')
     ->name('progression')
@@ -79,5 +83,20 @@ Route::get('/progression', 'ProgressionController@index')
 /////////////////////////////////////////
 
 
+
+
+
+/////////////////////////////////////////
+///
+///           TRAITEMENT GPX
+///
+/////////////////////////////////////////
+
+Route::post('/gpx', 'GpxController@add')
+    ->name('add_gpx')
+    ->middleware('auth');
+Route::get('/gpx', 'GpxController@index')
+    ->name('show_traces')
+    ->middleware('auth');
 
 
