@@ -55,19 +55,19 @@ Route::post('/friends', 'FriendsController@add')
 Route::delete('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
-//Statistiques
+// Statistiques
 Route::get('/statistics', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
-//Fil actu
+// Fil actu
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-//Classement
+// Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
     ->middleware('auth');
-//arbre progression
+// Arbre progression
 Route::get('/progression', 'ProgressionController@index')
     ->name('progression')
     ->middleware('auth');
