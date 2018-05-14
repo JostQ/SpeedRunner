@@ -1,5 +1,11 @@
 <?php
 
+// TODOS
+// @TODO: Controller Messagerie Privée + vue correspondante.
+// @TODO: Controller GPX + vue correspondante.
+// @TODO: Controller Routes (Parcours) + vue correspondante.
+// @TODO: Tous les controllers administratifs.
+
 /////////////////////////////////////////
 ///
 ///           AUTH + HOMEPAGE
@@ -71,10 +77,12 @@ Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
     ->middleware('auth');
 
-// Arbre progression
-Route::get('/progression', 'ProgressionController@index')
-    ->name('progression')
+// Affichage des tracés effectués
+Route::get('/routes', 'RoutesController@index')
+    ->name('routes')
     ->middleware('auth');
+
+
 
 /////////////////////////////////////////
 ///
@@ -95,8 +103,6 @@ Route::get('/progression', 'ProgressionController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
-Route::get('/gpx', 'GpxController@index')
-    ->name('show_traces')
-    ->middleware('auth');
+
 
 
