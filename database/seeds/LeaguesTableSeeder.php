@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class LeaguesTableSeeder extends Seeder
 {
@@ -11,9 +12,9 @@ class LeaguesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 20; $i > 0; $i--){
-            DB::table('formulaires')->insert([
-                'name' => (string) $i,
+        for ($i = 1; $i < 21; $i++){
+            DB::table('leagues')->insert([
+                'name' => 'Ligue '.(string) $i,
             ]);
         }
     }
