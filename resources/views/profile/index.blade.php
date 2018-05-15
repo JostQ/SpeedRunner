@@ -5,14 +5,21 @@
     <div class="container" id="profile">
 
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-sm">
-                    <img src="https://www.runnersworld.com/sites/runnersworld.com/files/styles/listicle_slide_custom_user_desktop_1x/public/become_morning_runner_peopleimages_gettyimages-499778755.jpg?itok=g9qfiZO6"
+                    <img src="https://1.bp.blogspot.com/-TWLe47tl4gE/V-jRzhvNs7I/AAAAAAAAB1A/YRyA08g7vYM3V4RO2lQX9CM-pDJ6NRvkgCLcB/s1600/IMG_6090_opt.jpg"
                          alt="runneuse"
+                         class="rounded-circle"
                          id="picprofil">
                 </div>
                 <div class="col-sm">
-                    <button type="button" class="btn btn-light">Light</button>
+                    <button>pseudo à faire</button>
+                    <div>
+                        nombres d'amis :
+                    </div>
+                    <div>
+                        nombres de points :
+                    </div>
                 </div>
                 <div class="col-sm">
                     One of three columns
@@ -22,13 +29,19 @@
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                <a class="nav-link active" id="actualite-tab" data-toggle="tab" href="#actualite" role="tab" aria-controls="actualite" aria-selected="true">Fil d'actualité</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="defi-tab" data-toggle="tab" href="#defi" role="tab" aria-controls="profile" aria-selected="false">Défis</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="statistiques" aria-selected="false">Statistiques</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="gpx-tab" data-toggle="tab" href="#gpx" role="tab" aria-controls="gpx" aria-selected="false">Import de vos données GPX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="classement-tab" data-toggle="tab" href="#classement" role="tab" aria-controls="classement" aria-selected="false">Classement</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
