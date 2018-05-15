@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
             <div class="container">
                 <a class="h1" href="{{ url('/') }}" id="title">
                     {{ config('app.name', 'Laravel') }}
@@ -56,7 +56,7 @@
                                     <a class="dropdown-item speedrun-primary" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Lo   gout') }}
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -73,7 +73,7 @@
         <main>
             @yield('content')
         </main>
-        <footer class="bg-dark text-light py-4">
+        <footer class="py-5 bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">

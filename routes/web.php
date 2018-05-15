@@ -63,10 +63,12 @@ Route::delete('/friends/{id}', 'FriendsController@delete')
 Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
+
 //@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
 Route::get('/messenger/{id}', 'MessengerController@conversation')
     ->name('messenger')
     ->middleware('auth');
+
 Route::post('/messenger', 'MessengerController@send')
     ->name('messenger_send_new')
     ->middleware('auth');
@@ -78,9 +80,8 @@ Route::get('/statistics', 'StatisticsController@index')
 
 // Fil actu
 Route::get('/actu', 'ActuController@index')
-    ->name('actu')
-    ->middleware('auth');
-
+    ->name('actu');
+//    ->middleware('auth');
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
