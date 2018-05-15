@@ -1,5 +1,9 @@
 // Classes spécifiques à SpeedRun
 
+.speedrun-title{
+  color: $primary-color;
+}
+
 .speedrun-primary {
   color: $primary-color;
   padding-right: 1rem;
@@ -36,6 +40,10 @@
   border-radius: 0;
 }
 
+<<<<<<< HEAD
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  background-color: $primary-color;
+=======
 .dropdown-menu {
   margin-left: -1px;
   border-radius: 0;
@@ -46,4 +54,5 @@
     background-color: $primary-color;
     color: $white
   }
+>>>>>>> aa1aa5473fadb899275853112c8d612a1988ce18
 }
