@@ -10417,23 +10417,6 @@ a.text-dark:focus {
   height: auto;
 }
 
-#slider {
-  height: 80vh;
-  background-image: url(/images/2.jpg?3f94cbc129a81c99a24085cb96dd7571);
-}
-
-#title {
-  font-family: 'Montserrat';
-  font-weight: 900;
-  font-style: italic;
-  text-transform: uppercase;
-  color: #ff6e40;
-}
-
-#title:hover {
-  color: #c53d13;
-}
-
 .speedrun-primary {
   color: #ff6e40;
   padding-right: 1rem;
@@ -10464,6 +10447,22 @@ a.text-dark:focus {
 }
 
 .nav-link:hover {
+  color: #c53d13;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+#title {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #ff6e40;
+}
+
+#title:hover {
   color: #c53d13;
 }
 
