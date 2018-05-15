@@ -10,9 +10,7 @@
 
                 <p data-toggle="collapse" data-target="#show"><a href="#">Qu'est ce que SpeedRunner ?</a></p>
                 <div id="show" class="collapse mb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Pour maigrir
                 </div>
 
                 <p data-toggle="collapse" data-target="#show2"><a href="#">L'application SpeedRunner est-elle disponible sur mobile ?</a></p>
