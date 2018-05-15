@@ -12,6 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -67,9 +69,30 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
+        <footer class="bg-dark text-light py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <h3>Réseaux sociaux</h3>
+                        <ul class="list-inline">
+                            <a href="/" class="h4"><li><i class="fab fa-facebook-square"></i> Facebook</li></a>
+                            <a href="/" class="h4"><li><i class="fab fa-twitter-square"></i> Twitter</li></a>
+                            <a href="/" class="h4"><li><i class="fab fa-instagram"></i> Instragram</li></a>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
+    @yield('page-specific-scripts')
 </body>
 </html>

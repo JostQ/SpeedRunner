@@ -27,7 +27,6 @@ Route::get('/profile', 'ProfileController@index')
 Route::get('/profile/edit', 'ProfileController@edit')
     ->name('user_profile_edit')
     ->middleware('auth');
-
 Route::delete('/profile/delete', 'ProfileController@delete')
     ->name('user_profile_delete')
     ->middleware('auth');
@@ -45,6 +44,7 @@ Route::put('/profile', 'ProfileController@update')
 Route::get('/tutorial', 'TutorialController@index')
     ->name('tutorial')
     ->middleware('auth');
+
 // Fonction Amis
 Route::get('/friends', 'FriendsController@index')
     ->name('friends')
@@ -55,22 +55,40 @@ Route::post('/friends', 'FriendsController@add')
 Route::delete('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
+
+// Messagerie privées
+
+Route::get('/messenger', 'MessengerController@index')
+    ->name('messenger')
+    ->middleware('auth');
+//@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
+Route::get('/messenger/{id}', 'MessengerController@conversation')
+    ->name('messenger')
+    ->middleware('auth');
+Route::post('/messenger', 'MessengerController@send')
+    ->name('messenger_send_new')
+    ->middleware('auth');
+
 // Statistiques
 Route::get('/statistics', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
+
 // Fil actu
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
+
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
     ->middleware('auth');
-// Arbre progression
-Route::get('/progression', 'ProgressionController@index')
-    ->name('progression')
+
+// Affichage des tracés effectués
+Route::get('/routes', 'RoutesController@index')
+    ->name('routes')
     ->middleware('auth');
+
 
 /////////////////////////////////////////
 ///
@@ -78,6 +96,22 @@ Route::get('/progression', 'ProgressionController@index')
 ///
 /////////////////////////////////////////
 
+
+Route::get('/admin', 'AdminController@index')
+    ->name('routes')
+    ->middleware('auth');
+//@TODO: Restreindre aux admin
+
+
+/////////////////////////////////////////
+///
+///           TRAITEMENT GPX
+///
+/////////////////////////////////////////
+
+Route::post('/gpx', 'GpxController@add')
+    ->name('add_gpx')
+    ->middleware('auth');
 
 
 
