@@ -2,9 +2,9 @@
 
 @section('content')
     {{--file d'actu--}}
-<section class="container-fluid">
+<section class="container">
     <div class="row">
-        <div class="col-4">col-4</div>
+        <div class="col-4">nav dans les options du file d'actu</div>
         <div class="col-8">
             <div class="container ajActu ">
                 <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
@@ -21,7 +21,7 @@
                     <div class="tab-pane fade show active justify-content-center" id="pills-ajStatue" role="tabpanel" aria-labelledby="pills-ajStatue-tab">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Statue :</span>
+                                <span class="input-group-text">Statut :</span>
                             </div>
                             <textarea class="form-control" aria-label="With textarea"></textarea>
                             <button type="submit" class="btn " value="ok" name="postStatue">Poster</button>
@@ -42,9 +42,16 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="actu">
-
+                    {{--@foreach()--}}
+                    <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title">{{--pseudo des utilisateurs--}}</h5>
+                            <p class="card-text">{{--Statut des utilisateurs--}}</p>
+                        </div>
+                    </div>
+                    {{--@endforeach--}}
                 </div>
             </div>
         </div>
