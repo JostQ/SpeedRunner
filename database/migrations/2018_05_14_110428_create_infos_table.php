@@ -15,14 +15,13 @@ class CreateInfosTable extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level');
-            $table->integer('exp');
-            $table->string('total_distance');
-            $table->string('average_speed');
-            $table->string('picture');
+            $table->integer('level')->default(1);
+            $table->integer('exp')->default(0);
+            $table->string('total_distance')->default('0');
+            $table->string('average_speed')->default('0');
+            $table->string('picture')->nullable();
             $table->string('lastname');
             $table->string('firstname');
-            $table->integer('users_id');
             $table->timestamps();
         });
     }

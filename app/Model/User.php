@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
@@ -26,4 +27,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function actualities(){
+        return $this->hasMany(Actuality::class);
+    }
+    public function friendships(){
+        return $this->hasMany(Friendship::class);
+    }
+    public function gpxs(){
+        return $this->hasMany(Gpx::class);
+    }
+    public function infos(){
+        return $this->belongsTo(Info::class);
+    }
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+    public function success_to_users(){
+        return $this->hasMany(SuccessToUser::class);
+    }
+    public function races(){
+        return $this->hasMany(Race::class);
+    }
 }
