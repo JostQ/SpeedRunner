@@ -1,0 +1,15 @@
+#slider {
+  height: 80vh;
+  background-image: url('../img/2.jpg');
+}
+
+#title {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  font-style : italic;
+  text-transform: uppercase;
+  color: $primary-color;
+  &:hover {
+    color: $accent-color
+  }
+}
