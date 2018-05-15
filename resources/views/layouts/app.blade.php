@@ -44,8 +44,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="speedrun-primary" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="speedrun-primary" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                            <li><a class="speedrun-primary" href="{{ route('login') }}">{{ __('Se connecter') }}</a></li>
+                            <li><a class="speedrun-primary" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle  speedrun-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="jumbotron-fluid pt-5 mt-5" id="slider">
-        <img class="position-fixed" style="z-index: -999" src="{{asset('images/1.jpg')}}" alt="">
+        <img class="position-fixed img-fluid" style="z-index: -999" src="{{asset('images/3.jpg')}}" alt="">
         <div class="container py-4">
             <h2 class="h2 text-light">Motivez-vous, bandes de merdes.</h2>
             <div class="row py-4">
