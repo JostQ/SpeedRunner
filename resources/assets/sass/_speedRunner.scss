@@ -1,0 +1,33 @@
+// Classes spécifiques à SpeedRun
+
+.speedrun-primary {
+  color: $primary-color;
+  padding-right: 1rem;
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+// Redéfinition des classes Bootstrap
+
+.card {
+  border-radius: 0;
+}
+
+.btn {
+  border-radius: 0;
+  background-color: $primary-color;
+  border-color: $accent-color;
+  color: $white;
+  &:hover {
+    border-color: $primary-color;
+    background-color: $accent-color;
+  }
+}
+
+.nav-link {
+  color: $primary-color;
+  &:hover {
+    color: $accent-color;
+  }
+}
