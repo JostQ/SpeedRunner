@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRaceDoneTable extends Migration
+class CreateGpxsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateRaceDoneTable extends Migration
      */
     public function up()
     {
-        Schema::create('race_done', function (Blueprint $table) {
+        Schema::create('gpxs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('time_done');
-            $table->date('date_done');
-            $table->string('speed');
-            $table->string('distance_done');
-            $table->integer('users_id');
-            $table->integer('race_list_id');
+            $table->string('gpx');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateRaceDoneTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('race_done');
+        Schema::dropIfExists('gpxs');
     }
 }

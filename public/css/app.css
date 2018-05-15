@@ -10457,6 +10457,16 @@ a.text-dark:focus {
   border-radius: 0;
 }
 
+.dropdown-menu {
+  margin-left: -1px;
+  border-radius: 0;
+}
+
+.dropdown-item:hover {
+  background-color: #ff6e40;
+  color: #fff;
+}
+
 #title {
   font-family: 'Montserrat';
   font-weight: 900;
@@ -10467,12 +10477,6 @@ a.text-dark:focus {
 
 #title:hover {
   color: #c53d13;
-}
-
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 #nav {
