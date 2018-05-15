@@ -10,10 +10,20 @@
                 </ul>
             </div>
             <div class="col-lg-4 col-md-12">
-
+                <h3>Nous contacter</h3>
+                <ul class="list-inline">
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-facebook-square"></i> Facebook</li></a>
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-twitter-square"></i> Twitter</li></a>
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-instagram"></i> Instragram</li></a>
+                </ul>
             </div>
             <div class="col-lg-4 col-md-12">
-
+                <h3>Informations</h3>
+                <ul class="list-inline">
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-facebook-square"></i> Facebook</li></a>
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-twitter-square"></i> Twitter</li></a>
+                    <a href="/" class="h4 nav-link"><li><i class="fab fa-instagram"></i> Instragram</li></a>
+                </ul>
             </div>
         </div>
     </div>
