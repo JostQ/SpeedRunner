@@ -2,27 +2,29 @@
 
 @section('content')
 
-    <div class="container" id="profile">
+    <div class="container mt-5" id="profile">
 
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-sm">
                     <img src="https://1.bp.blogspot.com/-TWLe47tl4gE/V-jRzhvNs7I/AAAAAAAAB1A/YRyA08g7vYM3V4RO2lQX9CM-pDJ6NRvkgCLcB/s1600/IMG_6090_opt.jpg"
                          alt="runneuse"
-                         class="rounded-circle"
+                         class="rounded-circle mt-5 mb-4"
                          id="picprofil">
+                    <!--Mettre bouton statut actif/inactif ?-->
                 </div>
                 <div class="col-sm">
-                    <button>pseudo à faire</button>
+                    <div>{{--pseudo--}} pseudo du runner à récup</div>
                     <div>
-                        nombres d'amis :
+                        <p>nombres d'amis :</p> {{----}}
                     </div>
                     <div>
-                        nombres de points :
+                        <p>nombres de points : </p> {{----}}
                     </div>
                 </div>
                 <div class="col-sm">
-                    One of three columns
+                    <p>Coureur de même niveau</p> <br>
+                    <a href=""><img src="{{asset('images/runneradd.png')}}" alt="runner-add" id="runner-add"></a>
                 </div>
             </div>
         </div>
