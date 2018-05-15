@@ -72,7 +72,7 @@
         <main>
             @yield('content')
         </main>
-        <footer class="bg-dark text-light py-4">
+        <footer class="py-4">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
