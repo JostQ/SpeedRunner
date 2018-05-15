@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center py-4">
+    <div class="row justify-content-center mt-5 pt-5">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Vous êtes connecté !
                 </div>
             </div>
         </div>
