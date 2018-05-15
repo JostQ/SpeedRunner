@@ -10473,6 +10473,79 @@ a.text-dark:focus {
 
 #title:hover {
   color: #c53d13;
+  -webkit-animation: reveal 200ms forwards;
+          animation: reveal 200ms forwards;
+  text-decoration: none;
+}
+
+#slider {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+}
+
+@media (min-width: 768px) {
+  #slider {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 89%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 89%, 0% 100%);
+  }
+}
+
+.bouncy:hover {
+  -webkit-animation: bouncy linear 300ms forwards;
+          animation: bouncy linear 300ms forwards;
+}
+
+@-webkit-keyframes bouncy {
+  0% {
+    bottom: 0;
+  }
+
+  50% {
+    bottom: 0.2rem;
+  }
+
+  100% {
+    bottom: 0;
+  }
+}
+
+@keyframes bouncy {
+  0% {
+    bottom: 0;
+  }
+
+  50% {
+    bottom: 0.2rem;
+  }
+
+  100% {
+    bottom: 0;
+  }
+}
+
+@-webkit-keyframes reveal {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: #ff6e40;
+  }
+}
+
+@keyframes reveal {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: #ff6e40;
+  }
+}
+
+.reveal:hover {
+  -webkit-animation: reveal 300ms forwards;
+          animation: reveal 300ms forwards;
 }
 
 #nav {
