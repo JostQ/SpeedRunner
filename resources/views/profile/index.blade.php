@@ -19,15 +19,16 @@
                         <p>nombres d'amis :</p> {{----}}
                     </div>
                     <div>
-                        <p>nombres de points : </p> {{----}}
+                        <p>nombres de points :</p> {{----}}
                     </div>
                 </div>
                 <div class="col-sm">
-                    <p>Coureur de même niveau</p> <br>
+                    <div>Coureur de même niveau</div>
                     <a href=""><img src="{{asset('images/runneradd.png')}}" alt="runner-add" id="runner-add"></a>
                 </div>
             </div>
         </div>
+
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -52,7 +53,5 @@
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
     </div>
-
-
 
 @endsection

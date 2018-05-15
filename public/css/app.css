@@ -10413,11 +10413,12 @@ a.text-dark:focus {
 
 #picprofil {
   width: 50%;
+  margin: 5em 0em 3em 3em;
 }
 
 #runner-add {
   width: 30%;
-  margin-left: 3em;
+  margin: 3em;
 }
 
 .speedrun-primary {
