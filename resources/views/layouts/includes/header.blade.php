@@ -23,12 +23,14 @@
                         <li><a class="speedrun-primary" href="{{ route('login') }}">{{ __('Se connecter') }}</a></li>
                         <li><a class="speedrun-primary" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a></li>
                     @else
+
                         <li class="nav-item dropdown btn">
                             <a id="navbarDropdown" class="text-light nav-link dropdown-toggle  speedrun-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item speedrun-primary" href="{{route('actu')}}"><i class="mr-2 fas fa-user-friends"></i>Mon réseau</a>
                                 <a class="dropdown-item speedrun-primary" href="{{ route('user_profile') }}"><i class="mr-2 fas fa-user"></i>Profil</a>
                                 <a class="dropdown-item speedrun-primary" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
