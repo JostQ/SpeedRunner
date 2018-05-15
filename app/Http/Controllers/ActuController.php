@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ActuController extends Controller
 {
-    public function Index()
+    public function index()
     {
         return view('actu.index');
     }
