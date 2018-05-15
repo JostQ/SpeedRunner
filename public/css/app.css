@@ -10413,6 +10413,11 @@ a.text-dark:focus {
 
 #picprofil {
   margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+.speedrun-title {
+  color: #ff6e40;
 }
 
 .speedrun-primary {
@@ -10450,6 +10455,11 @@ a.text-dark:focus {
 
 .form-control {
   border-radius: 0;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #ff6e40;
 }
 
 #title {
