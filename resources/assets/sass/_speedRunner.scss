@@ -35,3 +35,15 @@
 .form-control {
   border-radius: 0;
 }
+
+.dropdown-menu {
+  margin-left: -1px;
+  border-radius: 0;
+}
+
+.dropdown-item {
+  &:hover {
+    background-color: $primary-color;
+    color: $white
+  }
+}
