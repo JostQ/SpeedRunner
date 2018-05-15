@@ -10454,11 +10454,6 @@ a.text-dark:focus {
   border-radius: 0;
 }
 
-#slider {
-  height: 80vh;
-  background-image: url(/images/2.jpg?3f94cbc129a81c99a24085cb96dd7571);
-}
-
 #title {
   font-family: 'Montserrat';
   font-weight: 900;
