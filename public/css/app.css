@@ -10411,6 +10411,12 @@ a.text-dark:focus {
   }
 }
 
+#picprofil {
+  border-radius: 50%;
+  max-width: 20em;
+  height: auto;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
