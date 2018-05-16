@@ -13,8 +13,10 @@ class CreateSuccessToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('success_to_users', function (Blueprint $table) {
+        Schema::create('success_has_users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('users_id');
+            $table->integer('success_id');
             $table->timestamps();
         });
     }
