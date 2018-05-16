@@ -15,8 +15,9 @@ class CreateActualitiesTable extends Migration
     {
         Schema::create('actualities', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('message');
-            $table->string('picture');
+            $table->text('message')->nullable();
+            $table->string('picture')->nullable();
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

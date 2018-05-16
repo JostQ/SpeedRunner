@@ -72,14 +72,17 @@ Route::post('/messenger', 'MessengerController@send')
     ->middleware('auth');
 
 // Statistiques
-Route::get('/statistics', 'StatisticsController@index')
+Route::get('/statistiques', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
 
 // Fil actu
 Route::get('/actu', 'ActuController@index')
-    ->name('actu');
-//    ->middleware('auth');
+    ->name('actu')
+    ->middleware('auth');
+Route::post('/status-textarea','ActuController@store');
+Route::post('/upload-img','ActuController@store2');
+
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
@@ -109,6 +112,10 @@ Route::get('/admin', 'AdminController@index')
 ///           TRAITEMENT GPX
 ///
 /////////////////////////////////////////
+
+Route::get('/gpx', 'GpxController@index')
+    ->name('import_gpx')
+    ->middleware('auth');
 
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')

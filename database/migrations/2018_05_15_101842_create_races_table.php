@@ -20,6 +20,7 @@ class CreateRacesTable extends Migration
             $table->string('date_done');
             $table->string('speed');
             $table->string('distance_done');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

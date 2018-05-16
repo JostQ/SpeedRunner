@@ -22,6 +22,8 @@ class CreateInfosTable extends Migration
             $table->string('picture')->nullable();
             $table->string('lastname');
             $table->string('firstname');
+            $table->integer('users_id');
+            $table->integer('leagues_id');
             $table->timestamps();
         });
     }

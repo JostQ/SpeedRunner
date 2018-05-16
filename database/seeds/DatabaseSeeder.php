@@ -16,4 +16,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(SuccessTableSeeder::class);
 
     }
+
+
 }
