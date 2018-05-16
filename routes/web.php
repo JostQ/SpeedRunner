@@ -72,7 +72,7 @@ Route::post('/messenger', 'MessengerController@send')
     ->middleware('auth');
 
 // Statistiques
-Route::get('/statistics', 'StatisticsController@index')
+Route::get('/statistiques', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
 
@@ -112,6 +112,10 @@ Route::get('/admin', 'AdminController@index')
 ///           TRAITEMENT GPX
 ///
 /////////////////////////////////////////
+
+Route::get('/gpx', 'GpxController@index')
+    ->name('import_gpx')
+    ->middleware('auth');
 
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')

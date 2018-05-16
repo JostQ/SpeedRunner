@@ -10483,13 +10483,11 @@ a.text-dark:focus {
   font-style: italic;
   text-transform: uppercase;
   color: #ff6e40;
+  text-decoration: none;
 }
 
 #title:hover {
   color: #c53d13;
-  -webkit-animation: reveal 200ms forwards;
-          animation: reveal 200ms forwards;
-  text-decoration: none;
 }
 
 #slider {
@@ -10534,26 +10532,6 @@ a.text-dark:focus {
 
   100% {
     bottom: 0;
-  }
-}
-
-@-webkit-keyframes reveal {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: #ff6e40;
-  }
-}
-
-@keyframes reveal {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: #ff6e40;
   }
 }
 
