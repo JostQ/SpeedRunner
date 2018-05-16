@@ -113,6 +113,10 @@ Route::get('/admin', 'AdminController@index')
 ///
 /////////////////////////////////////////
 
+Route::get('/gpx', 'GpxController@index')
+    ->name('import_gpx')
+    ->middleware('auth');
+
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');

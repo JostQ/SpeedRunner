@@ -3,7 +3,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
         <div class="container">
-            <a class="h1" href="{{ url('/') }}" id="title">
+            <a class="h1" href="@guest{{ url('/') }} @else{{route('user_profile')}}@endguest" id="title">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
