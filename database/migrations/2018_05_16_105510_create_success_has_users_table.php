@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSuccessToUsersTable extends Migration
+class CreateSuccessHasUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,6 +28,6 @@ class CreateSuccessToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('success_to_users');
+        Schema::dropIfExists('success_has_users');
     }
 }
