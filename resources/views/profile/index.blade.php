@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container mt-5" id="profile">
+    <div class="container mt-5 pt-5" id="profile">
         <div class="row align-items-center">
             <div class="col-sm-4">
                 <img src="https://1.bp.blogspot.com/-TWLe47tl4gE/V-jRzhvNs7I/AAAAAAAAB1A/YRyA08g7vYM3V4RO2lQX9CM-pDJ6NRvkgCLcB/s1600/IMG_6090_opt.jpg"
@@ -12,7 +12,7 @@
 
             </div>
             <div class="col-sm-4">
-                <div><h4>{{--pseudo--}} pseudo du runner à récup</h4></div>
+                <div><h4> {{ $user }}</h4></div>
                 <div>
                     <p>nombres d'amis :</p> {{----}}
                 </div>
