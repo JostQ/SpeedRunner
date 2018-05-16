@@ -10412,8 +10412,8 @@ a.text-dark:focus {
 }
 
 #picprofil {
-  width: 50%;
-  margin: 5em 0em 3em 3em;
+  width: 82%;
+  margin: 1em 0em 3em 3em;
 }
 
 #runner-add {
@@ -10427,13 +10427,18 @@ a.text-dark:focus {
   overflow: auto;
 }
 
-.proff {
-  width: 2em;
-  height: 2em;
+.listrun {
+  width: 15%;
 }
 
-.listrun {
-  margin-top: 3em;
+#infos {
+  padding-right: 15em;
+}
+
+.list {
+  height: 12.5em;
+  width: 24em;
+  overflow-y: auto;
 }
 
 .speedrun-title {

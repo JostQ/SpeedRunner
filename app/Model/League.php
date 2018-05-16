@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class League extends Model
 {
     public function infos(){
-        return $this->belongsTo(Info::class);
+        return $this->hasMany(Info::class, 'leagues_id');
     }
 }

@@ -2,71 +2,64 @@
 
 @section('content')
 
-    <div class="container mt-5 pt-5" id="profile">
+    <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <img src="https://1.bp.blogspot.com/-TWLe47tl4gE/V-jRzhvNs7I/AAAAAAAAB1A/YRyA08g7vYM3V4RO2lQX9CM-pDJ6NRvkgCLcB/s1600/IMG_6090_opt.jpg"
                      alt="runneuse"
                      class="rounded-circle mt-5 mb-4"
                      id="picprofil">
+            </div>
+
+            <div class="col-sm-6 mt-2" id="infos">
+                <div class="mb-2"><h4> {{ $user }}</h4>
+                </div>
+                <p>Nombres d'amis : {{ $friend }}</p>
+                <p>Niveau : {{ $level }}</p>
+                <p>{{ $league }}</p>
 
             </div>
+
             <div class="col-sm-4">
-                <div><h4> {{ $user }}</h4></div>
-                <div>
-                    <p>nombres d'amis :</p> {{----}}
-                </div>
-                <div>
-                    <p>nombres de points :</p> {{----}}
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="mt-5">Coureur de même niveau</div>
+                <div class="mt-5">Ils ont le même niveau que vous</div>
                 <div class="list">
-                    <div class="row mt-2" id="runner">
-                        <div class="col proff">
-                            <img src="{{asset('images/girlrun2.jpg')}}" alt="listrunner" class="listrun rounded-circle"
-                                 height="40em">alex{{----}}
-                            <a href="#"><img src="{{asset('images/runneradd.png')}}" alt="runner-add"
-                                             id="runner-add"></a>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col proff mt-2">
-                            <img src="{{asset('images/girlrun2.jpg')}}" alt="listrunner" class="listrun rounded-circle"
-                                 height="40em">dimitri
-                            <a href="#"><img src="{{asset('images/runneradd.png')}}" alt="runner-add"
-                                             id="runner-add"></a>
-                        </div>
-                        <div class="w-100 mt-2"></div>
-                        <div class="col proff mt-2">
-                            <img src="{{asset('images/girlrun2.jpg')}}" alt="listrunner" class="listrun rounded-circle"
-                                 height="40em">
-                            <a href="#"><img src="{{asset('images/runneradd.png')}}" alt="runner-add"
-                                             id="runner-add"></a>
-                        </div>
-                        <div class="w-100 mt-2"></div>
-                        <div class="col proff mt-2">
-                            <img src="{{asset('images/girlrun2.jpg')}}" alt="listrunner" class="listrun rounded-circle"
-                                 height="40em">
-                            <a href="#"><img src="{{asset('images/runneradd.png')}}" alt="runner-add"
-                                             id="runner-add"></a>
-                        </div>
-                        <div class="w-100 mt-2"></div>
-                        <div class="col proffmt-2">
-                            <img src="{{asset('images/girlrun2.jpg')}}" alt="listrunner" class="listrun rounded-circle"
-                                 height="40em">
-                            <a href="#"><img src="{{asset('images/runneradd.png')}}" alt="runner-add"
-                                             id="runner-add"></a>
-                        </div>
-                    </div>
-
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cras justo odio
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Morbi leo risus
+                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                        </li>
+                    </ul>
                 </div>
 
             </div>
         </div>
 
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs mt-5 pt-2" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="actualite-tab" data-toggle="tab" href="#actualite" role="tab"
                    aria-controls="actualite" aria-selected="true">Fil d'actualité</a>
