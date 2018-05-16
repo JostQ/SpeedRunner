@@ -10412,21 +10412,16 @@ a.text-dark:focus {
 }
 
 #picprofil {
-<<<<<<< HEAD
-  margin-top: 5em;
-  margin-bottom: 5em;
-}
-
-.speedrun-title {
-  color: #ff6e40;
-=======
   width: 50%;
 }
 
 #runner-add {
   width: 30%;
   margin-left: 3em;
->>>>>>> aa1aa5473fadb899275853112c8d612a1988ce18
+}
+
+.speedrun-title {
+  color: #ff6e40;
 }
 
 .speedrun-primary {
@@ -10466,20 +10461,9 @@ a.text-dark:focus {
   border-radius: 0;
 }
 
-<<<<<<< HEAD
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  background-color: #ff6e40;
-=======
-.dropdown-menu {
-  margin-left: -1px;
-  border-radius: 0;
-}
-
 .dropdown-item:hover {
   background-color: #ff6e40;
   color: #fff;
->>>>>>> aa1aa5473fadb899275853112c8d612a1988ce18
 }
 
 #title {
