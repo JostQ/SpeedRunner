@@ -10417,8 +10417,23 @@ a.text-dark:focus {
 }
 
 #runner-add {
-  width: 30%;
-  margin: 3em;
+  width: 20%;
+  margin: 0em 0em 0em 5em;
+}
+
+#runner {
+  width: 19em;
+  height: 12em;
+  overflow: auto;
+}
+
+.proff {
+  width: 2em;
+  height: 2em;
+}
+
+.listrun {
+  margin-top: 3em;
 }
 
 .speedrun-title {
