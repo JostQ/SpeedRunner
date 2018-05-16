@@ -6,8 +6,6 @@
 ///
 /////////////////////////////////////////
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,8 +41,8 @@ Route::put('/profile', 'ProfileController@update')
 /////////////////////////////////////////
 
 // Page tutoriel GPX
-Route::get('/tutorial', 'TutorialController@index')
-    ->name('tutorial')
+Route::get('/tutoriel', 'TutorialController@index')
+    ->name('tutoriel')
     ->middleware('auth');
 
 // Fonction Amis
@@ -118,6 +116,8 @@ Route::get('/admin', 'AdminController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
+
+
 
 
 
