@@ -19,35 +19,51 @@
                     </ul>
 
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active justify-content-center" id="pills-ajStatue"
-                             role="tabpanel" aria-labelledby="pills-ajStatue-tab">
-                            <div class="input-group">
 
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Statut :</span>
+                        <div class="tab-pane fade show active" id="pills-ajStatue"
+                             role="tabpanel" aria-labelledby="pills-ajStatue-tab">
+                            <form action="{{ url('/status-textarea') }}" method="post"
+                                  class="form-inline justify-content-center">
+                                @csrf
+                                <div class="col-10">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Statut :</span>
+                                        </div>
+
+
+                                        <textarea class="form-control" aria-label="With textarea" name="statut"></textarea>
+                                        <button type="submit" class="btn " value="ok" name="postStatue">Poster</button>
+                                    </div>
                                 </div>
 
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
-                                <button type="submit" class="btn " value="ok" name="postStatue">Poster</button>
+                            </form>
 
-                            </div>
                         </div>
+
 
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab">
-                            <div class="input-group">
-                                <div class="custom-file">
+                            <form action="{{ url('/upload-img') }}" method="post"
+                                  class="form-inline justify-content-center">
+                                @csrf
+                                <div class="col-10">
+                                    <div class="input-group">
+                                        <div class="custom-file">
 
-                                    <input type="file" class="custom-file-input" id="ajPhoto">
-                                    <label class="custom-file-label" for="ajPhoto">Importer une image</label>
+                                            <input type="file" class="custom-file-input" id="ajPhoto">
+                                            <label class="custom-file-label" for="ajPhoto">Importer une image</label>
 
+                                        </div>
+                                        <div class="input-group-append">
+
+                                            <button class="btn " type="button" name="postImg" value="ok">Publier
+                                            </button>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="input-group-append">
-
-                                    <button class="btn " type="button" name="postImg" value="ok">Publier</button>
-
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
