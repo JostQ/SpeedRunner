@@ -62,7 +62,7 @@ Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
 
-//@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
+//@TODO: {id} doit être l'id utilisateur avec qui l'on converse et non l'id du message.
 Route::get('/messenger/{id}', 'MessengerController@conversation')
     ->name('messenger')
     ->middleware('auth');

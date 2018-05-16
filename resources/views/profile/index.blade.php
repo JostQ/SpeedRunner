@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
             <div class="col-sm-2">
@@ -69,7 +68,7 @@
                    aria-selected="false">Défis</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                <a class="nav-link" id="stats-tab" data-toggle="tab" href="#contact" role="tab"
                    aria-controls="statistiques" aria-selected="false">Statistiques</a>
             </li>
             <li class="nav-item">
@@ -82,10 +81,28 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab"></div>
         </div>
 
     </div>
+@endsection
+
+@section('page-specific-scripts')
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script>
+        $('#actualite-tab').click(function(e) {
+            $('#home').addClass('active show')
+            $('#home').load('{{ route('actu') }}');
+        })
+        $('#stats-tab').click(function(e) {
+            $('#home').addClass('active show')
+            $('#home').load('{{ route('statistics') }}');
+        })
+        $('#gpx-tab').click(function(e) {
+            $('#home').addClass('active show')
+            $('#home').load('{{ route('import_gpx') }}');
+        })
+    </script>
 @endsection

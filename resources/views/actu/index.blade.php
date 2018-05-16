@@ -1,8 +1,8 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
     {{--file d'actu--}}
-    <section class="container pt-5 mt-5">
+    <section id="actu" class="container pt-5 mt-5">
         <div class="row">
             <div class="col-12">
                 <div class="container ajActu ">
@@ -76,7 +76,7 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                                role="tab" aria-controls="nav-home" aria-selected="true">#Général</a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                               role="tab" aria-controls="nav-profile" aria-selected="false">#Amie</a>
+                               role="tab" aria-controls="nav-profile" aria-selected="false">#Amis</a>
                             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
                                role="tab" aria-controls="nav-contact" aria-selected="false">#Ligue</a>
 
@@ -172,5 +172,5 @@
         </div>
     </section>
 
-@endsection
+{{--@endsection--}}
 
