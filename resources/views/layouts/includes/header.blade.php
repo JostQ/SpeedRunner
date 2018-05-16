@@ -32,6 +32,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item speedrun-primary" href="{{route('actu')}}"><i class="mr-2 fas fa-user-friends"></i>Mon réseau</a>
                                 <a class="dropdown-item speedrun-primary" href="{{ route('user_profile') }}"><i class="mr-2 fas fa-user"></i>Profil</a>
+                                <a class="dropdown-item speedrun-primary" href="{{ route('statistics') }}"><i class="mr-2 fas fa-chart-bar"></i>Mes Statistiques</a>
                                 <a class="dropdown-item speedrun-primary" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="mr-1 fas fa-sign-out-alt"></i>

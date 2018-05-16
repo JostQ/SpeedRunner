@@ -72,7 +72,7 @@ Route::post('/messenger', 'MessengerController@send')
     ->middleware('auth');
 
 // Statistiques
-Route::get('/statistics', 'StatisticsController@index')
+Route::get('/statistiques', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
 
