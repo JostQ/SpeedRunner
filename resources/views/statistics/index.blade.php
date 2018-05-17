@@ -10,11 +10,11 @@
             </div>
             <div class="col-lg-4 col-md-6 col-12 border-right p-4">
                 <h2>Vitesse moyenne</h2>
-                <span class="display-3">7km/h</span>
+                <span class="display-3">{{ $stats->average_speed }}</span>
             </div>
             <div class="col-lg-4 col-md-6 col-12 p-4 flex">
                 <h2>Kilomètres parcourus</h2>
-                <span class="display-3">82km</span>
+                <span class="display-3">{{ $stats->total_distance }}</span>
             </div>
         </div>
 
@@ -23,14 +23,18 @@
 {{--        @section('page-specific-scripts')--}}
             <script src="{{ asset('js/Chart.bundle.min.js') }}" defer></script>
             <script defer>
+
+                var parse = ({!!  $kmPerDay !!});
+
                 var ctx = document.getElementById("kmPerDay").getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
-                        datasets: [{
-                            label: 'Kilomètre par Jour',
-                            data: [8,3,5,6,7,8, 6.5],
+                        labels: [],
+                        datasets: [
+                            {
+                            label: 'Kilomètres par Jour',
+                            data: [],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -60,6 +64,25 @@
                         }
                     }
                 });
+
+                function updateChartData(chart) {
+                    parse.forEach((distance) => {
+                        chart.data.datasets[0].data
+                            .unshift(distance.distance_done);
+                    });
+                }
+
+                function updateChartLabels(chart) {
+                    parse.forEach((distance) => {
+                        chart.data.labels
+                            .unshift(distance.date_done);
+                    });
+
+                }
+                myChart.update();
+                updateChartData(myChart);
+                updateChartLabels(myChart)
+                myChart.update();
             </script>
 
 {{--@endsection--}}
