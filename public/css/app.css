@@ -10564,6 +10564,10 @@ a.text-dark:focus {
   visibility: hidden;
 }
 
+.message-content {
+  background-color: #ffffff;
+}
+
 #nav {
   color: #ff6e40;
 }
