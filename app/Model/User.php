@@ -29,24 +29,24 @@ class User extends Authenticatable
     ];
 
     public function actualities(){
-        return $this->hasMany(Actuality::class);
+        return $this->hasMany(Actuality::class, 'users_id');
     }
     public function friendships(){
         return $this->hasMany(Friendship::class, 'users_id');
     }
     public function gpxs(){
-        return $this->hasMany(Gpx::class);
+        return $this->hasMany(Gpx::class, 'users_id');
     }
     public function infos(){
         return $this->hasOne(Info::class, 'users_id');
     }
     public function messages(){
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class, 'users_id');
     }
     public function success_to_users(){
-        return $this->hasMany(SuccessToUser::class);
+        return $this->hasMany(SuccessToUser::class, 'users_id');
     }
     public function races(){
-        return $this->hasMany(Race::class);
+        return $this->hasMany(Race::class, 'users_id');
     }
 }
