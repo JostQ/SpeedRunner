@@ -80,8 +80,7 @@ Route::get('/statistics', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/status-textarea','ActuController@store');
-Route::post('/upload-img','ActuController@store2');
+Route::post('/post-status','ActuController@store');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
