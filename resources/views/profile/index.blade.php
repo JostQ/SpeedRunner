@@ -66,7 +66,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="defi-tab" data-toggle="tab" href="#defi" role="tab" aria-controls="profile"
-                   aria-selected="false">Défis</a>
+                   aria-selected="false">Succès</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
@@ -79,6 +79,10 @@
             <li class="nav-item">
                 <a class="nav-link" id="classement-tab" data-toggle="tab" href="#classement" role="tab"
                    aria-controls="classement" aria-selected="false">Classement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="classement-tab" data-toggle="tab" href="#classement" role="tab"
+                   aria-controls="classement" aria-selected="false">Listes des courses</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
