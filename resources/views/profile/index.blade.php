@@ -4,7 +4,7 @@
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
             <div class="col-sm-2">
-                <img src="https://1.bp.blogspot.com/-TWLe47tl4gE/V-jRzhvNs7I/AAAAAAAAB1A/YRyA08g7vYM3V4RO2lQX9CM-pDJ6NRvkgCLcB/s1600/IMG_6090_opt.jpg"
+                <img src="{{asset('images/' . $profile_pic)}}"
                      alt="runneuse"
                      class="rounded-circle mt-5 mb-4"
                      id="picprofil">
@@ -19,38 +19,22 @@
 
             </div>
 
+
+            <!--Liste de coureurs même niveau-->
             <div class="col-sm-4">
                 <div class="mt-5">Ils ont le même niveau que vous</div>
                 <div class="list">
                     <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Cras justo odio
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Morbi leo risus
-                            <img src="{{asset('images/girlrun3.jpg')}}" alt="listrunner" class="listrun rounded-circle">
-                        </li>
+                        @foreach($list_league as $item)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $item->firstname }} {{ $item->lastname }}
+                                @if(isset($item->picture))
+                                    <img src="{{asset('images/' . $item->picture)}}" alt="listrunner" class="listrun rounded-circle">
+                                @else
+                                    <img src="{{asset('images/girlrun4.jpg')}}" alt="listrunner" class="listrun rounded-circle">
+                                @endif
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
