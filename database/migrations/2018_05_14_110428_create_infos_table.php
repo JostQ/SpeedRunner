@@ -23,7 +23,7 @@ class CreateInfosTable extends Migration
             $table->string('lastname');
             $table->string('firstname');
             $table->integer('users_id');
-            $table->integer('leagues_id');
+            $table->integer('leagues_id')->default(20);
             $table->timestamps();
         });
     }
