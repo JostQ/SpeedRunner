@@ -10560,6 +10560,10 @@ a.text-dark:focus {
           animation: reveal 300ms forwards;
 }
 
+#inputImg {
+  visibility: hidden;
+}
+
 #nav {
   color: #ff6e40;
 }

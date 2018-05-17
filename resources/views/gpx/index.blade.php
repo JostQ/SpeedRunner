@@ -1,6 +1,6 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
 
     <div class="container mt-5 pt-5" id="importGpx">
         <div class="row justify-content-center">
@@ -23,4 +23,4 @@
         </div>
     </div>
 
-@endsection
+{{--@endsection--}}

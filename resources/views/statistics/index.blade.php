@@ -1,6 +1,6 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
 
     <div class="container mt-5 pt-5" id="statistics">
         <div class="row">
@@ -18,11 +18,11 @@
             </div>
         </div>
 
-@endsection
+{{--@endsection--}}
 
-        @section('page-specific-scripts')
-            <script src="{{ asset('js/Chart.bundle.min.js') }}"></script>
-            <script>
+{{--        @section('page-specific-scripts')--}}
+            <script src="{{ asset('js/Chart.bundle.min.js') }}" defer></script>
+            <script defer>
                 var ctx = document.getElementById("kmPerDay").getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -62,4 +62,4 @@
                 });
             </script>
 
-@endsection
+{{--@endsection--}}

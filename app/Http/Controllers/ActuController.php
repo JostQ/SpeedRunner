@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Actu;
-use Illuminate\Http\Request;
+use Request;
 
 class ActuController extends Controller
 {
     public function index()
     {
-        return view('actu.index');
+        $bdd= Actu::get();
+        return view('actu.index')
+            ->with('generales',$bdd);
     }
 
-//    Statut
-    public function store(){
-        $data= (new \Illuminate\Http\Request)->all();
-        $insert =new Actu();
-        $insert->message = $data['statut'];
+//    insert->statut
+    public function store()
+    {
+        $data = Request::all();
+        dd($data);
+        $insert = new Actu();
+        $insert->message = $data['message'];
+        $insert->picture = $data['picture'];
         $insert->save();
-
+        return view('actu.index');
 
     }
 
-//    upload-img
-    public function store2(){
-        $request=Request::all();
-    }
 }

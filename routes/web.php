@@ -62,7 +62,7 @@ Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
 
-//@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
+//@TODO: {id} doit être l'id utilisateur avec qui l'on converse et non l'id du message.
 Route::get('/messenger/{id}', 'MessengerController@conversation')
     ->name('messenger')
     ->middleware('auth');
@@ -80,8 +80,7 @@ Route::get('/statistiques', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/status-textarea','ActuController@store');
-Route::post('/upload-img','ActuController@store2');
+Route::post('/post-status','ActuController@store');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
