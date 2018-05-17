@@ -17,6 +17,7 @@ class CreateActualitiesTable extends Migration
             $table->increments('id');
             $table->text('message');
             $table->string('picture')->nullable();
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

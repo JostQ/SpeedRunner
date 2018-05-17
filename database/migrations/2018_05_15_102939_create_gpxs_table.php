@@ -16,6 +16,7 @@ class CreateGpxsTable extends Migration
         Schema::create('gpxs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('gpx');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

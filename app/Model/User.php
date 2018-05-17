@@ -32,13 +32,13 @@ class User extends Authenticatable
         return $this->hasMany(Actuality::class);
     }
     public function friendships(){
-        return $this->hasMany(Friendship::class);
+        return $this->hasMany(Friendship::class, 'users_id');
     }
     public function gpxs(){
         return $this->hasMany(Gpx::class);
     }
     public function infos(){
-        return $this->belongsTo(Info::class);
+        return $this->hasOne(Info::class, 'users_id');
     }
     public function messages(){
         return $this->hasMany(Message::class);

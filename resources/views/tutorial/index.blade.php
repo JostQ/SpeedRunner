@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="container" id="tutorial">
-        <div class="card">
+    <div class="container pt-5 mt-5" >
+        <div class="card mt-5" id="tutorial">
             <div class="card-body">
                 <h2>La foire aux questions</h2>
                 <hr>

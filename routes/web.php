@@ -62,7 +62,7 @@ Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
 
-//@TODO: {id} doit être l'id utilisateur avec qui l'on conserve et non l'id du message.
+//@TODO: {id} doit être l'id utilisateur avec qui l'on converse et non l'id du message.
 Route::get('/messenger/{id}', 'MessengerController@conversation')
     ->name('messenger')
     ->middleware('auth');
@@ -72,7 +72,7 @@ Route::post('/messenger', 'MessengerController@send')
     ->middleware('auth');
 
 // Statistiques
-Route::get('/statistics', 'StatisticsController@index')
+Route::get('/statistiques', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
 
@@ -111,6 +111,10 @@ Route::get('/admin', 'AdminController@index')
 ///           TRAITEMENT GPX
 ///
 /////////////////////////////////////////
+
+Route::get('/gpx', 'GpxController@index')
+    ->name('import_gpx')
+    ->middleware('auth');
 
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')

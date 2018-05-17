@@ -1,12 +1,33 @@
 //page profil
 
 #picprofil {
-  width: 50%;
-  margin: 5em 0em 3em 3em;
+  width: 82%;
+  margin: 1em 0em 3em 3em;
 }
 
 #runner-add{
-  width: 30%;
-  margin: 3em;
+  width: 20%;
+  margin: 0em 0em 0em 5em;
+}
+
+#runner{
+    width: 19em;
+    height: 12em;
+    overflow: auto;
+}
+
+.listrun{
+  width: 15%;
+}
+
+#infos
+{
+  padding-right: 15em;
+}
+
+.list{
+  height: 12.5em;
+  width: 24em;
+  overflow-y: auto;
 }
 

@@ -4,10 +4,9 @@
   font-style : italic;
   text-transform: uppercase;
   color: $primary-color;
+  text-decoration: none;
   &:hover {
     color: $accent-color;
-    animation: reveal 200ms forwards;
-    text-decoration: none;
   }
 }
 
@@ -41,11 +40,3 @@
   }
 }
 
-@keyframes reveal {
-  from {
-    background-color: transparent;
-  }
-  to {
-    background-color: $primary-color;
-  }
-}

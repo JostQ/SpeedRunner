@@ -26,6 +26,9 @@
                 </ul>
             </div>
         </div>
+        <div class="text-center">
+            &copy; Une Belle Bande de Cons
+        </div>
     </div>
 </footer>
 </div>
