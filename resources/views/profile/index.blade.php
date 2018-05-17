@@ -3,14 +3,14 @@
 @section('content')
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
-            <div class="col-sm-2">
+            <div class="col-sm-2 col-lg-2">
                 <img src="{{asset('images/' . $profile_pic)}}"
                      alt="runneuse"
                      class="rounded-circle mt-5 mb-4"
                      id="picprofil">
             </div>
 
-            <div class="col-sm-6 mt-2" id="infos">
+            <div class="col-sm-6 mt-2 col-lg-6" id="infos">
                 <div class="mb-2"><h4> {{ $user }}</h4>
                 </div>
                 <p>Nombres d'amis : {{ $friend }}</p>
@@ -21,12 +21,12 @@
 
 
             <!--Liste de coureurs même niveau-->
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-lg-4">
                 <div class="mt-5">Ils ont le même niveau que vous</div>
                 <div class="list">
                     <ul class="list-group">
                         @foreach($list_league as $item)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                                 {{ $item->firstname }} {{ $item->lastname }}
                                 @if(isset($item->picture))
                                     <img src="{{asset('images/' . $item->picture)}}" alt="listrunner" class="listrun rounded-circle">
@@ -37,7 +37,6 @@
                         @endforeach
                     </ul>
                 </div>
-
             </div>
         </div>
 
