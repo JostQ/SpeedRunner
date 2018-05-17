@@ -6,10 +6,10 @@
             <!-- List group -->
             <div class="list-group col-4" id="myList" role="tablist">
 
-                {{--@foreach()--}}
-                <a class="list-group-item list-group-item-action active " data-toggle="list" href="#message"
-                   role="tab">{{--Nom du contact--}}Valentin </a>
-                {{--@endforeach--}}
+                @foreach($friends as $friend)
+                <a class="list-group-item list-group-item-action  " data-toggle="list" href="#message{{$friend['id']}}"
+                   role="tab">{{$friend->users->infos['lastname']}}</a>
+                @endforeach
 
             </div>
 
@@ -17,11 +17,11 @@
             <div class="tab-content col-8 message-content">
 
                 {{--foreach des message--}}
-                {{--@foreach()--}}
-                <div class="tab-pane active" id="message" role="tabpanel">
-                    {{--liste des messages--}}
+                @foreach($messages as $message)
+                <div class="tab-pane " id="message" role="tabpanel">
+                    {{$message['message']}}}
                 </div>
-                {{--@endforeach--}}
+                @endforeach
 
             </div>
         </div>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Actu;
+use App\Model\Actuality;
 use Request;
 
 class ActuController extends Controller
 {
     public function index()
     {
-        $bdd= Actu::get();
+        $bdd= Actuality::get();
         return view('actu.index')
             ->with('generales',$bdd);
     }
