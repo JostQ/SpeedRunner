@@ -8,11 +8,11 @@
         </div>
         <div class="row mt-5">
             <div class="col-lg-6 col-md-12 offset-lg-3">
-                <form action="{{ route('add_gpx') }}" method="post">
+                <form action="{{ route('add_gpx') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <div class="form-group">
-                            <input type="file" class="form-control-file">
+                            <input type="file" class="form-control-file" name="gpxFile">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary d-block" type="submit">C'est parti !</button>
