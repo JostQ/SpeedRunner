@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Model\Friendship;
 use App\Model\League;
 use Illuminate\Support\Facades\Auth;
-use Request;
+use Illuminate\Http\Request;
 use App\Model\Info;
 use App\Model\User;
 use Eloquent;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -50,6 +51,7 @@ class ProfileController extends Controller
         }
 
         return view('profile.index')
+            ->with('userid', $user->id)
             ->with('user', $userCapitalized)
             ->with('friend', $all_friend)
             ->with('level', $level)
@@ -58,8 +60,14 @@ class ProfileController extends Controller
             ->with('profile_pic', $profile_pic);
     }
 
-    public function store()
+    public function edit(Request $request, $id)
     {
+        $photoName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('avatars'), $photoName);
+
+        DB::table('infos')->where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
+
+
 
     }
 }

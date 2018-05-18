@@ -4,21 +4,30 @@
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
             <div class="col-sm-2 col-lg-2">
-                <img src="{{asset('images/' . $profile_pic)}}"
+                <img src="{{asset('avatars/' . $profile_pic)}}"
                      alt="runneuse"
                      class="rounded-circle mt-5 mb-4"
-                     id="picprofil">
+                     id="imgprofil"
+                     width="180em">
+                <form method="post" id="CHAGASSE">
+                    @csrf
+                    <input type="file"  id="profilpic" name="profilpic"/>
+                    <label for="profilpic"  class="fileContainer btn btn-primary">
+                        Modifier <i class="fas fa-camera"></i>
+                    </label>
+                </form>
+
+
             </div>
 
+            <!--Info coureurs-->
             <div class="col-sm-6 mt-2 col-lg-6" id="infos">
                 <div class="mb-2"><h4> {{ $user }}</h4>
                 </div>
                 <p>Nombres d'amis : {{ $friend }}</p>
                 <p>Niveau : {{ $level }}</p>
                 <p>{{ $league }}</p>
-
             </div>
-
 
             <!--Liste de coureurs même niveau-->
             <div class="col-sm-4 col-lg-4">
@@ -26,14 +35,14 @@
                 <div class="list">
                     <ul class="list-group">
                         @foreach($list_league as $item)
-                            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                            <a href="#"><li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                                 {{ $item->firstname }} {{ $item->lastname }}
                                 @if(isset($item->picture))
                                     <img src="{{asset('images/' . $item->picture)}}" alt="listrunner" class="listrun rounded-circle">
                                 @else
                                     <img src="{{asset('images/girlrun4.jpg')}}" alt="listrunner" class="listrun rounded-circle">
                                 @endif
-                            </li>
+                                </li></a>
                         @endforeach
                     </ul>
                 </div>
@@ -90,6 +99,33 @@
         $('#gpx-tab').click(function(e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('import_gpx') }}');
+        })
+
+        $('#profilpic').on('change', function (e) {
+            var image = $('#profilpic')[0].files[0];
+            var form = new FormData();
+            form.append('image', image);
+            e.preventDefault()
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '{{ url('/profile/edit') }}/{{ $userid }}' ,
+                type: 'POST',
+                data: form,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function () {
+
+
+
+
+                }
+            })
         })
     </script>
 @endsection
