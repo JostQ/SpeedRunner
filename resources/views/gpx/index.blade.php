@@ -15,6 +15,10 @@
                             <input type="file" class="form-control-file" name="gpxFile">
                         </div>
                         <div class="form-group">
+                            <label for="">Nom de la course</label>
+                            <input id="raceName" type="text" class="form-control" name="raceName" value="Course {{ $numberOfRacesDone + 1 }}">
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary d-block" type="submit">C'est parti !</button>
                         </div>
                     </div>

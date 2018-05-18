@@ -81,7 +81,7 @@
                 }
                 myChart.update();
                 updateChartData(myChart);
-                updateChartLabels(myChart)
+                updateChartLabels(myChart);
                 myChart.update();
             </script>
 
