@@ -10,7 +10,7 @@ class RoutesController extends Controller
 {
     public function index(){
 
-        $racesDone = DB::table('races')->where('users_id', Auth::user()->id)->get();
+        $racesDone = DB::table('races')->where('users_id', Auth::user()->id)->paginate(5);
 
         return view('routes.index')
             ->with('racesDone', $racesDone);

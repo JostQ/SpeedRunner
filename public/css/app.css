@@ -10454,6 +10454,12 @@ a.text-dark:focus {
   color: #c53d13;
 }
 
+.pagination {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .card {
   border-radius: 0;
 }

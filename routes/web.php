@@ -101,7 +101,7 @@ Route::get('/routes', 'RoutesController@index')
 
 
 Route::get('/admin', 'AdminController@index')
-    ->name('routes')
+    ->name('admin')
     ->middleware('auth');
 //@TODO: Restreindre aux admin
 
