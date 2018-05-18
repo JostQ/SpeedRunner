@@ -19,7 +19,7 @@
                 {{--foreach des message--}}
                 @foreach($messages as $message)
                 <div class="tab-pane " id="message" role="tabpanel">
-                    {{$message['message']}}}
+                    {{$message['message']}}
                 </div>
                 @endforeach
 

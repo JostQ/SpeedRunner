@@ -2,22 +2,42 @@
 
 @section('content')
     {{--file d'actu--}}
-
     <section class="container pt-5 mt-5">
         <div class="row justify-content-center">
+
+            <div class="container">
+                <div class="row  col-12">
+                    @if($errors->has('message'))
+                        <div class="alert alert-warning" role="alert">
+                            {{ $errors->first('message') }}<i class="far fa-times-circle ml-1"></i>
+                        </div>
+                    @endif
+                        @if($errors->has('picture'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first('picture') }}<i class="far fa-times-circle ml-1"></i>
+                            </div>
+                        @endif
+                    @if(isset($success))
+                        <div class="alert alert-success" role="alert">
+                            {{ $success }}<i class="far fa-check-circle ml-1"></i>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
             <nav class="actu col-12">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                        role="tab" aria-controls="nav-home" aria-selected="true">#Général</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                       role="tab" aria-controls="nav-profile" aria-selected="false">#Amie</a>
+                       role="tab" aria-controls="nav-profile" aria-selected="false">#Amis</a>
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
                        role="tab" aria-controls="nav-contact" aria-selected="false">#Ligue</a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-primary " data-toggle="modal" data-target="#Modal">
-                        <i class="fas fa-pencil-alt"></i>
                         Créer une publication
+                        <i class="fas fa-pencil-alt ml-1"></i>
                     </button>
 
                     <!-- Modal -->
@@ -27,23 +47,25 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="ModalLabel">Publication <i class="far fa-edit"></i></h5>
-                                    <button id="bilal" class="btn btn-primary ml-3">Image <i class="far fa-images"></i></button>
+                                    <label for="custom-file-input" id="custom" class="btn btn-primary ml-1">Image<i
+                                                class="far fa-images ml-1"></i></label>
 
                                     <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{url('/post-status')}}" method="post" name="statut">
+                                <form method="post" name="statut" enctype="multipart/form-data">
                                     @csrf
-                                <div class="modal-body">
+                                    <div class="modal-body">
 
-                                    <textarea class="form-control" id="message-text" placeholder="Exprimez-vous..." name="message"></textarea>
-                                    <input type="file" name="picture" id="inputImg">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Publier
-                                    </button>
-                                </div>
+                                        <textarea class="form-control" id="message-text" placeholder="Exprimez-vous..."
+                                                  name="message" required></textarea>
+                                        <input type="file" name="picture" id="custom-file-input" class="join-file">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Publier
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -136,15 +158,14 @@
 @endsection
 
 @section('page-specific-scripts')
-    <script defer>
-        $( document ).ready(function() {
-            $('#btn-file').click(function(e){
-                alert('test')
-                e.preventDefault();
-                //$('#inputImg').click();
-            });
 
-        });
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#custom-file-input').on('change', function () {
+                console.log($(this).val())
+            })
+        })
     </script>
-@endsection
 
+@endsection

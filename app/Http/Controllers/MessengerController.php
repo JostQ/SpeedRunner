@@ -10,7 +10,7 @@ class MessengerController extends Controller
 {
     public  function  index()
     {   $bddfriends= Friendship::select('users_id')->distinct()->get();
-        $bddmessages= Message::select()->get();
+        $bddmessages= Message::get();
         return view('messenger.index')
             ->with('friends',$bddfriends)
             ->with('messages',$bddmessages);
