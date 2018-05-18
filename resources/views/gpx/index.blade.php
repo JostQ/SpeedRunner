@@ -23,4 +23,36 @@
         </div>
     </div>
 
+<script>
+    {{--function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+
+            <?php foreach ($waypoints as $key => $waypoint): ?>
+        var point<?= $key ?> = new google.maps.LatLng(<?= $waypoint['lat'] ?>, <?= $waypoint['lon'] ?>);
+        waypts.push({
+            location: point<?= $key ?>,
+            stopover: false
+        });
+            <?php endforeach; ?>
+
+        var start = new google.maps.LatLng( <?= $start['lat'] ?>, <?= $start['lon'] ?>);
+        var end = new google.maps.LatLng( <?= $end['lat'] ?>, <?= $end['lon'] ?>);
+        directionsService.route({
+            origin: start,
+            destination:end,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: 'WALKING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+                var route = response.routes[0];
+                var summaryPanel = document.getElementById('directions-panel');
+                summaryPanel.innerHTML += route.legs[0].distance.text
+
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });--}}
+</script>
 {{--@endsection--}}

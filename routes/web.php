@@ -123,4 +123,3 @@ Route::post('/gpx', 'GpxController@add')
 
 
 
-
