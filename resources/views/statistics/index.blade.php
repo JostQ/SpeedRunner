@@ -2,7 +2,7 @@
 
 {{--@section('content')--}}
 
-    <div class="container mt-5 pt-5" id="statistics">
+    {{--<div class="container mt-5 pt-5" id="statistics">--}}
         <div class="row">
             <div class="col-lg-4 col-md-6 col-12 border-right p-4">
                 <h2>Kilomètres/Jour</h2>
@@ -16,7 +16,7 @@
                 <h2>Kilomètres parcourus</h2>
                 <span class="display-3">{{ $stats->total_distance }}</span>
             </div>
-        </div>
+        {{--</div>--}}
 
 {{--@endsection--}}
 
@@ -81,7 +81,7 @@
                 }
                 myChart.update();
                 updateChartData(myChart);
-                updateChartLabels(myChart)
+                updateChartLabels(myChart);
                 myChart.update();
             </script>
 

@@ -11,7 +11,6 @@ class LeaderboardsController extends Controller
     public function index()
     {
 
-        $leagues = League::
 
 
         return view('leaderboards.index');

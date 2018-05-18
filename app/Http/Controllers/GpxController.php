@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Model\Gpx;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GpxController extends Controller
 {
     public function index()
     {
-        return view('gpx.index');
+        $numberOfRacesDone = DB::table('races')->where('users_id', Auth::user()->id)->count();
+        return view('gpx.index')
+            ->with('numberOfRacesDone', $numberOfRacesDone);
     }
 
     public function add(Request $request)

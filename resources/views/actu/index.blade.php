@@ -136,12 +136,11 @@
 @endsection
 
 @section('page-specific-scripts')
-    <script defer>
+
+    <script>
         $( document ).ready(function() {
-            $('#btn-file').click(function(e){
-                alert('test')
-                e.preventDefault();
-                //$('#inputImg').click();
+            $('#bilal').click(function(e){
+                $('#inputImg').click();
             });
 
         });

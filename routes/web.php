@@ -101,7 +101,7 @@ Route::get('/routes', 'RoutesController@index')
 
 
 Route::get('/admin', 'AdminController@index')
-    ->name('routes')
+    ->name('admin')
     ->middleware('auth');
 //@TODO: Restreindre aux admin
 
@@ -119,7 +119,6 @@ Route::get('/gpx', 'GpxController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
-
 
 
 
