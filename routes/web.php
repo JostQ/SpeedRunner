@@ -22,9 +22,9 @@ Route::get('/home', 'HomeController@index')
 /////////////////////////////////////////
 
 Route::get('/profile', 'ProfileController@index')
-    ->name('user_profile');
-    //->middleware('auth');
-Route::get('/profile/edit', 'ProfileController@edit')
+    ->name('user_profile')
+    ->middleware('auth');
+Route::post('/profile/edit/{id}', 'ProfileController@edit')
     ->name('user_profile_edit')
     ->middleware('auth');
 Route::delete('/profile/delete', 'ProfileController@delete')
@@ -101,7 +101,7 @@ Route::get('/routes', 'RoutesController@index')
 
 
 Route::get('/admin', 'AdminController@index')
-    ->name('routes')
+    ->name('admin')
     ->middleware('auth');
 //@TODO: Restreindre aux admin
 
@@ -119,7 +119,6 @@ Route::get('/gpx', 'GpxController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
-
 
 
 

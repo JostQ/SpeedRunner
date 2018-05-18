@@ -22,12 +22,19 @@
 
 #infos
 {
-  padding-right: 15em;
+  padding-left:4em;
+  padding-top: 2em;
 }
 
 .list{
   height: 12.5em;
   width: 24em;
   overflow-y: auto;
+}
+
+
+#profilpic{
+  position: absolute;
+  left: -999999px;
 }
 

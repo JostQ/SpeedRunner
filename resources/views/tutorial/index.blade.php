@@ -77,6 +77,11 @@
                     Une version ultérieur permettra de restreindre l'accès uniquement à vos amis.
                 </div>
 
+                <p data-toggle="collapse" data-target="#show12"><a href="#">Comment sont calculés les points ?</a></p>
+                <div id="show12" class="collapse mb-3">
+                    Nous tenons notre algorythme rigoureusement secret mais celui se base, entre autres, sur trois critères majeurs : la distance parcourue, le temps de votre session running, et le dénivelé.
+                </div>
+
             </div>
         </div>
     </div>

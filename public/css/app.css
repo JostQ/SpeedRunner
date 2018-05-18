@@ -10432,13 +10432,19 @@ a.text-dark:focus {
 }
 
 #infos {
-  padding-right: 15em;
+  padding-left: 4em;
+  padding-top: 2em;
 }
 
 .list {
   height: 12.5em;
   width: 24em;
   overflow-y: auto;
+}
+
+#profilpic {
+  position: absolute;
+  left: -999999px;
 }
 
 .speedrun-title {
@@ -10452,6 +10458,12 @@ a.text-dark:focus {
 
 .speedrun-primary:hover {
   color: #c53d13;
+}
+
+.pagination {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .card {

@@ -156,16 +156,3 @@
         </div>
     </section>
 @endsection
-
-@section('page-specific-scripts')
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        $(function () {
-            $('#custom-file-input').on('change', function () {
-                console.log($(this).val())
-            })
-        })
-    </script>
-
-@endsection
