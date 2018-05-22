@@ -9,6 +9,12 @@
                      class="rounded-circle mt-5 mb-4"
                      id="imgprofil"
                      width="180em">
+                <form method="post" id="CHAGASSE">
+                    @csrf
+                    <input type="file"  id="profilpic" name="profilpic"/>
+                    <label for="profilpic"  class="fileContainer btn btn-primary">
+                        Modifier <i class="fas fa-camera"></i>
+                    </label>
                 </form>
 
 
