@@ -119,6 +119,17 @@
             $('#home').load('{{ route('import_gpx') }}');
         })
 
+        $('#classement-tab').click(function (e) {
+            $('#home').addClass('active show')
+            $.ajax({
+                url:'{{route('leaderboards')}}',
+                data: 'html',
+            })
+                .done(function (data) {
+                    $('#home').append(data)
+                });
+        })
+
         $('#profilpic').on('change', function (e) {
             var image = $('#profilpic')[0].files[0];
             var form = new FormData();
@@ -141,6 +152,7 @@
                 }
             })
         })
+        // Listes des courses effectuées par le coureur.
         $('#courses-tab').click(function (e) {
             $('#home').addClass('active show')
             $.ajax({
