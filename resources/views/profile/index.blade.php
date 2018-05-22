@@ -10,8 +10,6 @@
                      id="imgprofil"
                      width="180em">
                 </form>
-
-
             </div>
 
             <!--Info coureurs-->
