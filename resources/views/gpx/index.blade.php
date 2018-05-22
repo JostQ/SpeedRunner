@@ -8,7 +8,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-lg-6 col-md-12 offset-lg-3">
-                <form action="{{ route('add_gpx') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('add_gpx') }}" method="post" enctype="multipart/form-data" id="submitGpx">
                     @csrf
                     <div class="form-group">
                         <div class="form-group">
@@ -19,7 +19,7 @@
                             <input id="raceName" type="text" class="form-control" name="raceName" value="Course {{ $numberOfRacesDone + 1 }}">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary d-block" type="submit">C'est parti !</button>
+                            <button class="btn btn-primary d-block" type="submit" >C'est parti !</button>
                         </div>
                     </div>
                 </form>
@@ -27,36 +27,92 @@
         </div>
     </div>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    {{--function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var waypts = [];
 
-            <?php foreach ($waypoints as $key => $waypoint): ?>
-        var point<?= $key ?> = new google.maps.LatLng(<?= $waypoint['lat'] ?>, <?= $waypoint['lon'] ?>);
-        waypts.push({
-            location: point<?= $key ?>,
-            stopover: false
+
+    function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+
+        $('#submitGpx').on('submit', function (event) {
+            event.preventDefault();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url : $(this).attr('action'),
+                type : 'POST',
+                data : new FormData(this),
+                dataType : 'json',
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.status === 'ok'){
+
+                        var waypts = [];
+                        var waytime = 0;
+
+                        $(data.waypoints).each(function (index, waypoint) {
+                            index = new google.maps.LatLng(waypoint.lat, waypoint.lon);
+                            waypts.push({
+                                location: index,
+                                stopover: false
+                            });
+                            waytime = waypoint.time - waytime;
+                        });
+
+                        console.log(waypts);
+                        var start = new google.maps.LatLng( data.start.lat, data.start.lon );
+                        var end = new google.maps.LatLng( data.end.lat, data.end.lon );
+                        directionsService.route({
+                            origin: start,
+                            destination:end,
+                            waypoints: waypts,
+                            optimizeWaypoints: true,
+                            travelMode: 'WALKING'
+                        }, function(response, status) {
+                            if (status === 'OK') {
+                                directionsDisplay.setDirections(response);
+                                var route = response.routes[0];
+                                var distance = route.legs[0].distance.value;
+                                var timeStart = data.start.time;
+                                var timeEnd = data.start.end;
+
+                                var time = ((timeEnd - waytime) + (waytime - timeStart)) / 60;
+                                time = Math.round(time * 100) / 100;
+
+                                var vitesse = (distance/1000) / (time*(1/60));
+
+                                $.ajax({
+                                    url : '{{ asset('gpx/races') }}',
+                                    type: 'POST',
+                                    data: { 'distance' : distance, 'time' : time, 'vitesse' : vitesse, 'date' : data.date },
+                                    dataType: 'json',
+                                    success: function () {
+                                        console.log('bouh')
+                                    }
+                                })
+
+
+
+                            } else {
+                                window.alert('Directions request failed due to ' + status);
+                            }
+                        });
+                    }
+                }
+            })
         });
-            <?php endforeach; ?>
+    }
 
-        var start = new google.maps.LatLng( <?= $start['lat'] ?>, <?= $start['lon'] ?>);
-        var end = new google.maps.LatLng( <?= $end['lat'] ?>, <?= $end['lon'] ?>);
-        directionsService.route({
-            origin: start,
-            destination:end,
-            waypoints: waypts,
-            optimizeWaypoints: true,
-            travelMode: 'WALKING'
-        }, function(response, status) {
-            if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-                var route = response.routes[0];
-                var summaryPanel = document.getElementById('directions-panel');
-                summaryPanel.innerHTML += route.legs[0].distance.text
-
-            } else {
-                window.alert('Directions request failed due to ' + status);
-            }
-        });--}}
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>
 {{--@endsection--}}
