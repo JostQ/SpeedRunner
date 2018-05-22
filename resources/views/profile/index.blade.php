@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
-            <div class="col-sm-2 col-lg-2">
+            <div class="col-sm-2 col-lg-2 text-center">
 
                 <!-- Photo de profil -->
 
@@ -130,6 +130,7 @@
                 data: 'html',
             })
                 .done(function (data) {
+                    $('#home').empty()
                     $('#home').append(data)
                 });
         })

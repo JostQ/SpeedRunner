@@ -1,4 +1,7 @@
 // Classes spécifiques à SpeedRun
+body {
+  margin: 10px;
+}
 
 .speedrun-title{
   color: $primary-color;
@@ -61,4 +64,8 @@
     background-color: $primary-color;
     color: $white
   }
+}
+
+.fixed-top {
+  background-color: #fafafa ;
 }

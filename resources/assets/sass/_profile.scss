@@ -27,9 +27,23 @@
 }
 
 .list{
-  height: 12.5em;
+  height: 15em;
   width: 24em;
   overflow-y: auto;
+}
+
+#home>* {
+  opacity: 0;
+  animation: opacity 300ms forwards;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
