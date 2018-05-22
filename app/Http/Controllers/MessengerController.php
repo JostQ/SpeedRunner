@@ -15,4 +15,8 @@ class MessengerController extends Controller
             ->with('friends',$bddfriends)
             ->with('messages',$bddmessages);
     }
+
+    public function conversation() {
+
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Info extends Model
 {
+
     public function leagues(){
         return $this->belongsTo(League::class);
     }

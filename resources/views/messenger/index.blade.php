@@ -22,7 +22,22 @@
                     {{$message['message']}}
                 </div>
                 @endforeach
+            </div>
+            <div class="col-4">
+                <div class="row">
 
+                </div>
+            </div>
+            <div class="col-7 ">
+                <div class="row">
+                    <textarea class="form-control" placeholder="Exprimez-vous..." rows="2"></textarea>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="row justify-content-center mt-2">
+                    <button type="submit" id="publi" class="btn btn-primary">Publier
+                    </button>
+                </div>
             </div>
         </div>
     </section>

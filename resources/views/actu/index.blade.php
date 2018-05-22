@@ -75,23 +75,33 @@
 
             {{--file générale--}}
 
-            <div class="tab-content col-12" id="nav-tabContent">
+            <div class="tab-content col-12 " id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                      aria-labelledby="nav-home-tab">
                     @foreach($generales as $generale)
-                        <div class="card ">
+                        <div class="card mt-2">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-2">
-                                        <img src="{{--img dans le bdd--}}" alt="profilPict">
+                                        <img src="{{asset('avatars') . '/'  . $profile_pict }}" alt="profilPict">
                                     </div>
-                                    <div class="col-10">
-                                        <h5 class="card-title speedrun-title">Lorem
-                                            Ipsum{{--pseudo des utilisateurs--}}</h5>
+                                    <div class="col-7">
+                                        <h5 class="card-title speedrun-title">{{--$namePost--}}</h5>
+
+                                    </div>
+                                    <div class="col-3">
+                                        <p>Posté le : {{$generale->created_at}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <p class="card-text">{{$generale->message}}</p>
+                                    <p class="card-text ml-3">{{$generale->message}}</p>
+                                    @if($generale->picture !== null)
+                                        <div class="col-12">
+                                        <div class="row">
+                                        <img src="{{asset('thumbnails') . '/'  . $generale->picture }}" alt="image">
+                                        </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
