@@ -27,14 +27,34 @@
 }
 
 .list{
-  height: 12.5em;
+  height: 15em;
   width: 24em;
   overflow-y: auto;
+}
+
+#home>* {
+  opacity: 0;
+  animation: opacity 300ms forwards;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
 #profilpic{
   position: absolute;
-  left: -999999px;
+  left: -3000px;
+}
+
+#imgprofil {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
 }
 

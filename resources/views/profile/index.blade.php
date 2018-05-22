@@ -3,21 +3,21 @@
 @section('content')
     <div class="container mt-2 mb-5 pt-5" id="profile">
         <div class="row align-items-center">
-            <div class="col-sm-2 col-lg-2">
+            <div class="col-sm-2 col-lg-2 text-center">
+
+                <!-- Photo de profil -->
+
                 <img src="{{asset('avatars/' . $profile_pic)}}"
                      alt="runneuse"
                      class="rounded-circle mt-5 mb-4"
-                     id="imgprofil"
-                     width="180em">
-                <form method="post" id="CHAGASSE">
+                     id="imgprofil">
+                <form method="post" id="CHAGASSE" enctype="multipart/form-data">
                     @csrf
-                    <input type="file"  id="profilpic" name="profilpic"/>
-                    <label for="profilpic"  class="fileContainer btn btn-primary">
+                    <input type="file" required id="profilpic" class="image" name="profilpic"/>
+                    <label for="profilpic" class="fileContainer btn btn-primary">
                         Modifier <i class="fas fa-camera"></i>
                     </label>
                 </form>
-
-
             </div>
 
             <!--Info coureurs-->
@@ -35,18 +35,20 @@
                 <div class="list">
                     <ul class="list-group">
                         @foreach($list_league as $item)
-                            <a href="#"><li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
-                                {{ $item->firstname }} {{ $item->lastname }}
-                                @if(isset($item->picture))
-                                    <img src="{{asset('images/' . $item->picture)}}"
-                                         alt="listrunner"
-                                         class="listrun rounded-circle">
-                                @else
-                                    <img src="{{asset('images/girlrun4.jpg')}}"
-                                         alt="listrunner"
-                                         class="listrun rounded-circle">
-                                @endif
-                                </li></a>
+                            <a href="#">
+                                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                    {{ $item->firstname }} {{ $item->lastname }}
+                                    @if(isset($item->picture))
+                                        <img src="{{asset('images/' . $item->picture)}}"
+                                             alt="listrunner"
+                                             class="listrun rounded-circle">
+                                    @else
+                                        <img src="{{asset('images/girlrun4.jpg')}}"
+                                             alt="listrunner"
+                                             class="listrun rounded-circle">
+                                    @endif
+                                </li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>
@@ -121,28 +123,43 @@
             $('#home').load('{{ route('import_gpx') }}');
         })
 
+        $('#classement-tab').click(function (e) {
+            $('#home').addClass('active show')
+            $.ajax({
+                url:'{{route('leaderboards')}}',
+                data: 'html',
+            })
+                .done(function (data) {
+                    $('#home').empty()
+                    $('#home').append(data)
+                });
+        })
+
         $('#profilpic').on('change', function (e) {
             var image = $('#profilpic')[0].files[0];
             var form = new FormData();
             form.append('image', image);
             e.preventDefault()
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            // Affichage photo de profil
             $.ajax({
-                url: '{{ url('/profile/edit') }}/{{ $userid }}' ,
+                url: '{{ url('/profile/edit') }}/{{ $userid }}',
                 type: 'POST',
                 data: form,
                 dataType: 'json',
                 processData: false,
                 contentType: false,
-                success: function () {
+                success: function (data) {
+                    $('#imgprofil').attr('src', '{{asset('avatars')}}/' + data.picture);
                 }
             })
         })
+        // Listes des courses effectuées par le coureur.
         $('#courses-tab').click(function (e) {
             $('#home').addClass('active show')
             $.ajax({

@@ -10437,14 +10437,51 @@ a.text-dark:focus {
 }
 
 .list {
-  height: 12.5em;
+  height: 15em;
   width: 24em;
   overflow-y: auto;
 }
 
+#home > * {
+  opacity: 0;
+  -webkit-animation: opacity 300ms forwards;
+          animation: opacity 300ms forwards;
+}
+
+@-webkit-keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 #profilpic {
   position: absolute;
-  left: -999999px;
+  left: -3000px;
+}
+
+#imgprofil {
+  height: 150px;
+  width: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body {
+  margin: 10px;
 }
 
 .speedrun-title {
@@ -10507,6 +10544,10 @@ a.text-dark:focus {
 .dropdown-item:hover {
   background-color: #ff6e40;
   color: #fff;
+}
+
+.fixed-top {
+  background-color: #fafafa;
 }
 
 #title {
@@ -10587,5 +10628,6 @@ a.text-dark:focus {
 
 #nav {
   color: #ff6e40;
+  background-color: #fafafa;
 }
 
