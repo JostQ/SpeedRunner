@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Eloquent;
 use App\Model\Friendship;
 use App\Model\League;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use App\Model\Info;
+use Illuminate\Http\Request;
 use App\Model\User;
-use Eloquent;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -62,11 +63,34 @@ class ProfileController extends Controller
 
     public function edit(Request $request, $id)
     {
+        //$photoName = time().'.'.$request->image->getClientOriginalExtension();
+        //$request->image->move(public_path('avatars'), $photoName);
+
+        //DB::table('infos')->where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
+
+
+        // redimmmmension images
+        $this->validate($request,[
+           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $image = $request->file('image');
         $photoName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('avatars'), $photoName);
+
+        $destinationPath = public_path('/avatars');
+        $img = Image::make($image->getRealPath());
+        $img->resize(200, 200, function($constraint){
+            $constraint->aspectRatio();
+        })->save($destinationPath. '/' . $photoName);
+
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $photoName);
 
         DB::table('infos')->where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
 
+
+        return back()
+            ->with('success', 'photo de profil modifiée');
 
 
     }

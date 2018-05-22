@@ -35,6 +35,12 @@
 
 #profilpic{
   position: absolute;
-  left: -999999px;
+  left: -3000px;
+}
+
+#imgprofil {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
 }
 
