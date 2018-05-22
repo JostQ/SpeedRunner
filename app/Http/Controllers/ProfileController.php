@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Eloquent;
 use App\Model\Friendship;
 use App\Model\League;
-use Intervention\Image\Facades\Image;
 use App\Model\Info;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use App\Model\User;
 
@@ -86,11 +86,10 @@ class ProfileController extends Controller
         $destinationPath = public_path('/images');
         $image->move($destinationPath, $photoName);
 
-        DB::table('infos')->where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
+        Info::where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
 
 
-        return back()
-            ->with('success', 'photo de profil modifiée');
+       return json_encode(['picture' => $photoName]);
 
 
     }

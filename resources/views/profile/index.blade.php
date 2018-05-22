@@ -144,6 +144,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            // Affichage photo de profil
             $.ajax({
                 url: '{{ url('/profile/edit') }}/{{ $userid }}',
                 type: 'POST',
@@ -152,7 +154,7 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    console.log(data)
+                    $('#imgprofil').attr('src', '{{asset('avatars')}}/' + data.picture);
                 }
             })
         })
