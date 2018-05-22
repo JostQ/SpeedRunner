@@ -77,22 +77,25 @@
                             optimizeWaypoints: true,
                             travelMode: 'WALKING'
                         }, function(response, status) {
-                            if (status === 'OK') {
+                            if (response.status === 'OK') {
                                 directionsDisplay.setDirections(response);
-                                var route = response.routes[0];
-                                var distance = route.legs[0].distance.value;
-                                var timeStart = data.start.time;
-                                var timeEnd = data.start.end;
 
+                                var route = response.routes[0];
+                                console.log(route);
+                                var distance = (route.legs[0].distance.value) / 1000;
+                                var timeStart = parseInt(data.start.time);
+                                var timeEnd = parseInt(data.end.time);
                                 var time = ((timeEnd - waytime) + (waytime - timeStart)) / 60;
+
                                 time = Math.round(time * 100) / 100;
 
-                                var vitesse = (distance/1000) / (time*(1/60));
+                                var vitesse = (distance) / (time*(1/60));
+                                vitesse = Math.round(vitesse * 100) / 100;
 
                                 $.ajax({
                                     url : '{{ asset('gpx/races') }}',
                                     type: 'POST',
-                                    data: { 'distance' : distance, 'time' : time, 'vitesse' : vitesse, 'date' : data.date },
+                                    data: { 'distance_done' : distance, 'time' : time, 'speed' : vitesse, 'date_done' : data.date, 'name' : $('#raceName').val() },
                                     dataType: 'json',
                                     success: function () {
                                         console.log('bouh')

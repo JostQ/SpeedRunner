@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Gpx;
+use App\Model\Info;
 use App\Model\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,13 +80,27 @@ class GpxController extends Controller
         $addGpx->gpx = $gpxName;
         $addGpx->users_id = Auth::user()->id;
 
-        $addRace = new Race();
-        $addRace->name = $request->input('raceName');
-
         $addGpx->save();
-        $addRace->save();
-
 
         return json_encode($json);
+    }
+
+    public function addRace(Request $request)
+    {
+        $addRace = new Race();
+        $addRace->name = $request->name;
+        $addRace->time = $request->time;
+        $addRace->speed = $request->speed;
+        $addRace->date_done = $request->date_done;
+        $addRace->distance_done = $request->distance_done;
+        $addRace->users_id = Auth::user()->id;
+
+        $addRace->save();
+
+        $addInfo = Info::find(Auth::user()->id);
+        $addInfo->total_distance = Race::where('users_id','=', Auth::user()->id)->sum('distance_done');
+        $addInfo->average_speed = Race::where('users_id','=', Auth::user()->id)->avg('speed');
+
+        $addInfo->save();
     }
 }
