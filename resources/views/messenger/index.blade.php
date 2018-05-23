@@ -28,6 +28,8 @@
 
                 </div>
             </div>
+            <form action="" method="post" enctype="multipart/form-data">
+
             <div class="col-7 ">
                 <div class="row">
                     <textarea class="form-control" placeholder="Exprimez-vous..." rows="2"></textarea>
@@ -39,6 +41,7 @@
                     </button>
                 </div>
             </div>
+            </form>
         </div>
     </section>
 @endsection

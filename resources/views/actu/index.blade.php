@@ -12,11 +12,11 @@
                             {{ $errors->first('message') }}<i class="far fa-times-circle ml-1"></i>
                         </div>
                     @endif
-                        @if($errors->has('picture'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ $errors->first('picture') }}<i class="far fa-times-circle ml-1"></i>
-                            </div>
-                        @endif
+                    @if($errors->has('picture'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ $errors->first('picture') }}<i class="far fa-times-circle ml-1"></i>
+                        </div>
+                    @endif
                     @if(isset($success))
                         <div class="alert alert-success" role="alert">
                             {{ $success }}<i class="far fa-check-circle ml-1"></i>
@@ -97,9 +97,10 @@
                                     <p class="card-text ml-3">{{$generale->message}}</p>
                                     @if($generale->picture !== null)
                                         <div class="col-12">
-                                        <div class="row">
-                                        <img src="{{asset('thumbnails') . '/'  . $generale->picture }}" alt="image">
-                                        </div>
+                                            <div class="row">
+                                                <img src="{{asset('thumbnails') . '/'  . $generale->picture }}"
+                                                     alt="image">
+                                            </div>
                                         </div>
                                     @endif
                                 </div>
