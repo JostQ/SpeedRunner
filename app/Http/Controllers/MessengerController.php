@@ -18,14 +18,6 @@ class MessengerController extends Controller
         $conversations = $user->friendships()->get();
         $messages = $user->conversations()->get();
 
-
-       // $users_id= Friendship::select('users_id','friend_id')->distinct()->get();
-        //$bddmessages= Message::get();
-
-        //return view('messenger.index')
-            //->with('friends',$users_id)
-            //->with('messages',$bddmessages);
-
         return view('messenger.index')
             ->with('friends',$conversations)
             ->with('messages',$messages);
@@ -37,7 +29,6 @@ class MessengerController extends Controller
 
     public function send(){
         $data = Request::all();
-
 //        validation de l'input
         $rules = ['msg'=> 'string|required'];
 
