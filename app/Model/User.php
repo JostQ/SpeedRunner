@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function races(){
         return $this->hasMany(Race::class, 'users_id');
     }
+
+    public function conversations(){
+        return $this->hasManyThrough('App\Model\Message', 'App\Model\Friendship', 'users_id', 'users_id', 'id', 'id');
+    }
 }

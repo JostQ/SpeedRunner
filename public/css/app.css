@@ -10626,6 +10626,15 @@ body {
   background-color: #ffffff;
 }
 
+.bouncy {
+  width: 320px;
+}
+
+.export {
+  color: #0000cc;
+  cursor: pointer;
+}
+
 #nav {
   color: #ff6e40;
   background-color: #fafafa;
