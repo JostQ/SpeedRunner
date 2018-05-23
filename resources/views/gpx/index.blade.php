@@ -97,8 +97,9 @@
                                     type: 'POST',
                                     data: { 'distance_done' : distance, 'time' : time, 'speed' : vitesse, 'date_done' : data.date, 'name' : $('#raceName').val() },
                                     dataType: 'json',
-                                    success: function () {
+                                    success: function (data) {
                                         console.log('bouh')
+                                        console.log(data)
                                     }
                                 })
 

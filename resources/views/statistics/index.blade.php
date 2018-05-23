@@ -18,7 +18,7 @@
                 <h2>Vitesse moyenne</h2>
             </div>
             <div class="card-body">
-                <span class="display-4">{{ $stats->average_speed }} km/h</span>
+                <span class="display-4">{{ round($stats->average_speed, 2) }} km/h</span>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-header"><h2>Kilomètres parcourus</h2></div>
             <div class="card-body"><span
-                        class="display-4">{{ $stats->total_distance }} Km</span>
+                        class="display-4">{{ round($stats->total_distance, 2) }} Km</span>
             </div>
         </div>
 
