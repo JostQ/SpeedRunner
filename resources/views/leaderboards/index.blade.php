@@ -14,8 +14,8 @@
             <td>{{$user->firstname}}</td>
             <td>{{$user->level}}</td>
             <td>{{$user->exp}}</td>
-            <td>{{$user->average_speed}}</td>
-            <td>{{$user->total_distance}}</td>
+            <td>{{ round($user->average_speed, 2) }}</td>
+            <td>{{ round($user->total_distance, 2) }}</td>
         </tr>
     @endforeach
     </tbody>

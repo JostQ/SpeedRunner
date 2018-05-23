@@ -13,13 +13,12 @@
                  data-parent="#accordion">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12 col-lg-8">
-                            MAP
+                        <div class="col-md-12 col-lg-8 map" data-idrace="{{ $race->id }}">
                         </div>
                         <div class="col-md-12 col-lg-4">
                             <h3>Statistiques de la course</h3>
                             <p>Date : {{ $race->date_done }}</p>
-                            <p>Temps : {{ ($race->time)/60  }} h</p>
+                            <p>Temps : {{ ($race->time) }} h</p>
                             <p>Distance parcourue : {{ $race->distance_done }}
                                 Km</p>
                             <p>Vitesse moyenne : {{ $race->speed }} Km/h</p>

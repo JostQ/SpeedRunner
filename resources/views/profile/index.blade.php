@@ -170,6 +170,7 @@
                     $('#home').empty();
                     $('#home').append(data);
                     $('#home').append('<button id="loadNextRaces" class="btn btn-primary">Afficher les courses suivantes</button>')
+                    $
                 })
         })
         // Lazy loading des courses.
@@ -184,6 +185,7 @@
                 })
             pageToGet++;
         })
+
 
     </script>
 @endsection
