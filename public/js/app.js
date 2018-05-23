@@ -35569,7 +35569,7 @@ module.exports = (
     };
   })() :
 
-  // Non standard browser .env (web workers, react-native) lack needed support.
+  // Non standard browser env (web workers, react-native) lack needed support.
   (function nonStandardBrowserEnv() {
     return {
       write: function write() {},
