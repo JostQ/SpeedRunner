@@ -7,6 +7,7 @@ use App\Model\Info;
 use App\Model\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GpxController extends Controller
 {
@@ -115,14 +116,17 @@ class GpxController extends Controller
 
         $addPoints = Info::find(Auth::user()->id);
         $addPoints->exp += $pointsPerKm($request->distance_done);
-        $addPoints->save();
+
         // Calcul d'expérience
-        $totalExperience = Info::find('exp', 'level')->where('users_id','=', Auth::user()->id);
-        $computeLevel = $totalExperience->exp/$totalExperience->level;
-        if ($computeLevel === 100) {
-            $totalExperience->level++;
-            $totalExperience->save();
+
+
+        $computeLevel = $addPoints->exp/$addPoints->level;
+
+            while($computeLevel > 100) {
+                $addPoints->level++;
+                $computeLevel -= 100;
         }
+        $addPoints->save();
 
     }
 }

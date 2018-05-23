@@ -124,6 +124,7 @@ Route::get('/gpx', 'GpxController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
+
 Route::post('/gpx/races', 'GpxController@addRace')
     ->name('add_race_gpx')
     ->middleware('auth');

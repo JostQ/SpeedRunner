@@ -8,7 +8,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-lg-6 col-md-12 offset-lg-3">
-                <form action="{{ route('add_race_gpx') }}" method="post" enctype="multipart/form-data" id="submitGpx">
+                <form action="{{ route('add_gpx') }}" method="post" enctype="multipart/form-data" id="submitGpx">
                     @csrf
                     <div class="form-group">
                         <div class="form-group">
