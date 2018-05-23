@@ -93,12 +93,13 @@
                                 vitesse = Math.round(vitesse * 100) / 100;
 
                                 $.ajax({
-                                    url : '{{ asset('gpx/races') }}',
+                                    url : '{{ route('add_race_gpx') }}',
                                     type: 'POST',
                                     data: { 'distance_done' : distance, 'time' : time, 'speed' : vitesse, 'date_done' : data.date, 'name' : $('#raceName').val() },
                                     dataType: 'json',
-                                    success: function () {
+                                    success: function (data) {
                                         console.log('bouh')
+                                        console.log(data)
                                     }
                                 })
 

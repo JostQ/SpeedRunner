@@ -7,6 +7,7 @@ use App\Model\Info;
 use App\Model\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GpxController extends Controller
 {
@@ -87,6 +88,8 @@ class GpxController extends Controller
 
     public function addRace(Request $request)
     {
+
+        // Création d'une nouvelle trace
         $addRace = new Race();
         $addRace->name = $request->name;
         $addRace->time = $request->time;
@@ -97,10 +100,33 @@ class GpxController extends Controller
 
         $addRace->save();
 
+        // Mise à jour des informations.
+
         $addInfo = Info::find(Auth::user()->id);
         $addInfo->total_distance = Race::where('users_id','=', Auth::user()->id)->sum('distance_done');
         $addInfo->average_speed = Race::where('users_id','=', Auth::user()->id)->avg('speed');
 
         $addInfo->save();
+
+        // Calcul de points
+        $pointsPerKm = function($km) {
+            $points = (round($km))*10;
+            return $points;
+        };
+
+        $addPoints = Info::find(Auth::user()->id);
+        $addPoints->exp += $pointsPerKm($request->distance_done);
+
+        // Calcul d'expérience
+
+
+        $computeLevel = $addPoints->exp/$addPoints->level;
+
+            while($computeLevel > 100) {
+                $addPoints->level++;
+                $computeLevel -= 100;
+        }
+        $addPoints->save();
+
     }
 }
