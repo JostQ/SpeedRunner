@@ -1,8 +1,3 @@
-{{--@extends('layouts.app')--}}
-
-{{--@section('content')--}}
-
-{{--<div class="container mt-5 pt-5" id="statistics">--}}
 <div class="row">
     <div class="col-lg-4 col-md-6 col-12 p-4">
         <div class="card">
@@ -18,7 +13,8 @@
                 <h2>Vitesse moyenne</h2>
             </div>
             <div class="card-body">
-                <span class="display-4">{{ round($stats->average_speed, 2) }} km/h</span>
+                <span class="display-4">{{ round($stats->average_speed, 2) }}
+                    km/h</span>
             </div>
         </div>
     </div>
@@ -26,22 +22,18 @@
         <div class="card">
             <div class="card-header"><h2>Kilomètres parcourus</h2></div>
             <div class="card-body"><span
-                        class="display-4">{{ round($stats->total_distance, 2) }} Km</span>
+                        class="display-4">{{ round($stats->total_distance, 2) }}
+                    Km</span>
             </div>
         </div>
 
 
     </div>
-    {{--</div>--}}
+</div>
 
-    {{--@endsection--}}
-
-    {{--        @section('page-specific-scripts')--}}
-    <script src="{{ asset('js/Chart.bundle.min.js') }}" defer></script>
-    <script defer>
-
-        var parse = ({!!  $kmPerDay !!});
-
+<script src="{{ asset('js/Chart.bundle.min.js') }}" defer></script>
+<script defer>
+    function createChart(data) {
         var ctx = document.getElementById("kmPerDay").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -82,14 +74,14 @@
         });
 
         function updateChartData(chart) {
-            parse.forEach((distance) => {
+            data.forEach((distance) => {
                 chart.data.datasets[0].data
                     .unshift(distance.distance_done);
             });
         }
 
         function updateChartLabels(chart) {
-            parse.forEach((distance) => {
+            data.forEach((distance) => {
                 chart.data.labels
                     .unshift(distance.date_done);
             });
@@ -100,6 +92,8 @@
         updateChartData(myChart);
         updateChartLabels(myChart);
         myChart.update();
-    </script>
-
-{{--@endsection--}}
+    }
+</script>
+<script defer>
+    createChart({!!  $kmPerDay !!});
+</script>
