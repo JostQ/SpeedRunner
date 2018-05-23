@@ -19,9 +19,6 @@ class ActuController extends Controller
         $info = User::find($users->id)->infos;
         $bdd= Actuality::get();
 
-//        $firstname=Info::($bdd->users_id)->firstname;
-//        $lastname=Info::find($bdd->users_id)->lastname;
-//        $profil=$firstname.' '.$lastname;
 
         $pict=$info['picture'];
 
