@@ -10,19 +10,10 @@
                 </ul>
             </div>
             <div class="col-lg-4 col-md-12 text-center">
-                <h4>Nous contacter</h4>
+                <h4>Aide</h4>
                 <ul class="list-inline">
-                    <a href="/" class="nav-link"><li><i class="fab fa-facebook-square"></i> Facebook</li></a>
-                    <a href="/" class="nav-link"><li><i class="fab fa-twitter-square"></i> Twitter</li></a>
-                    <a href="/" class="nav-link"><li><i class="fab fa-instagram"></i> Instragram</li></a>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-12 text-center">
-                <h4>Informations</h4>
-                <ul class="list-inline">
-                    <a href="/" class="nav-link"><li><i class="fab fa-facebook-square"></i> Facebook</li></a>
-                    <a href="/" class="nav-link"><li><i class="fab fa-twitter-square"></i> Twitter</li></a>
-                    <a href="/" class="nav-link"><li><i class="fab fa-instagram"></i> Instragram</li></a>
+                    <a href="{{ route('tutogpx') }}" class="nav-link"><li>Tutoriel GPX</li></a>
+                    <a href="{{ route('tutoriel') }}" class="nav-link"><li>FAQ</li></a>
                 </ul>
             </div>
         </div>

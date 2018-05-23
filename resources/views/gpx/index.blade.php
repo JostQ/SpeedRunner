@@ -1,37 +1,34 @@
-{{--@extends('layouts.app')--}}
-
-{{--@section('content')--}}
-
-    <div class="container mt-5 pt-5" id="importGpx">
-        <div class="row justify-content-center">
-            <h2>Importez vos données GPX</h2>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-6 col-md-12 offset-lg-3">
-                <form action="{{ route('add_gpx') }}" method="post" enctype="multipart/form-data" id="submitGpx">
-                    @csrf
+<div class="container mt-5 pt-5" id="importGpx">
+    <div class="row justify-content-center">
+        <h2>Importez vos données GPX</h2>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-6 col-md-12 offset-lg-3">
+            <form action="{{ route('add_gpx') }}" method="post"
+                  enctype="multipart/form-data" id="submitGpx">
+                @csrf
+                <div class="form-group">
                     <div class="form-group">
-                        <div class="form-group">
-                            <input type="file" class="form-control-file" name="gpxFile">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nom de la course</label>
-                            <input id="raceName" type="text" class="form-control" name="raceName" value="Course {{ $numberOfRacesDone + 1 }}">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary d-block" type="submit" >C'est parti !</button>
-                        </div>
+                        <input type="file" class="form-control-file"
+                               name="gpxFile">
                     </div>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="">Nom de la course</label>
+                        <input id="raceName" type="text" class="form-control"
+                               name="raceName"
+                               value="Course {{ $numberOfRacesDone + 1 }}">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary d-block" type="submit">
+                            C'est parti !
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</div>
 <script>
-
-
     function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -46,14 +43,14 @@
             });
 
             $.ajax({
-                url : $(this).attr('action'),
-                type : 'POST',
-                data : new FormData(this),
-                dataType : 'json',
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: new FormData(this),
+                dataType: 'json',
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    if (data.status === 'ok'){
+                    if (data.status === 'ok') {
 
                         var waypts = [];
                         var waytime = 0;
@@ -68,15 +65,15 @@
                         });
 
                         console.log(waypts);
-                        var start = new google.maps.LatLng( data.start.lat, data.start.lon );
-                        var end = new google.maps.LatLng( data.end.lat, data.end.lon );
+                        var start = new google.maps.LatLng(data.start.lat, data.start.lon);
+                        var end = new google.maps.LatLng(data.end.lat, data.end.lon);
                         directionsService.route({
                             origin: start,
-                            destination:end,
+                            destination: end,
                             waypoints: waypts,
                             optimizeWaypoints: true,
                             travelMode: 'WALKING'
-                        }, function(response, status) {
+                        }, function (response, status) {
                             if (response.status === 'OK') {
                                 directionsDisplay.setDirections(response);
 
@@ -89,20 +86,25 @@
 
                                 time = Math.round(time * 100) / 100;
 
-                                var vitesse = (distance) / (time*(1/60));
+                                var vitesse = (distance) / (time * (1 / 60));
                                 vitesse = Math.round(vitesse * 100) / 100;
 
                                 $.ajax({
-                                    url : '{{ route('add_race_gpx') }}',
+                                    url: '{{ route('add_race_gpx') }}',
                                     type: 'POST',
-                                    data: { 'distance_done' : distance, 'time' : time, 'speed' : vitesse, 'date_done' : data.date, 'name' : $('#raceName').val() },
+                                    data: {
+                                        'distance_done': distance,
+                                        'time': time,
+                                        'speed': vitesse,
+                                        'date_done': data.date,
+                                        'name': $('#raceName').val()
+                                    },
                                     dataType: 'json',
                                     success: function (data) {
                                         console.log('bouh')
                                         console.log(data)
                                     }
                                 })
-
 
 
                             } else {
@@ -114,9 +116,7 @@
             })
         });
     }
-
 </script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>
-{{--@endsection--}}

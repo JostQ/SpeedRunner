@@ -108,25 +108,45 @@ class GpxController extends Controller
 
         $addInfo->save();
 
-        // Calcul de points
-        $pointsPerKm = function($km) {
-            $points = (round($km))*10;
-            return $points;
+        // Calcul d'expérience
+        $expPerKm = function($km) {
+            $exp = (round($km))*100;
+            return $exp;
         };
 
-        $addPoints = Info::find(Auth::user()->id);
-        $addPoints->exp += $pointsPerKm($request->distance_done);
+        $userInfos = Info::find(Auth::user()->id);
+        $userInfos->exp += $expPerKm($request->distance_done);
 
-        // Calcul d'expérience
+        // Calcul du niveau
+
+        // Deux tableaux
+        // 1 tableau [1,2,3,4,5,6,7]
+        // 2 tableau [100,200,400,800 etc]
 
 
-        $computeLevel = $addPoints->exp/$addPoints->level;
 
-            while($computeLevel > 100) {
-                $addPoints->level++;
-                $computeLevel -= 100;
-        }
-        $addPoints->save();
+
+            $levels = [];
+            $experienceNeeded = [];
+            for($i = 1; $i <= 100; $i++) {
+                array_push($levels, $i);
+                array_push($experienceNeeded, (($i-1) +100) * $i*4 );
+            }
+            // XP(n) = n-1+100 * n*4
+            array_reverse($experienceNeeded);
+
+            for($i = 0; $i < count($levels); $i++) {
+                if($userInfos->exp >= $experienceNeeded[$i]) {
+                    $userInfos->level = $i+1;
+                }
+            }
+
+        // Calcul de la ligue
+
+        $computeLeague = $userInfos->level / 5;
+
+        $userInfos->leagues_id = 20 - floor($computeLeague);
+        $userInfos->save();
 
     }
 }
