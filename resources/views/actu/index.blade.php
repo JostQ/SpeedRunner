@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-    {{--file d'actu--}}
+{{--file d'actu--}}
     <section class="container pt-5 mt-5">
         <div class="row justify-content-center">
 
@@ -166,4 +163,3 @@
             </div>
         </div>
     </section>
-@endsection

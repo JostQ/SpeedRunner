@@ -40,9 +40,14 @@ Route::put('/profile', 'ProfileController@update')
 ///
 /////////////////////////////////////////
 
-// Page tutoriel GPX
+// Page tutoriel
 Route::get('/tutoriel', 'TutorialController@index')
     ->name('tutoriel')
+    ->middleware('auth');
+
+// Page tuto GPX
+Route::get('/tutogpx', 'TutoGpxController@index')
+    ->name('tutogpx')
     ->middleware('auth');
 
 // Fonction Amis
@@ -119,7 +124,9 @@ Route::get('/gpx', 'GpxController@index')
 Route::post('/gpx', 'GpxController@add')
     ->name('add_gpx')
     ->middleware('auth');
-
+Route::post('/gpx/races', 'GpxController@addRace')
+    ->name('add_race_gpx')
+    ->middleware('auth');
 
 
 

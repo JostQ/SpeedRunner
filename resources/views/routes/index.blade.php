@@ -19,7 +19,7 @@
                         <div class="col-md-12 col-lg-4">
                             <h3>Statistiques de la course</h3>
                             <p>Date : {{ $race->date_done }}</p>
-                            <p>Temps : {{ $race->time }}</p>
+                            <p>Temps : {{ ($race->time)/60  }} h</p>
                             <p>Distance parcourue : {{ $race->distance_done }}
                                 Km</p>
                             <p>Vitesse moyenne : {{ $race->speed }} Km/h</p>

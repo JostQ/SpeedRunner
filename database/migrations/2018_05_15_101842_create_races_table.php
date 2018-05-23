@@ -16,11 +16,11 @@ class CreateRacesTable extends Migration
         Schema::create('races', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('time');
-            $table->string('date_done');
-            $table->string('speed');
-            $table->string('distance_done');
-            $table->integer('users_id');
+            $table->string('time')->nullable();
+            $table->string('date_done')->nullable();
+            $table->string('speed')->nullable();
+            $table->string('distance_done')->nullable();
+            $table->integer('users_id')->nullable();
             $table->timestamps();
         });
     }
