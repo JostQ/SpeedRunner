@@ -6,6 +6,8 @@
         <div class="card mt-5" id="tutorial">
             <div class="card-body">
                 <h2>F.A.Q</h2>
+                <p>Vous trouverez ici les questions les plus courantes. Vous pouvez également consulter<a
+                            href="#"> notre page de tutoriel concernant les données GPX</a></p>
                 <hr>
 
                 <p data-toggle="collapse" data-target="#show"><a href="#">Qu'est ce que SpeedRunner ?</a></p>
