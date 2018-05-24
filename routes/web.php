@@ -102,7 +102,6 @@ Route::get('/succes', 'SuccessController@index')
     ->name('success')
     ->middleware('auth');
 
-
 /////////////////////////////////////////
 ///
 ///           ADMINISTRATION
