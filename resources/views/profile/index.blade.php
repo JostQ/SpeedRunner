@@ -13,8 +13,10 @@
                      id="imgprofil">
                 <form method="post" id="CHAGASSE" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" required id="profilpic" class="image" name="profilpic"/>
-                    <label for="profilpic" class="fileContainer btn btn-primary">
+                    <input type="file" required id="profilpic" class="image"
+                           name="profilpic"/>
+                    <label for="profilpic"
+                           class="fileContainer btn btn-primary">
                         Modifier <i class="fas fa-camera"></i>
                     </label>
                 </form>
@@ -64,7 +66,8 @@
                     d'actualité</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="defi-tab" data-toggle="tab" href="#defi"
+                <a class="nav-link" id="success-tab" data-toggle="tab"
+                   href="#defi"
                    role="tab" aria-controls="profile"
                    aria-selected="false">Succès</a>
             </li>
@@ -113,27 +116,35 @@
         $('#actualite-tab').click(function (e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('actu') }}');
-        })
+        });
         $('#stats-tab').click(function (e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('statistics') }}');
-        })
+        });
         $('#gpx-tab').click(function (e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('import_gpx') }}');
-        })
+        });
 
         $('#classement-tab').click(function (e) {
             $('#home').addClass('active show')
             $.ajax({
-                url:'{{route('leaderboards')}}',
+                url: '{{route('leaderboards')}}',
                 data: 'html',
             })
                 .done(function (data) {
-                    $('#home').empty()
-                    $('#home').append(data)
+                    $('#home').empty().append(data)
                 });
-        })
+        });
+        $('#success-tab').click(function (e) {
+            $.ajax({
+                url: '{{route('success')}}',
+                data: 'html',
+            })
+                .done(function(data){
+                    $('#home').empty().append(data);
+                })
+        });
 
         $('#profilpic').on('change', function (e) {
             var image = $('#profilpic')[0].files[0];
