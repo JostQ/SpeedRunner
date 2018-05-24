@@ -29,6 +29,7 @@
                 <p>Nombres d'amis : {{ $friend }}</p>
                 <p>Niveau : {{ $level }}</p>
                 <p>{{ $league }}</p>
+                <p>Nombre de courses effectuées : {{ $all_races }}</p>
             </div>
 
             <!--Liste de coureurs même niveau-->

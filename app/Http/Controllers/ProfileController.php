@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Race;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Eloquent;
@@ -45,11 +46,16 @@ class ProfileController extends Controller
         $all_league = Info::all()->where('leagues_id', $infos->leagues_id);
 
         $list_league = [];
+
         foreach ($all_league as $item){
             if ($item->users_id !== $user->id){
                 $list_league[] = $item;
             }
         }
+
+        // Nombres de courses effectuées
+        $race_done = Race::where('users_id', $user->id)->count();
+
 
         return view('profile.index')
             ->with('userid', $user->id)
@@ -58,7 +64,8 @@ class ProfileController extends Controller
             ->with('level', $level)
             ->with('league', $league)
             ->with('list_league', $list_league)
-            ->with('profile_pic', $profile_pic);
+            ->with('profile_pic', $profile_pic)
+            ->with('all_races', $race_done);
     }
 
     public function edit(Request $request, $id)

@@ -56,7 +56,8 @@ class User extends Authenticatable
         return $this->hasMany(Race::class, 'users_id');
     }
 
-    public function conversations(){
-        return $this->hasManyThrough('App\Model\Message', 'App\Model\Friendship', 'users_id', 'users_id', 'id', 'id');
+    public function conversations($friendship_id){
+        return $this->hasMany(Message::class, 'users_id')->where('friendship_id', $friendship_id)->get();
     }
+
 }
