@@ -13674,8 +13674,6 @@ module.exports = Cancel;
 
 /***/ }),
 /* 10 */
-<<<<<<< HEAD
-=======
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
@@ -13733,70 +13731,9 @@ function createChart(chart) {
 
 /***/ }),
 /* 12 */
->>>>>>> 296582a8171d5a09509d0be098740fb8ef265d8f
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(11);
-module.exports = __webpack_require__(36);
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-<<<<<<< HEAD
-__webpack_require__(12);
-
-function createChart(chart) {
-    var ctx = document.getElementById("kmPerDay").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Kilomètres par Jour',
-                data: [],
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-                borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-    function updateChartData(chart) {
-        chart.forEach(function (distance) {
-            chart.data.datasets[0].data.unshift(distance.distance_done);
-        });
-    }
-
-    function updateChartLabels(chart) {
-        chart.forEach(function (distance) {
-            chart.data.labels.unshift(distance.date_done);
-        });
-    }
-
-    myChart.update();
-    updateChartData(myChart);
-    updateChartLabels(myChart);
-    myChart.update();
-}
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-=======
->>>>>>> 296582a8171d5a09509d0be098740fb8ef265d8f
 window._ = __webpack_require__(13);
 window.Popper = __webpack_require__(3).default;
 
@@ -13807,19 +13744,12 @@ window.Popper = __webpack_require__(3).default;
  */
 
 try {
-<<<<<<< HEAD
     window.$ = window.jQuery = __webpack_require__(4);
 
     __webpack_require__(15);
 } catch (e) {
     console.log(e);
 }
-=======
-  window.$ = window.jQuery = __webpack_require__(4);
-
-  __webpack_require__(15);
-} catch (e) {}
->>>>>>> 296582a8171d5a09509d0be098740fb8ef265d8f
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

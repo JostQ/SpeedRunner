@@ -195,7 +195,8 @@ class GpxController extends Controller
 
             }
         }
-
-        return json_encode($successUnlocked);
+        if(!empty($successUnlocked)) {
+            return json_encode($successUnlocked);
+        }
     }
 }

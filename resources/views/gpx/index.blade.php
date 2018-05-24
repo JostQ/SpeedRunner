@@ -98,20 +98,20 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        console.log(data[0]);
                                         if (data[0].hasOwnProperty('id')) {
-                                            var containerAlert='<div class="alert alert-primary successUnlocked" role="alert">',
-                                                targetContainerAlert = $('body>div[role=alert]'),
-                                                headerAlert = data[0].name;
-                                                bodyAlert = data[0].description;
-                                                // imgAlert = data[0].image;
+                                            var containerAlert='<div class="alert alert-primary successUnlocked" role="alert">';
+                                            var headerAlert = data[0].name;
+                                            var bodyAlert = data[0].description;
+
 
                                             $('body').append(containerAlert);
-                                            targetContainerAlert.text(headerAlert);
-                                            targetContainerAlert.text(bodyAlert);
-                                            // targetContainerAlert.text(imgAlert);
+                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
+                                            $('body>div[role=alert]').append('<div class="imgAlert">') ;
+                                            $('body div[role=alert] div.imgAlert').append('<img src="{{asset("icons/medal.svg")}}" alt=">') ;
+                                            $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
+                                            $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
 
-                                            setTimeout(function() {$('div[role=alert]').remove()}, 3000);
+                                            setTimeout(function() {$('div[role=alert]').hide(400)}, 5000);
                                         }
                                     }
                                 });
