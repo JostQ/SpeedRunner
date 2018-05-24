@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(!empty($errors->has('msg')))
-        <div class="alert alert-danger" role="alert">
-            {{$errors->first('msg')}}
-        </div>
-    @endif
     <section class="container pt-5 mt-5">
+        @if(!empty($errors->has('msg')))
+            <div class="alert alert-danger" role="alert">
+                {{$errors->first('msg')}}
+            </div>
+        @endif
         <form method="post" name="postMsg" id="postMsg">
             @csrf
             <div class="row">
@@ -14,7 +14,7 @@
                 <div class="list-group col-4" id="myList" role="tablist">
 
                     @foreach($friends as $friend)
-                       <a class="list-group-item list-group-item-action  " data-toggle="list"
+                       <a class="list-group-item list-group-item-action friend" data-toggle="list"
                                 href="#message"
                                 role="tab" data-friend="{{$friend['friend_id']}}">{{ $friend->user->infos->firstname.' '.$friend->user->infos->lastname}} </a>
                     @endforeach
@@ -25,15 +25,15 @@
                 <div class="tab-content col-8 message-content">
 
                     {{--foreach des message--}}
-                    @foreach($messages as $message)
                         <div class="tab-pane " id="message" role="tabpanel">
-                            {{$message['message']}}
+                            {{--@foreach($messages as $message)--}}
+                            {{--<p>{{$message['message']}}</p>--}}
+                            {{--@endforeach--}}
                         </div>
-                    @endforeach
                 </div>
                 <div class="col-7 offset-4 ">
                     <div class="row">
-                        <textarea class="form-control" placeholder="Exprimez-vous..." rows="2" name="msg "
+                        <textarea class="form-control" placeholder="Exprimez-vous..." rows="2" name="msg"
                                   required></textarea>
                         <div class="col-1">
                             <button type="submit" id="publi" class="btn btn-primary ">Publier
@@ -74,6 +74,37 @@
 
             };
         }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+
+            $('.friend').on('click',function(event) {
+                event.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type:'POST',
+                    url: '{{ route('messenger_friend') }}',
+                    dataType:'json',
+                    data: { id : $(this).attr('data-friend') },
+                    success:function(data) {
+                        $('#message').empty();
+                        $(data).each(function (index, item){
+                            $('#message').append($('<p>').html(item.message))
+                        })
+
+
+                    },
+                    error:function(data) {
+                        console.log('erreur');
+                    }
+                })
+            });
+
+        });
 
     </script>
 @endsection
