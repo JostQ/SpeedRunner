@@ -85,7 +85,7 @@ Route::get('/statistiques', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/actu','ActuController@store');
+Route::post('/actu', 'ActuController@store');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
@@ -95,6 +95,11 @@ Route::get('/leaderboards', 'LeaderboardsController@index')
 // Affichage des tracés effectués
 Route::get('/routes', 'RoutesController@index')
     ->name('routes')
+    ->middleware('auth');
+
+// Affichage des succès
+Route::get('/succes', 'SuccessController@index')
+    ->name('success')
     ->middleware('auth');
 
 

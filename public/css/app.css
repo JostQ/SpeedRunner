@@ -10550,6 +10550,14 @@ body {
   background-color: #fafafa;
 }
 
+.successLocked {
+  opacity: 0.3;
+}
+
+.successObtained {
+  opacity: 1;
+}
+
 #title {
   font-family: 'Montserrat';
   font-weight: 900;
