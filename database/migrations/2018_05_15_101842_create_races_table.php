@@ -21,6 +21,7 @@ class CreateRacesTable extends Migration
             $table->string('speed')->nullable();
             $table->string('distance_done')->nullable();
             $table->integer('users_id')->nullable();
+            $table->integer('gpx_id')->nullable();
             $table->timestamps();
         });
     }

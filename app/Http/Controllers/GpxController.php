@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Model\Gpx;
 use App\Model\Info;
 use App\Model\Race;
+use App\Model\Waypoint;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class GpxController extends Controller
 {
+
+
     public function index()
     {
         $numberOfRacesDone = Race::where('users_id', Auth::user()->id)->count();
@@ -76,12 +79,31 @@ class GpxController extends Controller
         $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
 
 
-
         $addGpx = new Gpx();
-        $addGpx->gpx = $gpxName;
+
+        $addGpx->startLat = $start['lat'];
+        $addGpx->startLon = $start['lon'];
+        $addGpx->startTime = $start['time'];
+        $addGpx->endLat = $end['lat'];
+        $addGpx->endLon = $end['lon'];
+        $addGpx->endTime = $end['time'];
         $addGpx->users_id = Auth::user()->id;
 
         $addGpx->save();
+
+        foreach ($waypoints as $waypoint){
+
+            $addWay = new Waypoint();
+
+            $addWay->lat = $waypoint['lat'];
+            $addWay->lon = $waypoint['lon'];
+            $addWay->time = $waypoint['time'];
+            $addWay->gpx_id = $addGpx->id;
+
+            $addWay->save();
+        }
+
+        unlink(public_path('/gpxFile/gpx_name') . '/'. $gpxName);
 
         return json_encode($json);
     }
@@ -97,6 +119,7 @@ class GpxController extends Controller
         $addRace->date_done = $request->date_done;
         $addRace->distance_done = $request->distance_done;
         $addRace->users_id = Auth::user()->id;
+        $addRace->gpx_id = Gpx::all()->last()->id;
 
         $addRace->save();
 
