@@ -78,3 +78,10 @@ body {
 .successObtained {
   opacity: 1;
 }
+
+.successUnlocked {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  @extend .btn
+}

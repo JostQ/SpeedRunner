@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Gpx;
 use App\Model\Info;
 use App\Model\Race;
+use App\Model\Success;
 use App\Model\SuccessHasUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -139,7 +140,9 @@ class GpxController extends Controller
         $userInfos->leagues_id = 20 - floor($computeLeague);
         $userInfos->save();
 
-        $this->success();
+        $success = $this->success();
+
+        return $success;
 
     }
 
@@ -147,12 +150,13 @@ class GpxController extends Controller
     {
         $authUserId = Auth::user()->id;
         $userInfos = Info::find($authUserId);
-        $racesDone = Race::where('users_id', $authUserId);
+        $racesDone = Race::where('users_id', $authUserId)->get( );
         $successInfos = SuccessHasUser::where('users_id', Auth::user()->id)->pluck('success_id')->all();
 
         $avgSpeed = $userInfos->average_speed;
         $kmRun = $userInfos->total_distance;
         $numberOfRacesDone = count($racesDone);
+        $successUnlocked = [];
 
         $unlocks = new SuccessHasUser();
         if ($avgSpeed >= 15) {
@@ -160,6 +164,7 @@ class GpxController extends Controller
                 $unlocks->users_id = $authUserId;
                 $unlocks->success_id = 4;
                 $unlocks->save();
+                $successUnlocked[] = Success::find(4);
             }
         }
 
@@ -168,6 +173,7 @@ class GpxController extends Controller
                 $unlocks->users_id = $authUserId;
                 $unlocks->success_id = 2;
                 $unlocks->save();
+                $successUnlocked[] = Success::find(2);
             }
         }
 
@@ -176,6 +182,7 @@ class GpxController extends Controller
                 $unlocks->users_id = $authUserId;
                 $unlocks->success_id = 3;
                 $unlocks->save();
+                $successUnlocked[] = Success::find(3);
             }
         }
 
@@ -184,7 +191,11 @@ class GpxController extends Controller
                 $unlocks->users_id = $authUserId;
                 $unlocks->success_id = 1;
                 $unlocks->save();
+                $successUnlocked[] = Success::find(1);
+
             }
         }
+
+        return json_encode($successUnlocked);
     }
 }

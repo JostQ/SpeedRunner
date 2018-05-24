@@ -62,7 +62,6 @@
                             waytime = waypoint.time - waytime;
                         });
 
-                        console.log(waypts);
                         var start = new google.maps.LatLng(data.start.lat, data.start.lon);
                         var end = new google.maps.LatLng(data.end.lat, data.end.lon);
                         directionsService.route({
@@ -76,7 +75,7 @@
                                 directionsDisplay.setDirections(response);
 
                                 var route = response.routes[0];
-                                console.log(route);
+
                                 var distance = (route.legs[0].distance.value) / 1000;
                                 var timeStart = parseInt(data.start.time);
                                 var timeEnd = parseInt(data.end.time);
@@ -99,10 +98,23 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        console.log('bouh')
-                                        console.log(data)
+                                        console.log(data[0]);
+                                        if (data[0].hasOwnProperty('id')) {
+                                            var containerAlert='<div class="alert alert-primary successUnlocked" role="alert">',
+                                                targetContainerAlert = $('body>div[role=alert]'),
+                                                headerAlert = data[0].name;
+                                                bodyAlert = data[0].description;
+                                                // imgAlert = data[0].image;
+
+                                            $('body').append(containerAlert);
+                                            targetContainerAlert.text(headerAlert);
+                                            targetContainerAlert.text(bodyAlert);
+                                            // targetContainerAlert.text(imgAlert);
+
+                                            setTimeout(function() {$('div[role=alert]').remove()}, 3000);
+                                        }
                                     }
-                                })
+                                });
 
 
                             } else {
