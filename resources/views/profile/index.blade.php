@@ -24,19 +24,30 @@
 
             <!--Info coureurs-->
             <div class="col-sm-6 mt-2 col-lg-6" id="infos">
-                <div class="mb-2"><h4> {{ $user }}</h4>
+                <div class="mb-2">
+                    <h4> {{ $user }}</h4>
                 </div>
-                <p>Nombres d'amis : {{ $friend }}</p>
-                <p>Niveau : {{ $level }}</p>
-                <p>{{ $league }}</p>
-                <p>Nombre de courses effectuées : {{ $all_races }}</p>
+                <p> <i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
+                <p> <i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
+                <p> <i class="fas fa-list"></i> {{ $league }}</p>
+                <p> <i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
             </div>
 
-            <!--Liste de coureurs même niveau-->
-            <div class="col-sm-4 col-lg-4">
+           <!--affichage ou non de la liste d'amis-->
+            @if(empty ($list_league))
+                <style>
+                    #runfriend{
+                        visibility: hidden;
+                    }
+                </style>
+                <h5>Vous n'avez pas encore d'amis</h5>
+
+            @endif
+            <div class="col-sm-4 col-lg-4" id="runfriend">
                 <div class="mt-5">Ils ont le même niveau que vous</div>
                 <div class="list">
                     <ul class="list-group">
+                        <!--Liste de coureurs même niveau-->
                         @foreach($list_league as $item)
                             <a href="#">
                                 <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
@@ -197,6 +208,7 @@
                 })
             pageToGet++;
         })
+
 
 
     </script>
