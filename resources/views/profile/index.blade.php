@@ -27,12 +27,12 @@
                 <div class="mb-2">
                     <h4> {{ $user }}</h4>
                 </div>
-                <p><i class="fas fa-user-friends"></i> Nombres d'amis
-                    : {{ $friend }}</p>
+
+                <p><i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
                 <p><i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
                 <p><i class="fas fa-list"></i> {{ $league }}</p>
-                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées
-                    : {{ $all_races }}</p>
+                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
+
             </div>
 
             <!--affichage ou non de la liste d'amis-->
@@ -46,12 +46,14 @@
                     <div class="list">
                         <ul class="list-group">
                             <!--Liste de coureurs même niveau-->
+
                             @foreach($list_league as $item)
-                                <a href="#">
+                                <a href="{{ asset('profile' . '/' . $item->users_id) }}">
                                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                                         {{ $item->firstname }} {{ $item->lastname }}
                                         @if(isset($item->picture))
-                                            <img src="{{asset('images/' . $item->picture)}}"
+                                            <img src="{{asset('images') . '/' . $item->picture}}"
+
                                                  alt="listrunner"
                                                  class="listrun rounded-circle">
                                         @else
@@ -228,6 +230,7 @@
                 data: 'html',
             })
                 .done(function (data) {
+
                     $('#home').addClass('active show');
                     $('#home').empty();
                     $('#home').append(data);

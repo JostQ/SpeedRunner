@@ -102,7 +102,7 @@
                                     dataType: 'json',
                                     success: function (data) {
                                         $('#result').empty();
-                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
+                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'))
                                         if (data[0].hasOwnProperty('id')) {
                                             var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
                                             var headerAlert = data[0].name;
