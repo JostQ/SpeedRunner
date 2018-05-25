@@ -4,6 +4,7 @@
             <h2>Importez vos données GPX</h2>
         </div>
         <div class="card-body">
+
             <form action="{{ route('add_gpx') }}" method="post"
                   enctype="multipart/form-data" id="submitGpx">
                 @csrf
@@ -18,7 +19,7 @@
                         <input type="file" class="form-control-file"
                                name="gpxFile">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <button class="btn btn-primary d-block" type="submit">
                             C'est parti !
                         </button>
@@ -100,8 +101,10 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
+                                        $('#result').empty();
+                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
                                         if (data[0].hasOwnProperty('id')) {
-                                            var containerAlert='<div class="alert alert-primary successUnlocked" role="alert">';
+                                            var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
                                             var headerAlert = data[0].name;
                                             var bodyAlert = data[0].description;
 
@@ -111,19 +114,39 @@
                                             $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
                                             $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
 
-                                            setTimeout(function() {$('div[role=alert]').hide(400)}, 5000);
+
+                                            setTimeout(function () {
+                                                $('div[role=alert]').hide(400)
+                                            }, 5000);
                                         }
                                     }
                                 });
 
 
                             } else {
-                                window.alert('Directions request failed due to ' + status);
+                                $('#result').empty();
+                                $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Directions request failed due to ' + status));
                             }
                         });
                     }
+                    else if (data.status === 'KO') {
+                        $('#result').empty();
+                        if (data.errors.gpxFile !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.gpxFile))
+                        }
+                        if (data.errors.raceName !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.raceName))
+                        }
+                        if (data.mimes !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
+                        }
+                    }
+                },
+                errors: function () {
+                    $('#result').empty();
+                    $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur lors de l\'envoi du fichier'))
                 }
-            })
+            });
         });
     }
 </script>

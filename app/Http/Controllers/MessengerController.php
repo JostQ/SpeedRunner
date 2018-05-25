@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Request;
+use Image;
 
 class MessengerController extends Controller
 {
@@ -61,6 +62,24 @@ class MessengerController extends Controller
             return json_encode($validator->errors());
         }
 
+        //      traitement de l'image
+        if (!empty($data['picture'])){
+
+            $image = $data['picture'];
+            $photoName= time().'.'.$image->getClientOriginalExtension();
+
+            $destinationPath = public_path('/thumbnails');
+            $img = Image::make($image->getRealPath());
+            $img->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$photoName);
+
+
+            $destinationPath = public_path('/messengerImages');
+            $image->move($destinationPath, $photoName);
+
+        }
+
 
         $conversation = Friendship::where('friend_id', $data['friend-id'])->where('users_id', Auth::id())->first();
 
@@ -70,10 +89,18 @@ class MessengerController extends Controller
 //        insert->bdd
         $insert = new Message;
         $insert->message = $data['msg'];
+        if (isset($data['picture'])){
+            $insert->picture = $photoName;
+        }
         $insert->users_id = Auth::user()->id;
         $insert->recipient_id =$data['friend-id'];
         $insert->friendship_id = $conversation->id;
         $insert->save();
+
+
+        if(isset($data['picture']))[
+            $data['picture'] = $photoName
+        ];
 
         return response()->json($data);
 

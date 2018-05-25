@@ -2,49 +2,56 @@
 
 @section('content')
     <section class="container pt-5 mt-5">
-        @if(!empty($errors->has('msg')))
-            <div class="alert alert-danger" role="alert">
-                {{$errors->first('msg')}}
-            </div>
-        @endif
-        @if(!empty($errors->has('picture')))
-                <div class="alert alert-danger" role="alert">
-                    {{$errors->first('picture')}}
-                </div>
-            @endif
-        <form method="post" name="postMsg" id="postMsg">
-            @csrf
+        <div class="col-12">
             <div class="row">
-                <!-- List group -->
-                <div class="list-group col-4" id="myList" role="tablist">
-
-                    @foreach($friends as $friend)
-                        <a class="list-group-item list-group-item-action friend" data-toggle="list"
-                           href="#message"
-                           role="tab"
-                           data-friend="{{$friend['friend_id']}}">{{ $friend->user->infos->firstname.' '.$friend->user->infos->lastname}} </a>
-                    @endforeach
-
-                </div>
-
-                <!-- Tab panes -->
-                <div class="tab-content col-8 message-content">
-                    <div class="tab-pane " id="message" role="tabpanel">
+                @if(!empty($errors->has('msg')))
+                    <div class="alert alert-danger" role="alert">
+                        {{$errors->first('msg')}}
                     </div>
-                </div>
-                <div class="col-7 offset-4 ">
-                    <div class="row">
+                @endif
+                @if(!empty($errors->has('picture')))
+                    <div class="alert alert-danger" role="alert">
+                        {{$errors->first('picture')}}
+                    </div>
+                @endif
+            </div>
+            <form method="post" name="postMsg" id="postMsg" enctype="multipart/form-data">
+                @csrf
+                    <div class="row d-flex justify-content-end">
+                        <input type="file" name="picture"
+                               id="file-input" class="join-file ">
+                    </div>
+                <div class="row">
+                    <!-- List group -->
+                    <div class="list-group col-4" id="myList" role="tablist">
+
+                        @foreach($friends as $friend)
+                            <a class="list-group-item list-group-item-action friend" data-toggle="list"
+                               href="#message"
+                               role="tab"
+                               data-friend="{{$friend['friend_id']}}">{{ $friend->user->infos->firstname.' '.$friend->user->infos->lastname}} </a>
+                        @endforeach
+
+                    </div>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content col-8 message-content">
+                        <div class="tab-pane " id="message" role="tabpanel" style="overflow: auto; height: 400px">
+                        </div>
+                    </div>
+                    <div class="col-7 offset-4 ">
+                        <div class="row">
                         <textarea class="form-control" placeholder="Exprimez-vous..." rows="2" name="msg"
                                   required></textarea>
-                        <div class="col-1">
-                            <button type="submit" id="publi" class="btn btn-primary ">Publier
-                            </button>
+                            <div class="col-1">
+                                <button type="submit" id="publi" class="btn btn-primary ">Publier
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </section>
 
 
@@ -94,7 +101,12 @@
                     success: function (data) {
                         $('#message').empty();
                         $(data).each(function (index, item) {
+                            console.log(item)
                             $('#message').append($('<p>').html(item.message))
+                            if(item.picture !== null){
+                                $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + item.picture}));
+
+                            }
                         })
 
 
@@ -104,7 +116,7 @@
                     }
                 });
             });
-            $('#publi').on('click', function (event) {
+            $('#postMsg ').on('submit', function (event) {
                 event.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -115,10 +127,16 @@
                     type: 'POST',
                     url: '{{ route('messenger_send_new') }}',
                     dataType: 'json',
-                    data:$('form').serialize(),
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
                     success: function (data) {
-                        console.log(data['msg']);
-                            $('#message').append($('<p>').html(data['msg']));
+                        console.log(data);
+                        $('#message').append($('<p>').html(data['msg']));
+                        if(data.picture !== undefined){
+                            $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + data['picture']}));
+                        }
+
                     },
                     error: function (data) {
                         console.log('erreur');

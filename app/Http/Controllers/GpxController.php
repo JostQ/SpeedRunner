@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Model\Gpx;
 use App\Model\Info;
 use App\Model\Race;
+use App\Model\Waypoint;
+use Validator;
 use App\Model\Success;
 use App\Model\SuccessHasUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class GpxController extends Controller
 {
+
+
     public function index()
     {
         $numberOfRacesDone = Race::where('users_id', Auth::user()->id)->count();
@@ -22,9 +25,39 @@ class GpxController extends Controller
 
     public function add(Request $request)
     {
-//        $validatedData = $request->validate([
-//            'gpxFile' => 'required|mimes:xml|'
-//        ]);
+
+        $rules = [
+            'gpxFile' => 'required|max:1024',
+            'raceName' => 'required'
+        ];
+
+        $messages = [
+            'gpxFile.required' => 'Fichier GPX manquant',
+            'gpxFile.mimes' => 'Extension de fichier accepté : GPX - XML',
+            'gpxFile.size' => 'Taille du fichier maximum autorisé 1Mo',
+            'raceName.required' => 'Nom de la course manquant'
+        ];
+
+
+        if (!empty($request->gpxFile)){
+            $gpx = $request->gpxFile;
+            if($gpx->getClientOriginalExtension() !== 'gpx' && $gpx->getClientOriginalExtension() !== 'xml'){
+                $error = $messages['gpxFile.mimes'];
+            }
+        }
+
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+
+        if ($validator->fails() || isset($error)){
+            $jsonError = ['status' => 'KO', 'errors' => $validator->errors()];
+            if(isset($error)){
+                $jsonError['mimes'] = $error;
+            }
+            return json_encode($jsonError);
+        }
 
         $gpxName = time() . '.xml';
         $request->file('gpxFile')->move(public_path('/gpxFile/gpx_name'), $gpxName);
@@ -51,6 +84,7 @@ class GpxController extends Controller
             $lat = $jsonDecode['trk']['trkseg']['trkpt'][$i]['@attributes']['lat'];
             $lon = $jsonDecode['trk']['trkseg']['trkpt'][$i]['@attributes']['lon'];
 
+                // Récupération des données de départ
             if ($i === 0) {
                 $startTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $start['time'] = $startTime->format('U');
@@ -58,6 +92,7 @@ class GpxController extends Controller
                 $start['lon'] = $lon;
             }
 
+                // Récupération des données de quelques Waypoints
             if ($i === intval($count * $g)) {
                 $wayTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $waypoints[$j]['time'] = $wayTime->format('U');
@@ -67,6 +102,7 @@ class GpxController extends Controller
                 $g = $g + $percentage;
             }
 
+                // Récupération des données de fin
             if ($i === $count - 1) {
                 $endTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $end['time'] = $endTime->format('U');
@@ -75,14 +111,38 @@ class GpxController extends Controller
             }
         }
 
+        // Ajout des données GPX dans la DB
         $json = ['status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
 
 
         $addGpx = new Gpx();
-        $addGpx->gpx = $gpxName;
+
+        $addGpx->startLat = $start['lat'];
+        $addGpx->startLon = $start['lon'];
+        $addGpx->startTime = $start['time'];
+        $addGpx->endLat = $end['lat'];
+        $addGpx->endLon = $end['lon'];
+        $addGpx->endTime = $end['time'];
         $addGpx->users_id = Auth::user()->id;
 
         $addGpx->save();
+
+        foreach ($waypoints as $waypoint){
+
+            $addWay = new Waypoint();
+
+            $addWay->lat = $waypoint['lat'];
+            $addWay->lon = $waypoint['lon'];
+            $addWay->time = $waypoint['time'];
+            $addWay->gpx_id = $addGpx->id;
+
+            $addWay->save();
+        }
+
+        // Suppression du fichier XML
+        unlink(public_path('/gpxFile/gpx_name') . '/'. $gpxName);
+
+        $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
 
         return json_encode($json);
     }
@@ -98,6 +158,7 @@ class GpxController extends Controller
         $addRace->date_done = $request->date_done;
         $addRace->distance_done = $request->distance_done;
         $addRace->users_id = Auth::user()->id;
+        $addRace->gpx_id = Gpx::all()->last()->id;
 
         $addRace->save();
 

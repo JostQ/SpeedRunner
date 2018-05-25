@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGpxsTable extends Migration
+class CreateWaypointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateGpxsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gpxs', function (Blueprint $table) {
+        Schema::create('waypoints', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('startLat');
-            $table->string('startLon');
-            $table->string('startTime');
-            $table->string('endLat');
-            $table->string('endLon');
-            $table->string('endTime');
-            $table->integer('users_id');
+            $table->string('lat');
+            $table->string('lon');
+            $table->integer('time');
+            $table->integer('gpx_id');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateGpxsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gpxs');
+        Schema::dropIfExists('waypoints');
     }
 }
