@@ -175,14 +175,32 @@
     </script>
     <script>
         let pageToGet = 2;
+        let actuToGet = 2;
         // Load AJAX des différentes pages
         // @TODO: Passer les .load() en .ajax().
-        $('#home').addClass('active show')
-        $('#home').load('{{ route('actu') }}');
+
+        $.ajax({
+            url: '{{route('actu')}}',
+            data: 'html',
+        })
+            .done(function (data) {
+                $('#home').addClass('active show')
+                $('#home').empty()
+                $('#home').append(data)
+                $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+            });
 
         $('#actualite-tab').click(function (e) {
             $('#home').addClass('active show')
-            $('#home').load('{{ route('actu') }}');
+            $.ajax({
+                url: '{{route('actu')}}',
+                data: 'html',
+            })
+                .done(function (data) {
+                    $('#home').empty()
+                    $('#home').append(data)
+                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                });
         });
 
         $('#stats-tab').click(function (e) {
@@ -237,6 +255,9 @@
                 contentType: false,
                 success: function (data) {
                     $('#imgprofil').attr('src', '{{asset('avatars')}}/' + data.picture);
+                    if (Object.values($('.actuPic')).length > 2 && $('div[data-id]').data().id === {{\Illuminate\Support\Facades\Auth::user()->id}}) {
+                        $('div[data-id={{\Illuminate\Support\Facades\Auth::user()->id}}] .actuPic').attr('src', '{{asset('avatars')}}/' + data.picture)
+                    }
                 }
             })
         })
@@ -266,6 +287,22 @@
                 })
             pageToGet++;
         })
+
+        // Lazy loading des actualités.
+        $('body').on('click', '#loadNextActualities', function () {
+
+            $.ajax({
+                url: "/actu?page=" + actuToGet,
+                dataType: 'html'
+            })
+                .done(function (data) {
+                    data = $(data).find('#nav-home');
+                    $('body #loadNextActualities').before(data);
+                })
+            actuToGet++;
+        })
+
+
 
 
     </script>
