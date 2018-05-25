@@ -85,3 +85,12 @@ body {
   right: 1rem;
   @extend .btn
 }
+.alert-primary{
+  background-color: $primary-color;
+  color: $white
+
+}
+
+.alert-secondary{
+  background-color:#ECEFF1;
+}

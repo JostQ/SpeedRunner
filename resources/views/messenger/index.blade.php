@@ -37,11 +37,12 @@
                     <!-- Tab panes -->
                     <div class="tab-content col-8 message-content">
                         <div class="tab-pane " id="message" role="tabpanel" style="overflow: auto; height: 400px">
+
                         </div>
                     </div>
                     <div class="col-7 offset-4 ">
                         <div class="row">
-                        <textarea class="form-control" placeholder="Exprimez-vous..." rows="2" name="msg"
+                        <textarea class="form-control" placeholder="Exprimez-vous..." style="width: 100%;" name="msg"
                                   required></textarea>
                             <div class="col-1">
                                 <button type="submit" id="publi" class="btn btn-primary ">Publier
@@ -100,13 +101,23 @@
                     data: {id: $(this).attr('data-friend')},
                     success: function (data) {
                         $('#message').empty();
-                        $(data).each(function (index, item) {
-                            console.log(item)
-                            $('#message').append($('<p>').html(item.message))
-                            if(item.picture !== null){
-                                $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + item.picture}));
-
+                        console.log(data)
+                        $(data.sender).each(function (index, item) {
+                            console.log(item);
+                            if(item['users_id'] !== item['recipient_id']){
+                                $('#message').append($('<p>',{class : 'd-flex justify-content-end  alert-primary'}).html(item.message))
+                                if(item.picture !== null){
+                                    $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + item.picture}));
+                                }
                             }
+                        })
+                        $(data.answer).each(function (index, item) {
+
+                                $('#message').append($('<p>',{class:'alert-secondary'}).html(item.message))
+                                if(item.picture !== null){
+                                    $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + item.picture}));
+
+                                }
                         })
 
 
@@ -132,7 +143,11 @@
                     contentType: false,
                     success: function (data) {
                         console.log(data);
-                        $('#message').append($('<p>').html(data['msg']));
+                        if(data['friend-id'] !== data.id){
+                            $('#message').append($('<p>',{class : 'd-flex justify-content-end alert-primary'}).html(data['msg']));
+                        }else {
+                            $('#message').append($('<p>').html(data['msg']));
+                        }
                         if(data.picture !== undefined){
                             $('#message').append($('<img>', { src : '{{asset('thumbnails') . '/'}}' + data['picture']}));
                         }

@@ -10655,6 +10655,15 @@ body {
   right: 1rem;
 }
 
+.alert-primary {
+  background-color: #ff6e40;
+  color: #fff;
+}
+
+.alert-secondary {
+  background-color: #ECEFF1;
+}
+
 #title {
   font-family: 'Montserrat';
   font-weight: 900;
