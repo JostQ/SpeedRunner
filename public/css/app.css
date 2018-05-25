@@ -2336,16 +2336,24 @@ select.form-control:focus::-ms-value {
 .input-group-sm > .input-group-prepend > .form-control-plaintext.input-group-text,
 .input-group-sm > .input-group-append > .form-control-plaintext.input-group-text,
 .input-group-sm > .input-group-prepend > .form-control-plaintext.btn,
+.nav-pills .input-group-sm > .input-group-prepend > .form-control-plaintext.nav-link.active,
+.nav-pills .input-group-sm > .show.input-group-prepend > .form-control-plaintext.nav-link,
 .input-group-sm > .input-group-prepend > .form-control-plaintext.successUnlocked,
 .input-group-sm > .input-group-append > .form-control-plaintext.btn,
+.nav-pills .input-group-sm > .input-group-append > .form-control-plaintext.nav-link.active,
+.nav-pills .input-group-sm > .show.input-group-append > .form-control-plaintext.nav-link,
 .input-group-sm > .input-group-append > .form-control-plaintext.successUnlocked,
 .form-control-plaintext.form-control-lg,
 .input-group-lg > .form-control-plaintext.form-control,
 .input-group-lg > .input-group-prepend > .form-control-plaintext.input-group-text,
 .input-group-lg > .input-group-append > .form-control-plaintext.input-group-text,
 .input-group-lg > .input-group-prepend > .form-control-plaintext.btn,
+.nav-pills .input-group-lg > .input-group-prepend > .form-control-plaintext.nav-link.active,
+.nav-pills .input-group-lg > .show.input-group-prepend > .form-control-plaintext.nav-link,
 .input-group-lg > .input-group-prepend > .form-control-plaintext.successUnlocked,
 .input-group-lg > .input-group-append > .form-control-plaintext.btn,
+.nav-pills .input-group-lg > .input-group-append > .form-control-plaintext.nav-link.active,
+.nav-pills .input-group-lg > .show.input-group-append > .form-control-plaintext.nav-link,
 .input-group-lg > .input-group-append > .form-control-plaintext.successUnlocked {
   padding-right: 0;
   padding-left: 0;
@@ -2356,8 +2364,12 @@ select.form-control:focus::-ms-value {
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
+.nav-pills .input-group-sm > .input-group-prepend > .nav-link.active,
+.nav-pills .input-group-sm > .show.input-group-prepend > .nav-link,
 .input-group-sm > .input-group-prepend > .successUnlocked,
 .input-group-sm > .input-group-append > .btn,
+.nav-pills .input-group-sm > .input-group-append > .nav-link.active,
+.nav-pills .input-group-sm > .show.input-group-append > .nav-link,
 .input-group-sm > .input-group-append > .successUnlocked {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -2370,8 +2382,12 @@ select.form-control-sm:not([size]):not([multiple]),
 .input-group-sm > .input-group-prepend > select.input-group-text:not([size]):not([multiple]),
 .input-group-sm > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-sm > .input-group-prepend > select.btn:not([size]):not([multiple]),
+.nav-pills .input-group-sm > .input-group-prepend > select.nav-link.active:not([size]):not([multiple]),
+.nav-pills .input-group-sm > .show.input-group-prepend > select.nav-link:not([size]):not([multiple]),
 .input-group-sm > .input-group-prepend > select.successUnlocked:not([size]):not([multiple]),
 .input-group-sm > .input-group-append > select.btn:not([size]):not([multiple]),
+.nav-pills .input-group-sm > .input-group-append > select.nav-link.active:not([size]):not([multiple]),
+.nav-pills .input-group-sm > .show.input-group-append > select.nav-link:not([size]):not([multiple]),
 .input-group-sm > .input-group-append > select.successUnlocked:not([size]):not([multiple]) {
   height: calc(1.8125rem + 2px);
 }
@@ -2381,8 +2397,12 @@ select.form-control-sm:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
+.nav-pills .input-group-lg > .input-group-prepend > .nav-link.active,
+.nav-pills .input-group-lg > .show.input-group-prepend > .nav-link,
 .input-group-lg > .input-group-prepend > .successUnlocked,
 .input-group-lg > .input-group-append > .btn,
+.nav-pills .input-group-lg > .input-group-append > .nav-link.active,
+.nav-pills .input-group-lg > .show.input-group-append > .nav-link,
 .input-group-lg > .input-group-append > .successUnlocked {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -2395,8 +2415,12 @@ select.form-control-lg:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]),
+.nav-pills .input-group-lg > .input-group-prepend > select.nav-link.active:not([size]):not([multiple]),
+.nav-pills .input-group-lg > .show.input-group-prepend > select.nav-link:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.successUnlocked:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]),
+.nav-pills .input-group-lg > .input-group-append > select.nav-link.active:not([size]):not([multiple]),
+.nav-pills .input-group-lg > .show.input-group-append > select.nav-link:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.successUnlocked:not([size]):not([multiple]) {
   height: calc(2.875rem + 2px);
 }
@@ -2811,6 +2835,8 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .btn,
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link,
 .successUnlocked {
   display: inline-block;
   font-weight: 400;
@@ -2834,6 +2860,8 @@ select.form-control-lg:not([size]):not([multiple]),
 
 @media screen and (prefers-reduced-motion: reduce) {
   .btn,
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link,
   .successUnlocked {
     -webkit-transition: none;
     transition: none;
@@ -2841,15 +2869,23 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .btn:hover,
+.nav-pills .nav-link.active:hover,
+.nav-pills .show > .nav-link:hover,
 .successUnlocked:hover,
 .btn:focus,
+.nav-pills .nav-link.active:focus,
+.nav-pills .show > .nav-link:focus,
 .successUnlocked:focus {
   text-decoration: none;
 }
 
 .btn:focus,
+.nav-pills .nav-link.active:focus,
+.nav-pills .show > .nav-link:focus,
 .successUnlocked:focus,
 .btn.focus,
+.nav-pills .focus.nav-link.active,
+.nav-pills .show > .focus.nav-link,
 .focus.successUnlocked {
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -2857,27 +2893,42 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .btn.disabled,
+.nav-pills .disabled.nav-link.active,
+.nav-pills .show > .disabled.nav-link,
 .disabled.successUnlocked,
 .btn:disabled,
+.nav-pills .nav-link.active:disabled,
+.nav-pills .show > .nav-link:disabled,
 .successUnlocked:disabled {
   opacity: 0.65;
 }
 
 .btn:not(:disabled):not(.disabled),
+.nav-pills .nav-link.active:not(:disabled):not(.disabled),
+.nav-pills .show > .nav-link:not(:disabled):not(.disabled),
 .successUnlocked:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
 
 .btn:not(:disabled):not(.disabled):active,
+.nav-pills .nav-link.active:not(:disabled):not(.disabled):active,
+.nav-pills .show > .nav-link:not(:disabled):not(.disabled):active,
 .successUnlocked:not(:disabled):not(.disabled):active,
 .btn:not(:disabled):not(.disabled).active,
+.nav-pills .nav-link:not(:disabled):not(.disabled).active,
 .successUnlocked:not(:disabled):not(.disabled).active {
   background-image: none;
 }
 
 a.btn.disabled,
+.nav-pills a.disabled.nav-link.active,
+.nav-pills .show > a.disabled.nav-link,
 a.disabled.successUnlocked,
 fieldset:disabled a.btn,
+fieldset:disabled .nav-pills a.nav-link.active,
+.nav-pills fieldset:disabled a.nav-link.active,
+fieldset:disabled .nav-pills .show > a.nav-link,
+.nav-pills fieldset:disabled .show > a.nav-link,
 fieldset:disabled a.successUnlocked {
   pointer-events: none;
 }
@@ -3551,6 +3602,8 @@ fieldset:disabled a.successUnlocked {
 
 .btn-lg,
 .btn-group-lg > .btn,
+.nav-pills .btn-group-lg > .nav-link.active,
+.nav-pills .show.btn-group-lg > .nav-link,
 .btn-group-lg > .successUnlocked {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -3560,6 +3613,8 @@ fieldset:disabled a.successUnlocked {
 
 .btn-sm,
 .btn-group-sm > .btn,
+.nav-pills .btn-group-sm > .nav-link.active,
+.nav-pills .show.btn-group-sm > .nav-link,
 .btn-group-sm > .successUnlocked {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -3837,8 +3892,12 @@ input[type="button"].btn-block {
 }
 
 .btn-group > .btn,
+.nav-pills .btn-group > .nav-link.active,
+.nav-pills .show.btn-group > .nav-link,
 .btn-group > .successUnlocked,
 .btn-group-vertical > .btn,
+.nav-pills .btn-group-vertical > .nav-link.active,
+.nav-pills .show.btn-group-vertical > .nav-link,
 .btn-group-vertical > .successUnlocked {
   position: relative;
   -webkit-box-flex: 0;
@@ -3847,43 +3906,113 @@ input[type="button"].btn-block {
 }
 
 .btn-group > .btn:hover,
+.nav-pills .btn-group > .nav-link.active:hover,
+.nav-pills .show.btn-group > .nav-link:hover,
 .btn-group > .successUnlocked:hover,
 .btn-group-vertical > .btn:hover,
+.nav-pills .btn-group-vertical > .nav-link.active:hover,
+.nav-pills .show.btn-group-vertical > .nav-link:hover,
 .btn-group-vertical > .successUnlocked:hover {
   z-index: 1;
 }
 
 .btn-group > .btn:focus,
+.nav-pills .btn-group > .nav-link.active:focus,
+.nav-pills .show.btn-group > .nav-link:focus,
 .btn-group > .successUnlocked:focus,
 .btn-group > .btn:active,
+.nav-pills .btn-group > .nav-link.active:active,
+.nav-pills .show.btn-group > .nav-link:active,
 .btn-group > .successUnlocked:active,
 .btn-group > .btn.active,
+.nav-pills .btn-group > .active.nav-link,
 .btn-group > .active.successUnlocked,
 .btn-group-vertical > .btn:focus,
+.nav-pills .btn-group-vertical > .nav-link.active:focus,
+.nav-pills .show.btn-group-vertical > .nav-link:focus,
 .btn-group-vertical > .successUnlocked:focus,
 .btn-group-vertical > .btn:active,
+.nav-pills .btn-group-vertical > .nav-link.active:active,
+.nav-pills .show.btn-group-vertical > .nav-link:active,
 .btn-group-vertical > .successUnlocked:active,
 .btn-group-vertical > .btn.active,
+.nav-pills .btn-group-vertical > .active.nav-link,
 .btn-group-vertical > .active.successUnlocked {
   z-index: 1;
 }
 
 .btn-group .btn + .btn,
+.btn-group .nav-pills .nav-link.active + .btn,
+.nav-pills .btn-group .nav-link.active + .btn,
+.btn-group .nav-pills .show > .nav-link + .btn,
+.nav-pills .btn-group .show > .nav-link + .btn,
 .btn-group .successUnlocked + .btn,
+.btn-group .nav-pills .btn + .nav-link.active,
+.nav-pills .btn-group .btn + .nav-link.active,
+.btn-group .nav-pills .nav-link.active + .nav-link.active,
+.nav-pills .btn-group .nav-link.active + .nav-link.active,
+.btn-group .nav-pills .successUnlocked + .nav-link.active,
+.nav-pills .btn-group .successUnlocked + .nav-link.active,
+.btn-group .nav-pills .show > .btn + .nav-link,
+.nav-pills .btn-group .show > .btn + .nav-link,
+.btn-group .nav-pills .show > .nav-link + .nav-link,
+.nav-pills .btn-group .show > .nav-link + .nav-link,
+.btn-group .nav-pills .show > .successUnlocked + .nav-link,
+.nav-pills .btn-group .show > .successUnlocked + .nav-link,
 .btn-group .btn + .successUnlocked,
+.btn-group .nav-pills .nav-link.active + .successUnlocked,
+.nav-pills .btn-group .nav-link.active + .successUnlocked,
+.btn-group .nav-pills .show > .nav-link + .successUnlocked,
+.nav-pills .btn-group .show > .nav-link + .successUnlocked,
 .btn-group .successUnlocked + .successUnlocked,
 .btn-group .btn + .btn-group,
+.btn-group .nav-pills .nav-link.active + .btn-group,
+.nav-pills .btn-group .nav-link.active + .btn-group,
+.btn-group .nav-pills .show > .nav-link + .btn-group,
+.nav-pills .btn-group .show > .nav-link + .btn-group,
 .btn-group .successUnlocked + .btn-group,
 .btn-group .btn-group + .btn,
+.btn-group .nav-pills .btn-group + .nav-link.active,
+.nav-pills .btn-group .btn-group + .nav-link.active,
+.btn-group .nav-pills .show > .btn-group + .nav-link,
+.nav-pills .btn-group .show > .btn-group + .nav-link,
 .btn-group .btn-group + .successUnlocked,
 .btn-group .btn-group + .btn-group,
 .btn-group-vertical .btn + .btn,
+.btn-group-vertical .nav-pills .nav-link.active + .btn,
+.nav-pills .btn-group-vertical .nav-link.active + .btn,
+.btn-group-vertical .nav-pills .show > .nav-link + .btn,
+.nav-pills .btn-group-vertical .show > .nav-link + .btn,
 .btn-group-vertical .successUnlocked + .btn,
+.btn-group-vertical .nav-pills .btn + .nav-link.active,
+.nav-pills .btn-group-vertical .btn + .nav-link.active,
+.btn-group-vertical .nav-pills .nav-link.active + .nav-link.active,
+.nav-pills .btn-group-vertical .nav-link.active + .nav-link.active,
+.btn-group-vertical .nav-pills .successUnlocked + .nav-link.active,
+.nav-pills .btn-group-vertical .successUnlocked + .nav-link.active,
+.btn-group-vertical .nav-pills .show > .btn + .nav-link,
+.nav-pills .btn-group-vertical .show > .btn + .nav-link,
+.btn-group-vertical .nav-pills .show > .nav-link + .nav-link,
+.nav-pills .btn-group-vertical .show > .nav-link + .nav-link,
+.btn-group-vertical .nav-pills .show > .successUnlocked + .nav-link,
+.nav-pills .btn-group-vertical .show > .successUnlocked + .nav-link,
 .btn-group-vertical .btn + .successUnlocked,
+.btn-group-vertical .nav-pills .nav-link.active + .successUnlocked,
+.nav-pills .btn-group-vertical .nav-link.active + .successUnlocked,
+.btn-group-vertical .nav-pills .show > .nav-link + .successUnlocked,
+.nav-pills .btn-group-vertical .show > .nav-link + .successUnlocked,
 .btn-group-vertical .successUnlocked + .successUnlocked,
 .btn-group-vertical .btn + .btn-group,
+.btn-group-vertical .nav-pills .nav-link.active + .btn-group,
+.nav-pills .btn-group-vertical .nav-link.active + .btn-group,
+.btn-group-vertical .nav-pills .show > .nav-link + .btn-group,
+.nav-pills .btn-group-vertical .show > .nav-link + .btn-group,
 .btn-group-vertical .successUnlocked + .btn-group,
 .btn-group-vertical .btn-group + .btn,
+.btn-group-vertical .nav-pills .btn-group + .nav-link.active,
+.nav-pills .btn-group-vertical .btn-group + .nav-link.active,
+.btn-group-vertical .nav-pills .show > .btn-group + .nav-link,
+.nav-pills .btn-group-vertical .show > .btn-group + .nav-link,
 .btn-group-vertical .btn-group + .successUnlocked,
 .btn-group-vertical .btn-group + .btn-group {
   margin-left: -1px;
@@ -3905,21 +4034,31 @@ input[type="button"].btn-block {
 }
 
 .btn-group > .btn:first-child,
+.nav-pills .btn-group > .nav-link.active:first-child,
+.nav-pills .show.btn-group > .nav-link:first-child,
 .btn-group > .successUnlocked:first-child {
   margin-left: 0;
 }
 
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.nav-pills .btn-group > .nav-link.active:not(:last-child):not(.dropdown-toggle),
+.nav-pills .show.btn-group > .nav-link:not(:last-child):not(.dropdown-toggle),
 .btn-group > .successUnlocked:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-group:not(:last-child) > .btn,
+.nav-pills .btn-group > .btn-group:not(:last-child) > .nav-link.active,
+.nav-pills .btn-group > .show.btn-group:not(:last-child) > .nav-link,
 .btn-group > .btn-group:not(:last-child) > .successUnlocked {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .btn-group > .btn:not(:first-child),
+.nav-pills .btn-group > .nav-link.active:not(:first-child),
+.nav-pills .show.btn-group > .nav-link:not(:first-child),
 .btn-group > .successUnlocked:not(:first-child),
 .btn-group > .btn-group:not(:first-child) > .btn,
+.nav-pills .btn-group > .btn-group:not(:first-child) > .nav-link.active,
+.nav-pills .btn-group > .show.btn-group:not(:first-child) > .nav-link,
 .btn-group > .btn-group:not(:first-child) > .successUnlocked {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -3942,6 +4081,8 @@ input[type="button"].btn-block {
 
 .btn-sm + .dropdown-toggle-split,
 .btn-group-sm > .btn + .dropdown-toggle-split,
+.nav-pills .btn-group-sm > .nav-link.active + .dropdown-toggle-split,
+.nav-pills .show.btn-group-sm > .nav-link + .dropdown-toggle-split,
 .btn-group-sm > .successUnlocked + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
@@ -3949,6 +4090,8 @@ input[type="button"].btn-block {
 
 .btn-lg + .dropdown-toggle-split,
 .btn-group-lg > .btn + .dropdown-toggle-split,
+.nav-pills .btn-group-lg > .nav-link.active + .dropdown-toggle-split,
+.nav-pills .show.btn-group-lg > .nav-link + .dropdown-toggle-split,
 .btn-group-lg > .successUnlocked + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
@@ -3968,18 +4111,36 @@ input[type="button"].btn-block {
 }
 
 .btn-group-vertical .btn,
+.btn-group-vertical .nav-pills .nav-link.active,
+.nav-pills .btn-group-vertical .nav-link.active,
+.btn-group-vertical .nav-pills .show > .nav-link,
+.nav-pills .btn-group-vertical .show > .nav-link,
 .btn-group-vertical .successUnlocked,
 .btn-group-vertical .btn-group {
   width: 100%;
 }
 
 .btn-group-vertical > .btn + .btn,
+.nav-pills .btn-group-vertical > .nav-link.active + .btn,
+.nav-pills .show.btn-group-vertical > .nav-link + .btn,
 .btn-group-vertical > .successUnlocked + .btn,
+.nav-pills .btn-group-vertical > .btn + .nav-link.active,
+.nav-pills .btn-group-vertical > .nav-link.active + .nav-link.active,
+.nav-pills .btn-group-vertical > .successUnlocked + .nav-link.active,
+.nav-pills .show.btn-group-vertical > .btn + .nav-link,
+.nav-pills .show.btn-group-vertical > .nav-link + .nav-link,
+.nav-pills .show.btn-group-vertical > .successUnlocked + .nav-link,
 .btn-group-vertical > .btn + .successUnlocked,
+.nav-pills .btn-group-vertical > .nav-link.active + .successUnlocked,
+.nav-pills .show.btn-group-vertical > .nav-link + .successUnlocked,
 .btn-group-vertical > .successUnlocked + .successUnlocked,
 .btn-group-vertical > .btn + .btn-group,
+.nav-pills .btn-group-vertical > .nav-link.active + .btn-group,
+.nav-pills .show.btn-group-vertical > .nav-link + .btn-group,
 .btn-group-vertical > .successUnlocked + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
+.nav-pills .btn-group-vertical > .btn-group + .nav-link.active,
+.nav-pills .show.btn-group-vertical > .btn-group + .nav-link,
 .btn-group-vertical > .btn-group + .successUnlocked,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
@@ -3987,35 +4148,55 @@ input[type="button"].btn-block {
 }
 
 .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
+.nav-pills .btn-group-vertical > .nav-link.active:not(:last-child):not(.dropdown-toggle),
+.nav-pills .show.btn-group-vertical > .nav-link:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .successUnlocked:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.nav-pills .btn-group-vertical > .btn-group:not(:last-child) > .nav-link.active,
+.nav-pills .btn-group-vertical > .show.btn-group:not(:last-child) > .nav-link,
 .btn-group-vertical > .btn-group:not(:last-child) > .successUnlocked {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 .btn-group-vertical > .btn:not(:first-child),
+.nav-pills .btn-group-vertical > .nav-link.active:not(:first-child),
+.nav-pills .show.btn-group-vertical > .nav-link:not(:first-child),
 .btn-group-vertical > .successUnlocked:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.nav-pills .btn-group-vertical > .btn-group:not(:first-child) > .nav-link.active,
+.nav-pills .btn-group-vertical > .show.btn-group:not(:first-child) > .nav-link,
 .btn-group-vertical > .btn-group:not(:first-child) > .successUnlocked {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
 .btn-group-toggle > .btn,
+.nav-pills .btn-group-toggle > .nav-link.active,
+.nav-pills .show.btn-group-toggle > .nav-link,
 .btn-group-toggle > .successUnlocked,
 .btn-group-toggle > .btn-group > .btn,
+.nav-pills .btn-group-toggle > .btn-group > .nav-link.active,
+.nav-pills .btn-group-toggle > .show.btn-group > .nav-link,
 .btn-group-toggle > .btn-group > .successUnlocked {
   margin-bottom: 0;
 }
 
 .btn-group-toggle > .btn input[type="radio"],
+.nav-pills .btn-group-toggle > .nav-link.active input[type="radio"],
+.nav-pills .show.btn-group-toggle > .nav-link input[type="radio"],
 .btn-group-toggle > .successUnlocked input[type="radio"],
 .btn-group-toggle > .btn input[type="checkbox"],
+.nav-pills .btn-group-toggle > .nav-link.active input[type="checkbox"],
+.nav-pills .show.btn-group-toggle > .nav-link input[type="checkbox"],
 .btn-group-toggle > .successUnlocked input[type="checkbox"],
 .btn-group-toggle > .btn-group > .btn input[type="radio"],
+.nav-pills .btn-group-toggle > .btn-group > .nav-link.active input[type="radio"],
+.nav-pills .btn-group-toggle > .show.btn-group > .nav-link input[type="radio"],
 .btn-group-toggle > .btn-group > .successUnlocked input[type="radio"],
 .btn-group-toggle > .btn-group > .btn input[type="checkbox"],
+.nav-pills .btn-group-toggle > .btn-group > .nav-link.active input[type="checkbox"],
+.nav-pills .btn-group-toggle > .show.btn-group > .nav-link input[type="checkbox"],
 .btn-group-toggle > .btn-group > .successUnlocked input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
@@ -4104,30 +4285,94 @@ input[type="button"].btn-block {
 }
 
 .input-group-prepend .btn,
+.input-group-prepend .nav-pills .nav-link.active,
+.nav-pills .input-group-prepend .nav-link.active,
+.input-group-prepend .nav-pills .show > .nav-link,
+.nav-pills .input-group-prepend .show > .nav-link,
 .input-group-prepend .successUnlocked,
 .input-group-append .btn,
+.input-group-append .nav-pills .nav-link.active,
+.nav-pills .input-group-append .nav-link.active,
+.input-group-append .nav-pills .show > .nav-link,
+.nav-pills .input-group-append .show > .nav-link,
 .input-group-append .successUnlocked {
   position: relative;
   z-index: 2;
 }
 
 .input-group-prepend .btn + .btn,
+.input-group-prepend .nav-pills .nav-link.active + .btn,
+.nav-pills .input-group-prepend .nav-link.active + .btn,
+.input-group-prepend .nav-pills .show > .nav-link + .btn,
+.nav-pills .input-group-prepend .show > .nav-link + .btn,
 .input-group-prepend .successUnlocked + .btn,
+.input-group-prepend .nav-pills .btn + .nav-link.active,
+.nav-pills .input-group-prepend .btn + .nav-link.active,
+.input-group-prepend .nav-pills .nav-link.active + .nav-link.active,
+.nav-pills .input-group-prepend .nav-link.active + .nav-link.active,
+.input-group-prepend .nav-pills .successUnlocked + .nav-link.active,
+.nav-pills .input-group-prepend .successUnlocked + .nav-link.active,
+.input-group-prepend .nav-pills .show > .btn + .nav-link,
+.nav-pills .input-group-prepend .show > .btn + .nav-link,
+.input-group-prepend .nav-pills .show > .nav-link + .nav-link,
+.nav-pills .input-group-prepend .show > .nav-link + .nav-link,
+.input-group-prepend .nav-pills .show > .successUnlocked + .nav-link,
+.nav-pills .input-group-prepend .show > .successUnlocked + .nav-link,
 .input-group-prepend .btn + .successUnlocked,
+.input-group-prepend .nav-pills .nav-link.active + .successUnlocked,
+.nav-pills .input-group-prepend .nav-link.active + .successUnlocked,
+.input-group-prepend .nav-pills .show > .nav-link + .successUnlocked,
+.nav-pills .input-group-prepend .show > .nav-link + .successUnlocked,
 .input-group-prepend .successUnlocked + .successUnlocked,
 .input-group-prepend .btn + .input-group-text,
+.input-group-prepend .nav-pills .nav-link.active + .input-group-text,
+.nav-pills .input-group-prepend .nav-link.active + .input-group-text,
+.input-group-prepend .nav-pills .show > .nav-link + .input-group-text,
+.nav-pills .input-group-prepend .show > .nav-link + .input-group-text,
 .input-group-prepend .successUnlocked + .input-group-text,
 .input-group-prepend .input-group-text + .input-group-text,
 .input-group-prepend .input-group-text + .btn,
+.input-group-prepend .nav-pills .input-group-text + .nav-link.active,
+.nav-pills .input-group-prepend .input-group-text + .nav-link.active,
+.input-group-prepend .nav-pills .show > .input-group-text + .nav-link,
+.nav-pills .input-group-prepend .show > .input-group-text + .nav-link,
 .input-group-prepend .input-group-text + .successUnlocked,
 .input-group-append .btn + .btn,
+.input-group-append .nav-pills .nav-link.active + .btn,
+.nav-pills .input-group-append .nav-link.active + .btn,
+.input-group-append .nav-pills .show > .nav-link + .btn,
+.nav-pills .input-group-append .show > .nav-link + .btn,
 .input-group-append .successUnlocked + .btn,
+.input-group-append .nav-pills .btn + .nav-link.active,
+.nav-pills .input-group-append .btn + .nav-link.active,
+.input-group-append .nav-pills .nav-link.active + .nav-link.active,
+.nav-pills .input-group-append .nav-link.active + .nav-link.active,
+.input-group-append .nav-pills .successUnlocked + .nav-link.active,
+.nav-pills .input-group-append .successUnlocked + .nav-link.active,
+.input-group-append .nav-pills .show > .btn + .nav-link,
+.nav-pills .input-group-append .show > .btn + .nav-link,
+.input-group-append .nav-pills .show > .nav-link + .nav-link,
+.nav-pills .input-group-append .show > .nav-link + .nav-link,
+.input-group-append .nav-pills .show > .successUnlocked + .nav-link,
+.nav-pills .input-group-append .show > .successUnlocked + .nav-link,
 .input-group-append .btn + .successUnlocked,
+.input-group-append .nav-pills .nav-link.active + .successUnlocked,
+.nav-pills .input-group-append .nav-link.active + .successUnlocked,
+.input-group-append .nav-pills .show > .nav-link + .successUnlocked,
+.nav-pills .input-group-append .show > .nav-link + .successUnlocked,
 .input-group-append .successUnlocked + .successUnlocked,
 .input-group-append .btn + .input-group-text,
+.input-group-append .nav-pills .nav-link.active + .input-group-text,
+.nav-pills .input-group-append .nav-link.active + .input-group-text,
+.input-group-append .nav-pills .show > .nav-link + .input-group-text,
+.nav-pills .input-group-append .show > .nav-link + .input-group-text,
 .input-group-append .successUnlocked + .input-group-text,
 .input-group-append .input-group-text + .input-group-text,
 .input-group-append .input-group-text + .btn,
+.input-group-append .nav-pills .input-group-text + .nav-link.active,
+.nav-pills .input-group-append .input-group-text + .nav-link.active,
+.input-group-append .nav-pills .show > .input-group-text + .nav-link,
+.nav-pills .input-group-append .show > .input-group-text + .nav-link,
 .input-group-append .input-group-text + .successUnlocked {
   margin-left: -1px;
 }
@@ -4166,12 +4411,18 @@ input[type="button"].btn-block {
 }
 
 .input-group > .input-group-prepend > .btn,
+.nav-pills .input-group > .input-group-prepend > .nav-link.active,
+.nav-pills .input-group > .show.input-group-prepend > .nav-link,
 .input-group > .input-group-prepend > .successUnlocked,
 .input-group > .input-group-prepend > .input-group-text,
 .input-group > .input-group-append:not(:last-child) > .btn,
+.nav-pills .input-group > .input-group-append:not(:last-child) > .nav-link.active,
+.nav-pills .input-group > .show.input-group-append:not(:last-child) > .nav-link,
 .input-group > .input-group-append:not(:last-child) > .successUnlocked,
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.nav-pills .input-group > .input-group-append:last-child > .nav-link.active:not(:last-child):not(.dropdown-toggle),
+.nav-pills .input-group > .show.input-group-append:last-child > .nav-link:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .successUnlocked:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
@@ -4179,12 +4430,18 @@ input[type="button"].btn-block {
 }
 
 .input-group > .input-group-append > .btn,
+.nav-pills .input-group > .input-group-append > .nav-link.active,
+.nav-pills .input-group > .show.input-group-append > .nav-link,
 .input-group > .input-group-append > .successUnlocked,
 .input-group > .input-group-append > .input-group-text,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
+.nav-pills .input-group > .input-group-prepend:not(:first-child) > .nav-link.active,
+.nav-pills .input-group > .show.input-group-prepend:not(:first-child) > .nav-link,
 .input-group > .input-group-prepend:not(:first-child) > .successUnlocked,
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.nav-pills .input-group > .input-group-prepend:first-child > .nav-link.active:not(:first-child),
+.nav-pills .input-group > .show.input-group-prepend:first-child > .nav-link:not(:first-child),
 .input-group > .input-group-prepend:first-child > .successUnlocked:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
@@ -5575,6 +5832,8 @@ input[type="button"].btn-block {
 }
 
 .btn .badge,
+.nav-pills .nav-link.active .badge,
+.nav-pills .show > .nav-link .badge,
 .successUnlocked .badge {
   position: relative;
   top: -1px;
@@ -10592,11 +10851,17 @@ body {
           justify-content: center;
 }
 
+#home {
+  background-color: #fcfcfc;
+}
+
 .card {
   border-radius: 0;
 }
 
 .btn,
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link,
 .successUnlocked {
   border-radius: 0;
   background-color: #ff6e40;
@@ -10605,6 +10870,8 @@ body {
 }
 
 .btn:hover,
+.nav-pills .nav-link.active:hover,
+.nav-pills .show > .nav-link:hover,
 .successUnlocked:hover {
   border-color: #ff6e40;
   background-color: #c53d13;
@@ -10622,9 +10889,20 @@ body {
   border-radius: 0;
 }
 
+.nav-item {
+  outline: none;
+}
+
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   background-color: #ff6e40;
+}
+
+.nav-pills .nav-link.active:focus,
+.nav-pills .show > .nav-link:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .dropdown-menu {

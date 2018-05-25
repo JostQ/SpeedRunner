@@ -1,29 +1,31 @@
-<div class="row justify-content-center mt-3">
-    <h2>Importez vos données GPX</h2>
-</div>
-<div class="row mt-5">
-    <div class="col-lg-6 col-md-12 offset-lg-3">
-        <form action="{{ route('add_gpx') }}" method="post"
-              enctype="multipart/form-data" id="submitGpx">
-            @csrf
-            <div class="form-group">
+<div class="row">
+    <div class="col-lg-6 col-md-12 mx-auto card">
+        <div class="card-header">
+            <h2>Importez vos données GPX</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('add_gpx') }}" method="post"
+                  enctype="multipart/form-data" id="submitGpx">
+                @csrf
                 <div class="form-group">
-                    <input type="file" class="form-control-file"
-                           name="gpxFile">
+                    <div class="form-group">
+                        <label for="">Nom de la course</label>
+                        <input id="raceName" type="text" class="form-control"
+                               name="raceName"
+                               value="Course {{ $numberOfRacesDone + 1 }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control-file"
+                               name="gpxFile">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary d-block" type="submit">
+                            C'est parti !
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="">Nom de la course</label>
-                    <input id="raceName" type="text" class="form-control"
-                           name="raceName"
-                           value="Course {{ $numberOfRacesDone + 1 }}">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary d-block" type="submit">
-                        C'est parti !
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <script>
@@ -106,8 +108,6 @@
 
                                             $('body').append(containerAlert);
                                             $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
-                                            $('body>div[role=alert]').append('<div class="imgAlert">') ;
-                                            $('body div[role=alert] div.imgAlert').append('<img src="{{asset("icons/medal.svg")}}" alt=">') ;
                                             $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
                                             $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
 
@@ -127,6 +127,5 @@
         });
     }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>

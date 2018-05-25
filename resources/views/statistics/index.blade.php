@@ -1,5 +1,5 @@
 <div class="row mt-3">
-    <div class="col-lg-4 col-md-6 col-12">
+    <div class="col-lg-4 col-md-6 col-12 mb-3">
         <div class="card">
             <div class="card-header"><h2>Kilomètres/Jour</h2></div>
             <div class="card-body">
@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-12">
+    <div class="col-lg-4 col-md-6 col-12 mb-3">
         <div class="card">
             <div class="card-header">
                 <h2>Vitesse moyenne</h2>
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-12 flex">
+    <div class="col-lg-4 col-md-6 col-12 flex mb-3">
         <div class="card">
             <div class="card-header"><h2>Kilomètres parcourus</h2></div>
             <div class="card-body"><span
