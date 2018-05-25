@@ -4,7 +4,7 @@
             <h2>Importez vos données GPX</h2>
         </div>
         <div class="card-body">
-
+            <div id="result"></div>
             <form action="{{ route('add_gpx') }}" method="post"
                   enctype="multipart/form-data" id="submitGpx">
                 @csrf
@@ -35,6 +35,7 @@
         var directionsDisplay = new google.maps.DirectionsRenderer;
 
         $('#submitGpx').on('submit', function (event) {
+
             event.preventDefault();
 
             $.ajaxSetup({
@@ -101,28 +102,36 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        $('#result').empty();
-                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'))
-                                        if (data[0].hasOwnProperty('id')) {
-                                            var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
-                                            var headerAlert = data[0].name;
-                                            var bodyAlert = data[0].description;
-
-
-                                            $('body').append(containerAlert);
-                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
-                                            $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
-                                            $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
-
-
-                                            setTimeout(function () {
-                                                $('div[role=alert]').hide(400)
-                                            }, 5000);
+                                        if (data.status === 'KO'){
+                                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur SQL'))
                                         }
+                                        else {
+                                            $('#result').empty();
+                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'));
+                                            $('#races').html(data.races);
+                                            $('#league').html(data.league);
+                                            $('#level').html(data.level);
+                                            $('#submitGpx').trigger("reset");
+                                            $('#raceName').val('Course {{ $numberOfRacesDone +2 }}');
+                                            if (data.success[0].hasOwnProperty('id')) {
+                                                var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
+                                                var headerAlert = data.success[0].name;
+                                                var bodyAlert = data.success[0].description;
+
+                                                $('body').append(containerAlert);
+                                                $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
+                                                $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
+                                                $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
+
+
+                                                setTimeout(function () {
+                                                    $('div[role=alert]').hide(400)
+                                                }, 5000);
+                                            }
+                                        }
+
                                     }
                                 });
-
-
                             } else {
                                 $('#result').empty();
                                 $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Directions request failed due to ' + status));
@@ -140,6 +149,9 @@
                         if (data.mimes !== undefined) {
                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
                         }
+                    }
+                    else if (data.status === 'saveError'){
+                        $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Fichier GPX non conforme'))
                     }
                 },
                 errors: function () {
