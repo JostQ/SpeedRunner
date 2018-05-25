@@ -27,49 +27,48 @@
                 <div class="mb-2">
                     <h4> {{ $user }}</h4>
                 </div>
-                <p> <i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
-                <p> <i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
-                <p> <i class="fas fa-list"></i> {{ $league }}</p>
-                <p> <i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
+                <p><i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
+                <p><i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
+                <p><i class="fas fa-list"></i> {{ $league }}</p>
+                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
             </div>
 
-           <!--affichage ou non de la liste d'amis-->
+            <!--affichage ou non de la liste d'amis-->
             @if(empty ($list_league))
                 <style>
-                    #runfriend{
+                    #runfriend {
                         visibility: hidden;
                     }
                 </style>
                 <h5>Vous n'avez pas encore d'amis</h5>
 
-            @endif
-            <div class="col-sm-4 col-lg-4" id="runfriend">
-                <div class="mt-5">Ils ont le même niveau que vous</div>
-                <div class="list">
-                    <ul class="list-group">
-                        <!--Liste de coureurs même niveau-->
-                        @foreach($allFriends as $oneFriend)
-                            <a href="{{ asset('profile' . '/' . $oneFriend->friend_id) }}">
-                        @endforeach
+            @else
+                <div class="col-sm-4 col-lg-4" id="runfriend">
+                    <div class="mt-5">Ils ont le même niveau que vous</div>
+                    <div class="list">
+                        <ul class="list-group">
+                            <!--Liste de coureurs même niveau-->
 
-                        @foreach($list_league as $item)
-                                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
-                                    {{ $item->firstname }} {{ $item->lastname }}
-                                    @if(isset($item->picture))
-                                        <img src="{{asset('images/' . $item->picture)}}"
-                                             alt="listrunner"
-                                             class="listrun rounded-circle">
-                                    @else
-                                        <img src="{{asset('images/girlrun4.jpg')}}"
-                                             alt="listrunner"
-                                             class="listrun rounded-circle">
-                                    @endif
-                                </li>
-                            </a>
-                        @endforeach
-                    </ul>
+                            @foreach($list_league as $item)
+                                <a href="{{ asset('profile' . '/' . $item->users_id) }}">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                        {{ $item->firstname }} {{ $item->lastname }}
+                                        @if(isset($item->picture))
+                                            <img src="{{asset('images') . '/' . $item->picture}}"
+                                                 alt="listrunner"
+                                                 class="listrun rounded-circle">
+                                        @else
+                                            <img src="{{asset('images/girlrun4.jpg')}}"
+                                                 alt="listrunner"
+                                                 class="listrun rounded-circle">
+                                        @endif
+                                    </li>
+                                </a>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
 
@@ -156,7 +155,7 @@
                 url: '{{route('success')}}',
                 data: 'html',
             })
-                .done(function(data){
+                .done(function (data) {
                     $('#home').empty().append(data);
                 })
         });
@@ -211,7 +210,6 @@
                 })
             pageToGet++;
         })
-
 
 
     </script>

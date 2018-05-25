@@ -53,6 +53,7 @@ class ProfileController extends Controller
             }
         }
 
+
         // Nombres de courses effectuées
         $race_done = Race::where('users_id', $user->id)->count();
 
