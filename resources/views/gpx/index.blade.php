@@ -35,6 +35,7 @@
         var directionsDisplay = new google.maps.DirectionsRenderer;
 
         $('#submitGpx').on('submit', function (event) {
+
             event.preventDefault();
 
             $.ajaxSetup({
@@ -106,11 +107,16 @@
                                         }
                                         else {
                                             $('#result').empty();
-                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'))
-                                            if (data[0].hasOwnProperty('id')) {
+                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'));
+                                            $('#races').html(data.races);
+                                            $('#league').html(data.league);
+                                            $('#level').html(data.level);
+                                            $('#submitGpx').trigger("reset");
+                                            $('#raceName').val('Course {{ $numberOfRacesDone +2 }}');
+                                            if (data.success[0].hasOwnProperty('id')) {
                                                 var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
-                                                var headerAlert = data[0].name;
-                                                var bodyAlert = data[0].description;
+                                                var headerAlert = data.success[0].name;
+                                                var bodyAlert = data.success[0].description;
 
                                                 $('body').append(containerAlert);
                                                 $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;

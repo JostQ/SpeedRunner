@@ -28,10 +28,10 @@
                     <h4> {{ $user }}</h4>
                 </div>
 
-                <p><i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
-                <p><i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
-                <p><i class="fas fa-list"></i> {{ $league }}</p>
-                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
+                <p><i class="fas fa-user-friends"></i> Nombres d'amis : <span id="friends">{{ $friend }}</span></p>
+                <p><i class="fas fa-chart-line"></i> Niveau : <span id="level">{{ $level }}</span></p>
+                <p><i class="fas fa-list"></i> <span id="league">{{ $league }}</span></p>
+                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : <span id="races">{{ $all_races }}</span></p>
 
             </div>
 

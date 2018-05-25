@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Model\Gpx;
 use App\Model\Info;
+use App\Model\League;
 use App\Model\Race;
+use App\Model\User;
 use App\Model\Waypoint;
 use Validator;
 use App\Model\Success;
@@ -166,51 +168,60 @@ class GpxController extends Controller
         $addRace->users_id = Auth::user()->id;
         $addRace->gpx_id = Gpx::all()->last()->id;
 
+        if ($addRace->save()){
+            // Mise à jour des informations.
+
+            $addInfo = Info::find(Auth::user()->id);
+            $addInfo->total_distance = Race::where('users_id', '=', Auth::user()->id)->sum('distance_done');
+            $addInfo->average_speed = Race::where('users_id', '=', Auth::user()->id)->avg('speed');
+
+            if ($addInfo->save()){
+                // Calcul d'expérience
+                $expPerKm = function ($km) {
+                    $exp = (round($km)) * 100;
+                    return $exp;
+                };
+
+                $userInfos = Info::find(Auth::user()->id);
+                $userInfos->exp += $expPerKm($request->distance_done);
+
+                $levels = [];
+                $experienceNeeded = [];
+                for ($i = 1; $i <= 100; $i++) {
+                    array_push($levels, $i);
+                    array_push($experienceNeeded, (($i - 1) + 100) * $i * 4);
+                }
+                // XP(n) = n-1+100 * n*4
+                array_reverse($experienceNeeded);
+
+                for ($i = 0; $i < count($levels); $i++) {
+                    if ($userInfos->exp >= $experienceNeeded[$i]) {
+                        $userInfos->level = $i + 1;
+                    }
+                }
+
+                // Calcul de la ligue
+
+                $computeLeague = $userInfos->level / 5;
+
+                $userInfos->leagues_id = 20 - floor($computeLeague);
 
 
-        // Mise à jour des informations.
+                if($userInfos->save()){
 
-        $addInfo = Info::find(Auth::user()->id);
-        $addInfo->total_distance = Race::where('users_id', '=', Auth::user()->id)->sum('distance_done');
-        $addInfo->average_speed = Race::where('users_id', '=', Auth::user()->id)->avg('speed');
+                    $infos = User::find(Auth::id())->infos->leagues_id;
 
+                    $races = Race::where('users_id', Auth::id())->count();
+                    $league = League::find($infos)->name;
 
+                    $result['success'] = $this->success();
+                    $result['races'] = $races;
+                    $result['league'] = $league;
+                    $result['level'] = $userInfos->level;
 
-        // Calcul d'expérience
-        $expPerKm = function ($km) {
-            $exp = (round($km)) * 100;
-            return $exp;
-        };
-
-        $userInfos = Info::find(Auth::user()->id);
-        $userInfos->exp += $expPerKm($request->distance_done);
-
-        $levels = [];
-        $experienceNeeded = [];
-        for ($i = 1; $i <= 100; $i++) {
-            array_push($levels, $i);
-            array_push($experienceNeeded, (($i - 1) + 100) * $i * 4);
-        }
-        // XP(n) = n-1+100 * n*4
-        array_reverse($experienceNeeded);
-
-        for ($i = 0; $i < count($levels); $i++) {
-            if ($userInfos->exp >= $experienceNeeded[$i]) {
-                $userInfos->level = $i + 1;
+                    return json_encode($result);
+                }
             }
-        }
-
-        // Calcul de la ligue
-
-        $computeLeague = $userInfos->level / 5;
-
-        $userInfos->leagues_id = 20 - floor($computeLeague);
-
-
-        if($userInfos->save() && $addInfo->save() && $addRace->save()){
-            $success = $this->success();
-
-            return $success;
         }
 
         return json_encode(['status' => 'KO']);
@@ -267,7 +278,7 @@ class GpxController extends Controller
             }
         }
         if(!empty($successUnlocked)) {
-            return json_encode($successUnlocked);
+            return $successUnlocked;
         }
     }
 }
