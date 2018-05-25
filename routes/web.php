@@ -67,7 +67,7 @@ Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
 
-//@TODO: {id} doit être l'id utilisateur avec qui l'on converse et non l'id du message.
+
 Route::post('/messenger/chat', 'MessengerController@conversation')
     ->name('messenger_friend')
     ->middleware('auth');
