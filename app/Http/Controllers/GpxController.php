@@ -6,7 +6,7 @@ use App\Model\Gpx;
 use App\Model\Info;
 use App\Model\Race;
 use App\Model\Waypoint;
-use DB;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,9 +23,39 @@ class GpxController extends Controller
 
     public function add(Request $request)
     {
-//        $validatedData = $request->validate([
-//            'gpxFile' => 'required|mimes:xml|'
-//        ]);
+
+        $rules = [
+            'gpxFile' => 'required|max:1024',
+            'raceName' => 'required'
+        ];
+
+        $messages = [
+            'gpxFile.required' => 'Fichier GPX manquant',
+            'gpxFile.mimes' => 'Extension de fichier accepté : GPX - XML',
+            'gpxFile.size' => 'Taille du fichier maximum autorisé 1Mo',
+            'raceName.required' => 'Nom de la course manquant'
+        ];
+
+
+        if (!empty($request->gpxFile)){
+            $gpx = $request->gpxFile;
+            if($gpx->getClientOriginalExtension() !== 'gpx' && $gpx->getClientOriginalExtension() !== 'xml'){
+                $error = $messages['gpxFile.mimes'];
+            }
+        }
+
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+
+        if ($validator->fails() || isset($error)){
+            $jsonError = ['status' => 'KO', 'errors' => $validator->errors()];
+            if(isset($error)){
+                $jsonError['mimes'] = $error;
+            }
+            return json_encode($jsonError);
+        }
 
         $gpxName = time() . '.xml';
         $request->file('gpxFile')->move(public_path('/gpxFile/gpx_name'), $gpxName);
@@ -53,6 +83,7 @@ class GpxController extends Controller
             $lon = $jsonDecode['trk']['trkseg']['trkpt'][$i]['@attributes']['lon'];
 
             if ($i === 0){
+                // Récupération des données de départ
                 $startTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $start['time'] = $startTime->format('U');
                 $start['lat'] = $lat;
@@ -60,6 +91,7 @@ class GpxController extends Controller
             }
 
             if ($i === intval($count * $g)){
+                // Récupération des données de quelques Waypoints
                 $wayTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $waypoints[$j]['time'] = $wayTime->format('U');
                 $waypoints[$j]['lat'] = $lat;
@@ -69,6 +101,7 @@ class GpxController extends Controller
             }
 
             if ($i === $count - 1){
+                // Récupération des données de fin
                 $endTime = new \DateTime($jsonDecode['trk']['trkseg']['trkpt'][$i]['time']);
                 $end['time'] = $endTime->format('U');
                 $end['lat'] = $lat;
@@ -76,9 +109,7 @@ class GpxController extends Controller
             }
         }
 
-        $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
-
-
+        // Ajout des données GPX dans la DB
         $addGpx = new Gpx();
 
         $addGpx->startLat = $start['lat'];
@@ -103,7 +134,10 @@ class GpxController extends Controller
             $addWay->save();
         }
 
+        // Suppression du fichier XML
         unlink(public_path('/gpxFile/gpx_name') . '/'. $gpxName);
+
+        $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
 
         return json_encode($json);
     }

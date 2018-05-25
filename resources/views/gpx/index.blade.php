@@ -4,6 +4,7 @@
     </div>
     <div class="row mt-5">
         <div class="col-lg-6 col-md-12 offset-lg-3">
+            <div id="result"></div>
             <form action="{{ route('add_gpx') }}" method="post"
                   enctype="multipart/form-data" id="submitGpx">
                 @csrf
@@ -101,17 +102,37 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        console.log('bouh')
-                                        console.log(data)
+                                        if(data.status === 'OK'){
+                                            $('#result').empty();
+                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
+                                        }
                                     }
                                 })
 
 
                             } else {
-                                window.alert('Directions request failed due to ' + status);
+                                $('#result').empty();
+                                $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Directions request failed due to ' + status));
                             }
                         });
                     }
+                    else if ( data.status === 'KO'){
+                        $('#result').empty();
+                        console.log(data)
+                        if (data.errors.gpxFile !== undefined){
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.gpxFile))
+                        }
+                        if (data.errors.raceName !== undefined){
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.raceName))
+                        }
+                        if (data.mimes !== undefined){
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
+                        }
+                    }
+                },
+                errors: function () {
+                    $('#result').empty();
+                    $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur lors de l\'envoi du fichier'))
                 }
             })
         });
