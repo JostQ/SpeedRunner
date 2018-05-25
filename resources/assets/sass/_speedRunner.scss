@@ -19,6 +19,10 @@ body {
   justify-content: center;
 }
 
+#home {
+  background-color: #fcfcfc;
+}
+
 // Redéfinition des classes Bootstrap
 
 .card {
@@ -47,10 +51,21 @@ body {
   border-radius: 0;
 }
 
-
+.nav-item {
+  outline: none;
+}
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: $primary-color;
+  @extend .btn;
+  &:hover {
+  @extend .btn:hover;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
 }
 
 

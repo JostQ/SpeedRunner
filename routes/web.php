@@ -33,6 +33,9 @@ Route::delete('/profile/delete', 'ProfileController@delete')
 Route::put('/profile', 'ProfileController@update')
     ->name('user_profile_update')
     ->middleware('auth');
+Route::any('profile/{friend_id}', 'FriendsController@index')
+    ->name('user_profile_show')
+    ->middleware('auth');
 
 /////////////////////////////////////////
 ///
@@ -85,7 +88,9 @@ Route::get('/statistiques', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/actu', 'ActuController@store');
+Route::post('/actu', 'ActuController@store')
+    ->name('actu_post')
+    ->middleware('auth');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
