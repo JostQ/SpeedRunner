@@ -17,7 +17,7 @@ class ActuController extends Controller
     {
         $users = Auth::user();
         $info = User::find($users->id)->infos;
-        $bdd= Actuality::get();
+        $bdd= Actuality::latest()->paginate(10);
 
 
         $pict=$info['picture'];

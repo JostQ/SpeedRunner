@@ -53,9 +53,9 @@ class ProfileController extends Controller
             }
         }
 
+
         // Nombres de courses effectuées
         $race_done = Race::where('users_id', $user->id)->count();
-
 
         return view('profile.index')
             ->with('userid', $user->id)
@@ -65,7 +65,8 @@ class ProfileController extends Controller
             ->with('league', $league)
             ->with('list_league', $list_league)
             ->with('profile_pic', $profile_pic)
-            ->with('all_races', $race_done);
+            ->with('all_races', $race_done)
+            ->with('allFriends', $friends);
     }
 
     public function edit(Request $request, $id)

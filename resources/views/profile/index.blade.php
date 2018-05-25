@@ -27,12 +27,12 @@
                 <div class="mb-2">
                     <h4> {{ $user }}</h4>
                 </div>
-                <p><i class="fas fa-user-friends"></i> Nombres d'amis
-                    : {{ $friend }}</p>
+
+                <p><i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
                 <p><i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
                 <p><i class="fas fa-list"></i> {{ $league }}</p>
-                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées
-                    : {{ $all_races }}</p>
+                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
+
             </div>
 
             <!--affichage ou non de la liste d'amis-->
@@ -46,12 +46,14 @@
                     <div class="list">
                         <ul class="list-group">
                             <!--Liste de coureurs même niveau-->
+
                             @foreach($list_league as $item)
-                                <a href="#">
+                                <a href="{{ asset('profile' . '/' . $item->users_id) }}">
                                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                                         {{ $item->firstname }} {{ $item->lastname }}
                                         @if(isset($item->picture))
-                                            <img src="{{asset('images/' . $item->picture)}}"
+                                            <img src="{{asset('images') . '/' . $item->picture}}"
+
                                                  alt="listrunner"
                                                  class="listrun rounded-circle">
                                         @else
@@ -175,14 +177,32 @@
     </script>
     <script>
         let pageToGet = 2;
+        let actuToGet = 2;
         // Load AJAX des différentes pages
         // @TODO: Passer les .load() en .ajax().
-        $('#home').addClass('active show')
-        $('#home').load('{{ route('actu') }}');
+
+        $.ajax({
+            url: '{{route('actu')}}',
+            data: 'html',
+        })
+            .done(function (data) {
+                $('#home').addClass('active show')
+                $('#home').empty()
+                $('#home').append(data)
+                $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+            });
 
         $('#actualite-tab').click(function (e) {
             $('#home').addClass('active show')
-            $('#home').load('{{ route('actu') }}');
+            $.ajax({
+                url: '{{route('actu')}}',
+                data: 'html',
+            })
+                .done(function (data) {
+                    $('#home').empty()
+                    $('#home').append(data)
+                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                });
         });
 
         $('#stats-tab').click(function (e) {
@@ -210,6 +230,7 @@
                 data: 'html',
             })
                 .done(function (data) {
+
                     $('#home').addClass('active show');
                     $('#home').empty();
                     $('#home').append(data);
@@ -237,6 +258,9 @@
                 contentType: false,
                 success: function (data) {
                     $('#imgprofil').attr('src', '{{asset('avatars')}}/' + data.picture);
+                    if (Object.values($('.actuPic')).length > 2 && $('div[data-id]').data().id === {{\Illuminate\Support\Facades\Auth::user()->id}}) {
+                        $('div[data-id={{\Illuminate\Support\Facades\Auth::user()->id}}] .actuPic').attr('src', '{{asset('avatars')}}/' + data.picture)
+                    }
                 }
             })
         })
@@ -266,6 +290,22 @@
                 })
             pageToGet++;
         })
+
+        // Lazy loading des actualités.
+        $('body').on('click', '#loadNextActualities', function () {
+
+            $.ajax({
+                url: "/actu?page=" + actuToGet,
+                dataType: 'html'
+            })
+                .done(function (data) {
+                    data = $(data).find('#nav-home');
+                    $('body #loadNextActualities').before(data);
+                })
+            actuToGet++;
+        })
+
+
 
 
     </script>

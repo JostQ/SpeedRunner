@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Friendship;
 use App\Model\Message;
+use App\Model\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -29,9 +30,13 @@ class MessengerController extends Controller
 
         $conversation = Friendship::where('friend_id', $mon_ami)->where('users_id', Auth::id())->first();
 
+        $truc = Friendship::where('friend_id', Auth::id())->where('users_id', $mon_ami)->first();
+
         $user = Auth::user();
 
-        $messages = $user->conversations($conversation->id);
+        $messages['sender'] = $user->conversations($conversation->id);
+
+        $messages['answer'] = User::find($mon_ami)->conversations($truc->id) ;
 
         return response()->json( $messages );
 
@@ -39,6 +44,7 @@ class MessengerController extends Controller
 
     public function send(){
         $data = Request::all();
+
 //        validation de l'input
         $rules = ['msg'=> 'string|required'];
         if (!empty($data['picture'])){
@@ -102,6 +108,7 @@ class MessengerController extends Controller
             $data['picture'] = $photoName
         ];
 
+        $data['id'] = Auth::user()->id;
         return response()->json($data);
 
 

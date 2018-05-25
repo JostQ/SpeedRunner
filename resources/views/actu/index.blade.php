@@ -52,13 +52,13 @@
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                  aria-labelledby="nav-home-tab">
                 @foreach($generales as $generale)
-                    <div class="card mb-4">
+                    <div class="card mb-4" data-id="{{ $generale->users->id }}">
                         <div class="card-header">
                             <div class="row">
-                                    <img src="{{asset('avatars') . '/'  . $profile_pict }}"
+                                    <img src="{{asset('/avatars/')}}/{{ (\App\Model\Info::find($generale->users->id)->picture) }}"
                                          alt="profilPict"
-                                         class="rounded-circle img-thumbnail img-fluid mx-2"
-                                         style="width: 75px;height:75px">
+                                         class="rounded-circle img-thumbnail img-fluid mx-2 actuPic"
+                                         style="width: 75px;height:75px; object-fit: cover">
                                 <div>
                                     <p>{{strtoupper(substr($generale->users->name, 0, 1)) . substr($generale->users->name, 1)}}</p>
                                     <h5 class="card-title speedrun-title">{{--$namePost--}}</h5>
@@ -150,4 +150,6 @@
         </div>
     </div>
 </div>
+
+
 

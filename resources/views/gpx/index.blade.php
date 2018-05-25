@@ -112,7 +112,6 @@
                                                 var headerAlert = data[0].name;
                                                 var bodyAlert = data[0].description;
 
-
                                                 $('body').append(containerAlert);
                                                 $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
                                                 $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
@@ -127,8 +126,6 @@
 
                                     }
                                 });
-
-
                             } else {
                                 $('#result').empty();
                                 $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Directions request failed due to ' + status));
