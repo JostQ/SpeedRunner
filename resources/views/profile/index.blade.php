@@ -27,23 +27,21 @@
                 <div class="mb-2">
                     <h4> {{ $user }}</h4>
                 </div>
+
                 <p><i class="fas fa-user-friends"></i> Nombres d'amis : {{ $friend }}</p>
                 <p><i class="fas fa-chart-line"></i> Niveau : {{ $level }}</p>
                 <p><i class="fas fa-list"></i> {{ $league }}</p>
                 <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
+
             </div>
 
             <!--affichage ou non de la liste d'amis-->
             @if(empty ($list_league))
-                <style>
-                    #runfriend {
-                        visibility: hidden;
-                    }
-                </style>
-                <h5>Vous n'avez pas encore d'amis</h5>
-
+                <div class="col-12 col-lg-4">
+                    <h5>Vous n'avez pas encore d'amis</h5>
+                </div>
             @else
-                <div class="col-sm-4 col-lg-4" id="runfriend">
+                <div class="col-12 col-lg-4" id="runfriend">
                     <div class="mt-5">Ils ont le même niveau que vous</div>
                     <div class="list">
                         <ul class="list-group">
@@ -55,6 +53,7 @@
                                         {{ $item->firstname }} {{ $item->lastname }}
                                         @if(isset($item->picture))
                                             <img src="{{asset('images') . '/' . $item->picture}}"
+
                                                  alt="listrunner"
                                                  class="listrun rounded-circle">
                                         @else
@@ -72,47 +71,101 @@
         </div>
 
 
-        <ul class="nav nav-tabs mt-5 pt-2" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="actualite-tab" data-toggle="tab"
-                   href="#actualite" role="tab"
-                   aria-controls="actualite" aria-selected="true">Fil
-                    d'actualité</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="success-tab" data-toggle="tab"
-                   href="#defi"
-                   role="tab" aria-controls="profile"
-                   aria-selected="false">Succès</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="stats-tab" data-toggle="tab"
-                   href="#contact" role="tab"
-                   aria-controls="statistiques" aria-selected="false">Statistiques</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="gpx-tab" data-toggle="tab" href="#gpx"
-                   role="tab" aria-controls="gpx"
-                   aria-selected="false">Import de vos données GPX</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="classement-tab" data-toggle="tab"
-                   href="#classement" role="tab"
-                   aria-controls="classement"
-                   aria-selected="false">Classement</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="courses-tab" data-toggle="tab"
-                   href="#courses" role="tab"
-                   aria-controls="classement" aria-selected="false">Listes des
-                    courses</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade" id="home" role="tabpanel"
-                 aria-labelledby="home-tab"></div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-pills nav-fill flex-column flex-md-row mt-5 pt-2" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="actualite-tab"
+                           data-toggle="tab"
+                           href="#actualite" role="tab"
+                           aria-controls="actualite" aria-selected="true">Fil
+                            d'actualité</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="success-tab" data-toggle="tab"
+                           href="#defi"
+                           role="tab" aria-controls="profile"
+                           aria-selected="false">Succès</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="stats-tab" data-toggle="tab"
+                           href="#contact" role="tab"
+                           aria-controls="statistiques" aria-selected="false">Statistiques</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gpx-tab" data-toggle="tab"
+                           href="#gpx"
+                           role="tab" aria-controls="gpx"
+                           aria-selected="false">Import de vos données GPX</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="classement-tab"
+                           data-toggle="tab"
+                           href="#classement" role="tab"
+                           aria-controls="classement"
+                           aria-selected="false">Classement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="courses-tab" data-toggle="tab"
+                           href="#courses" role="tab"
+                           aria-controls="classement" aria-selected="false">Listes
+                            des
+                            courses</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade " id="home" role="tabpanel"
+                         aria-labelledby="home-tab">
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    {{--La fenêtre modale--}}
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+         aria-labelledby="ModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Publication
+                        <i class="far fa-edit"></i></h5>
+                    <label for="custom-file-input" id="custom"
+                           class="btn btn-primary ml-1">Image<i
+                                class="far fa-images ml-1"></i></label>
+
+                    <button type="submit" class="close"
+                            data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" name="statut"
+                      enctype="multipart/form-data"
+                      action="{{route('actu_post')}}">
+                    @csrf
+                    <div class="modal-body">
+
+                                        <textarea class="form-control"
+                                                  id="message-text"
+                                                  placeholder="Exprimez-vous..."
+                                                  name="message"
+                                                  required></textarea>
+                        <input type="file" name="picture"
+                               id="custom-file-input" class="join-file">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Publier
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -126,11 +179,14 @@
         let pageToGet = 2;
         // Load AJAX des différentes pages
         // @TODO: Passer les .load() en .ajax().
+        $('#home').addClass('active show')
+        $('#home').load('{{ route('actu') }}');
 
         $('#actualite-tab').click(function (e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('actu') }}');
         });
+
         $('#stats-tab').click(function (e) {
             $('#home').addClass('active show')
             $('#home').load('{{ route('statistics') }}');
@@ -156,7 +212,10 @@
                 data: 'html',
             })
                 .done(function (data) {
-                    $('#home').empty().append(data);
+
+                    $('#home').addClass('active show');
+                    $('#home').empty();
+                    $('#home').append(data);
                 })
         });
 

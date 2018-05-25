@@ -1,25 +1,25 @@
-<div class="container mt-5 pt-5" id="importGpx">
-    <div class="row justify-content-center">
-        <h2>Importez vos données GPX</h2>
-    </div>
-    <div class="row mt-5">
-        <div class="col-lg-6 col-md-12 offset-lg-3">
-            <div id="result"></div>
+<div class="row">
+    <div class="col-lg-6 col-md-12 mx-auto card">
+        <div class="card-header">
+            <h2>Importez vos données GPX</h2>
+        </div>
+        <div class="card-body">
+
             <form action="{{ route('add_gpx') }}" method="post"
                   enctype="multipart/form-data" id="submitGpx">
                 @csrf
                 <div class="form-group">
                     <div class="form-group">
-                        <input type="file" class="form-control-file"
-                               name="gpxFile">
-                    </div>
-                    <div class="form-group">
-                        <label for="raceName">Nom de la course</label>
+                        <label for="">Nom de la course</label>
                         <input id="raceName" type="text" class="form-control"
                                name="raceName"
                                value="Course {{ $numberOfRacesDone + 1 }}">
                     </div>
                     <div class="form-group">
+                        <input type="file" class="form-control-file"
+                               name="gpxFile">
+                    </div>
+                    <div>
                         <button class="btn btn-primary d-block" type="submit">
                             C'est parti !
                         </button>
@@ -110,9 +110,10 @@
 
 
                                             $('body').append(containerAlert);
-                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>');
-                                            $('body>div[role=alert]').append('<div>' + headerAlert + '</div>');
-                                            $('body>div[role=alert]').append('<div>' + bodyAlert + '</div>');
+                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
+                                            $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
+                                            $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
+
 
                                             setTimeout(function () {
                                                 $('div[role=alert]').hide(400)
@@ -148,7 +149,6 @@
             });
         });
     }
-    </script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>

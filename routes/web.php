@@ -88,7 +88,9 @@ Route::get('/statistiques', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/actu', 'ActuController@store');
+Route::post('/actu', 'ActuController@store')
+    ->name('actu_post')
+    ->middleware('auth');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
