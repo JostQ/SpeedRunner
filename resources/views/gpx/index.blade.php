@@ -33,6 +33,7 @@
     function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
+        var numberOfRacesDone = {{ $numberOfRacesDone + 1 }}
 
         $('#submitGpx').on('submit', function (event) {
 
@@ -106,13 +107,14 @@
                                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur SQL'))
                                         }
                                         else {
+                                            numberOfRacesDone++;
                                             $('#result').empty();
                                             $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'));
                                             $('#races').html(data.races);
                                             $('#league').html(data.league);
                                             $('#level').html(data.level);
                                             $('#submitGpx').trigger("reset");
-                                            $('#raceName').val('Course {{ $numberOfRacesDone +2 }}');
+                                            $('#raceName').val('Course ' + numberOfRacesDone);
                                             if (data.success[0].hasOwnProperty('id')) {
                                                 var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
                                                 var headerAlert = data.success[0].name;
