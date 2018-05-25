@@ -61,15 +61,15 @@ Route::delete('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
 
-// Messagerie privées
+// Messagerie
 
 Route::get('/messenger', 'MessengerController@index')
     ->name('messenger')
     ->middleware('auth');
 
 //@TODO: {id} doit être l'id utilisateur avec qui l'on converse et non l'id du message.
-Route::get('/messenger/{id}', 'MessengerController@conversation')
-    ->name('messenger')
+Route::post('/messenger/chat', 'MessengerController@conversation')
+    ->name('messenger_friend')
     ->middleware('auth');
 
 Route::post('/messenger', 'MessengerController@send')
@@ -85,7 +85,7 @@ Route::get('/statistiques', 'StatisticsController@index')
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
     ->middleware('auth');
-Route::post('/actu','ActuController@store');
+Route::post('/actu', 'ActuController@store');
 
 // Classement
 Route::get('/leaderboards', 'LeaderboardsController@index')
@@ -97,6 +97,10 @@ Route::get('/routes', 'RoutesController@index')
     ->name('routes')
     ->middleware('auth');
 
+// Affichage des succès
+Route::get('/succes', 'SuccessController@index')
+    ->name('success')
+    ->middleware('auth');
 
 /////////////////////////////////////////
 ///

@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table mt-3">
     <thead>
         <tr>
             <td>Pseudo</td>

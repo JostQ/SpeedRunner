@@ -43,14 +43,21 @@ class User extends Authenticatable
     public function messages(){
         return $this->hasMany(Message::class, 'users_id');
     }
-    public function success_to_users(){
-        return $this->hasMany(SuccessToUser::class, 'users_id');
+    public function success_has_user(){
+        return $this->hasMany(SuccessHasUser::class, 'users_id');
     }
+
+    public function success()
+    {
+        return $this->belongsToMany(Success::class, 'success_has_users', 'users_id', 'success_id');
+    }
+    
     public function races(){
         return $this->hasMany(Race::class, 'users_id');
     }
 
-    public function conversations(){
-        return $this->hasManyThrough('App\Model\Message', 'App\Model\Friendship', 'users_id', 'users_id', 'id', 'id');
+    public function conversations($friendship_id){
+        return $this->hasMany(Message::class, 'users_id')->where('friendship_id', $friendship_id)->get();
     }
+
 }

@@ -15,15 +15,24 @@ class MessengerController extends Controller
     {
         $user = Auth::user();
 
-        $conversations = $user->friendships()->get();
-        $messages = $user->conversations()->get();
+        $friends = $user->friendships()->get();
 
         return view('messenger.index')
-            ->with('friends',$conversations)
-            ->with('messages',$messages);
+            ->with('friends',$friends);
     }
 
     public function conversation() {
+        $values = Request::all();
+
+        $mon_ami = $values['id'];
+
+        $conversation = Friendship::where('friend_id', $mon_ami)->where('users_id', Auth::id())->first();
+
+        $user = Auth::user();
+
+        $messages = $user->conversations($conversation->id);
+
+        return response()->json( $messages );
 
     }
 
@@ -31,25 +40,42 @@ class MessengerController extends Controller
         $data = Request::all();
 //        validation de l'input
         $rules = ['msg'=> 'string|required'];
+        if (!empty($data['picture'])){
+            $rules['picture'] = 'image|max:2048';
 
-        $validator= Validator::make($data,$rules,[
-            'msg.string'=> 'Votre message est invalide',
-            'msg.required'=> 'Votre message est vide'
-        ]);
-        if ($validator->fails()){
-
-            return Redirect::back()
-                ->withErrors($validator)
-                ->withInput();
+            $validator= Validator::make($data,$rules,[
+                'msg.string'=> 'Votre publication est invalide',
+                'msg.required'=> 'Votre publication est vide',
+                'picture.image'=> 'Votre image n\'est pas au bon format',
+                'picture.max:2048' =>'Votre image est trop volumineuse'
+            ]);
         }
+        else{
+            $validator= Validator::make($data,$rules,[
+                'msg.string'=> 'Votre publication est invalide',
+                'msg.required'=> 'Votre publication est vide'
+            ]);
+        }
+
+        if ($validator->fails()){
+            return json_encode($validator->errors());
+        }
+
+
+        $conversation = Friendship::where('friend_id', $data['friend-id'])->where('users_id', Auth::id())->first();
+
+
+
 
 //        insert->bdd
         $insert = new Message;
         $insert->message = $data['msg'];
         $insert->users_id = Auth::user()->id;
         $insert->recipient_id =$data['friend-id'];
+        $insert->friendship_id = $conversation->id;
         $insert->save();
-        return Redirect::back();
+
+        return response()->json($data);
 
 
 

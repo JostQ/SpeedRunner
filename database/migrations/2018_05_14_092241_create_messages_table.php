@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->text('message');
             $table->string('picture')->nullable();
+            $table->integer('friendship_id');
             $table->integer('users_id');
             $table->integer('recipient_id');
             $table->timestamps();

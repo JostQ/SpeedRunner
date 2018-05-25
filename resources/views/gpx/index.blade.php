@@ -14,7 +14,7 @@
                                name="gpxFile">
                     </div>
                     <div class="form-group">
-                        <label for="">Nom de la course</label>
+                        <label for="raceName">Nom de la course</label>
                         <input id="raceName" type="text" class="form-control"
                                name="raceName"
                                value="Course {{ $numberOfRacesDone + 1 }}">
@@ -65,7 +65,6 @@
                             waytime = waypoint.time - waytime;
                         });
 
-                        console.log(waypts);
                         var start = new google.maps.LatLng(data.start.lat, data.start.lon);
                         var end = new google.maps.LatLng(data.end.lat, data.end.lon);
                         directionsService.route({
@@ -79,7 +78,7 @@
                                 directionsDisplay.setDirections(response);
 
                                 var route = response.routes[0];
-                                console.log(route);
+
                                 var distance = (route.legs[0].distance.value) / 1000;
                                 var timeStart = parseInt(data.start.time);
                                 var timeEnd = parseInt(data.end.time);
@@ -102,12 +101,25 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        if(data.status === 'OK'){
-                                            $('#result').empty();
-                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
+                                        $('#result').empty();
+                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
+                                        if (data[0].hasOwnProperty('id')) {
+                                            var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
+                                            var headerAlert = data[0].name;
+                                            var bodyAlert = data[0].description;
+
+
+                                            $('body').append(containerAlert);
+                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>');
+                                            $('body>div[role=alert]').append('<div>' + headerAlert + '</div>');
+                                            $('body>div[role=alert]').append('<div>' + bodyAlert + '</div>');
+
+                                            setTimeout(function () {
+                                                $('div[role=alert]').hide(400)
+                                            }, 5000);
                                         }
                                     }
-                                })
+                                });
 
 
                             } else {
@@ -116,16 +128,15 @@
                             }
                         });
                     }
-                    else if ( data.status === 'KO'){
+                    else if (data.status === 'KO') {
                         $('#result').empty();
-                        console.log(data)
-                        if (data.errors.gpxFile !== undefined){
+                        if (data.errors.gpxFile !== undefined) {
                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.gpxFile))
                         }
-                        if (data.errors.raceName !== undefined){
+                        if (data.errors.raceName !== undefined) {
                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.raceName))
                         }
-                        if (data.mimes !== undefined){
+                        if (data.mimes !== undefined) {
                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
                         }
                     }
@@ -134,10 +145,10 @@
                     $('#result').empty();
                     $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur lors de l\'envoi du fichier'))
                 }
-            })
+            });
         });
     }
-</script>
+    </script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>

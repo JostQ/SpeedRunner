@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SuccessToUser extends Model
+class SuccessHasUser extends Model
 {
     public function users(){
         return $this->belongsTo(User::class);
