@@ -48,6 +48,11 @@ Route::get('/tutoriel', 'TutorialController@index')
     ->name('tutoriel')
     ->middleware('auth');
 
+// Page CGU
+Route::get('/cgu', 'CguController@index')
+    ->name('cgu')
+    ->middleware('auth');
+
 // Page tuto GPX
 Route::get('/tutogpx', 'TutoGpxController@index')
     ->name('tutogpx')

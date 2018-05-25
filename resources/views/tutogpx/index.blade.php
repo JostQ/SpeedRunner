@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <h2>Vos données GPX</h2>
             <p>L'export de vos données GPX vous permet de d'utiliser SpeedRunner et de vous mesurer à toute une communauté de coureurs</p>
-            <p>Nous avons regroupé ici les plateformes les plus utilisées, si vous ne parvenez pas à trouver vos données GPX nhésitez pas à nous contacter.</p>
+            <p>Nous avons regroupé ici les plateformes les plus couramment utilisées, si vous ne parvenez pas à trouver vos données GPX nhésitez pas à nous contacter.</p>
             <div class="card-deck mt-5">
                 <div class="card bouncy">
                     <img class="card-img-top" src="{{asset('images/nikeplus.jpg')}}" alt="logorun" height="285px">

@@ -14,11 +14,12 @@
                 <ul class="list-inline">
                     <a href="{{ route('tutogpx') }}" class="nav-link"><li>Tutoriel GPX</li></a>
                     <a href="{{ route('tutoriel') }}" class="nav-link"><li>FAQ</li></a>
+                    <a href="{{ route('cgu') }}" class="nav-link"><li>C.G.U</li></a>
                 </ul>
             </div>
         </div>
         <div class="text-center">
-            &copy; Une Belle Bande de Cons
+            &copy; Les choses se passes t'entends
         </div>
     </div>
 </footer>
