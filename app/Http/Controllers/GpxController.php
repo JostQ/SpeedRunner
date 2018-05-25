@@ -142,9 +142,15 @@ class GpxController extends Controller
         // Suppression du fichier XML
         unlink(public_path('/gpxFile/gpx_name') . '/'. $gpxName);
 
-        $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
+        if ($addGpx->save()){
 
-        return json_encode($json);
+            $json = [ 'status' => 'ok', 'start' => $start, 'waypoints' => $waypoints, 'end' => $end, 'date' => $date];
+
+            return json_encode($json);
+        }
+
+        return json_encode(['status' => 'saveError']);
+
     }
 
     public function addRace(Request $request)
@@ -160,7 +166,7 @@ class GpxController extends Controller
         $addRace->users_id = Auth::user()->id;
         $addRace->gpx_id = Gpx::all()->last()->id;
 
-        $addRace->save();
+
 
         // Mise à jour des informations.
 
@@ -168,7 +174,7 @@ class GpxController extends Controller
         $addInfo->total_distance = Race::where('users_id', '=', Auth::user()->id)->sum('distance_done');
         $addInfo->average_speed = Race::where('users_id', '=', Auth::user()->id)->avg('speed');
 
-        $addInfo->save();
+
 
         // Calcul d'expérience
         $expPerKm = function ($km) {
@@ -199,11 +205,15 @@ class GpxController extends Controller
         $computeLeague = $userInfos->level / 5;
 
         $userInfos->leagues_id = 20 - floor($computeLeague);
-        $userInfos->save();
 
-        $success = $this->success();
 
-        return $success;
+        if($userInfos->save() && $addInfo->save() && $addRace->save()){
+            $success = $this->success();
+
+            return $success;
+        }
+
+        return json_encode(['status' => 'KO']);
 
     }
 

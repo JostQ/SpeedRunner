@@ -4,7 +4,7 @@
             <h2>Importez vos données GPX</h2>
         </div>
         <div class="card-body">
-
+            <div id="result"></div>
             <form action="{{ route('add_gpx') }}" method="post"
                   enctype="multipart/form-data" id="submitGpx">
                 @csrf
@@ -101,24 +101,30 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
-                                        $('#result').empty();
-                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
-                                        if (data[0].hasOwnProperty('id')) {
-                                            var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
-                                            var headerAlert = data[0].name;
-                                            var bodyAlert = data[0].description;
-
-
-                                            $('body').append(containerAlert);
-                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
-                                            $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
-                                            $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
-
-
-                                            setTimeout(function () {
-                                                $('div[role=alert]').hide(400)
-                                            }, 5000);
+                                        if (data.status === 'KO'){
+                                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur SQL'))
                                         }
+                                        else {
+                                            $('#result').empty();
+                                            $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyée'))
+                                            if (data[0].hasOwnProperty('id')) {
+                                                var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
+                                                var headerAlert = data[0].name;
+                                                var bodyAlert = data[0].description;
+
+
+                                                $('body').append(containerAlert);
+                                                $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
+                                                $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
+                                                $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
+
+
+                                                setTimeout(function () {
+                                                    $('div[role=alert]').hide(400)
+                                                }, 5000);
+                                            }
+                                        }
+
                                     }
                                 });
 
@@ -140,6 +146,9 @@
                         if (data.mimes !== undefined) {
                             $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
                         }
+                    }
+                    else if (data.status === 'saveError'){
+                        $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Fichier GPX non conforme'))
                     }
                 },
                 errors: function () {
