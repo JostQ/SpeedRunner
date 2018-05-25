@@ -10,6 +10,7 @@ use Eloquent;
 use App\Model\Friendship;
 use App\Model\League;
 use App\Model\Info;
+use Redirect;
 use Intervention\Image\Facades\Image;
 use App\Model\User;
 
@@ -54,5 +55,32 @@ class FriendsController extends Controller
             ->with('profile_pic', $profile_pic)
             ->with('all_races', $race_done);
     }
+
+
+    public function add(Request $request)
+    {
+        // Ajout ami
+
+        if(count(Friendship::where('friend_id', $request->input('friends_id'))->where('users_id', Auth::id())->get()) === 0){
+            $addFriend = new Friendship();
+
+            $addFriend->friend_id = $request->input('friends_id');
+
+            $addFriend->users_id = Auth::id();
+
+            if ($addFriend->save()){
+                $message = 'Nouvel ami ajouté';
+                $json = ['status' => 'OK', 'success' => $message];
+                return json_encode($json);
+            }
+
+        }
+
+        return json_encode(['errors' => 'Vous êtes déjà amis']);
+
+
+
+    }
+
 
 }

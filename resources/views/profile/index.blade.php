@@ -53,7 +53,6 @@
                                         {{ $item->firstname }} {{ $item->lastname }}
                                         @if(isset($item->picture))
                                             <img src="{{asset('images') . '/' . $item->picture}}"
-
                                                  alt="listrunner"
                                                  class="listrun rounded-circle">
                                         @else

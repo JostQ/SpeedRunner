@@ -22,6 +22,14 @@
                 <p><i class="fas fa-list"></i> {{ $league }}</p>
                 <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : {{ $all_races }}</p>
             </div>
+            <div class="col-sm-4">
+                <div id="resultFriend"></div>
+                <form method="post" id="addfriend">
+                    @csrf
+                    <input type="hidden" name="friends_id" value="{{ $userid }}">
+                    <button type="submit">ajout</button>
+                </form>
+            </div>
         </div>
 
         <ul class="nav nav-tabs mt-5 pt-2" id="myTab" role="tablist">
@@ -157,6 +165,26 @@
                     $('body #loadNextRaces').before(data);
                 })
             pageToGet++;
+        })
+
+        $('#addfriend').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                dataType : 'json',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (data) {
+                    if(data.status === 'OK'){
+                        $('#resultFriend').empty();
+                        $('#resultFriend').append($('<div>', {class: 'alert alert-success'}).html(data.success))
+                    }
+                    else {
+                        $('#resultFriend').empty();
+                        $('#resultFriend').append($('<div>', {class: 'alert alert-danger'}).html(data.errors))
+                    }
+                }
+            })
         })
 
 

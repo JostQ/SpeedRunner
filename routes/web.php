@@ -36,6 +36,9 @@ Route::put('/profile', 'ProfileController@update')
 Route::any('profile/{friend_id}', 'FriendsController@index')
     ->name('user_profile_show')
     ->middleware('auth');
+Route::post('profile/{friend_id}', 'FriendsController@add')
+    ->name('user_profile_add')
+    ->middleware('auth');
 
 /////////////////////////////////////////
 ///

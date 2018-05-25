@@ -20,6 +20,8 @@ class ProfileController extends Controller
         //nombre d'amis
         $user = Auth::user();
 
+        //dd($user);
+
         $friends = User::find($user->id)->friendships;
 
         $all_friend = $friends->count();
@@ -56,6 +58,7 @@ class ProfileController extends Controller
 
         // Nombres de courses effectuées
         $race_done = Race::where('users_id', $user->id)->count();
+
 
         return view('profile.index')
             ->with('userid', $user->id)
@@ -98,7 +101,6 @@ class ProfileController extends Controller
 
 
        return json_encode(['picture' => $photoName]);
-
 
     }
 }
