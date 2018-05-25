@@ -48,8 +48,11 @@
                 <div class="list">
                     <ul class="list-group">
                         <!--Liste de coureurs même niveau-->
+                        @foreach($allFriends as $oneFriend)
+                            <a href="{{ asset('profile' . '/' . $oneFriend->friend_id) }}">
+                        @endforeach
+
                         @foreach($list_league as $item)
-                            <a href="#">
                                 <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                                     {{ $item->firstname }} {{ $item->lastname }}
                                     @if(isset($item->picture))

@@ -33,6 +33,9 @@ Route::delete('/profile/delete', 'ProfileController@delete')
 Route::put('/profile', 'ProfileController@update')
     ->name('user_profile_update')
     ->middleware('auth');
+Route::any('profile/{friend_id}', 'FriendsController@index')
+    ->name('user_profile_show')
+    ->middleware('auth');
 
 /////////////////////////////////////////
 ///
