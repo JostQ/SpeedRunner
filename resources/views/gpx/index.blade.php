@@ -1,29 +1,32 @@
-<div class="row justify-content-center mt-3">
-    <h2>Importez vos données GPX</h2>
-</div>
-<div class="row mt-5">
-    <div class="col-lg-6 col-md-12 offset-lg-3">
-        <form action="{{ route('add_gpx') }}" method="post"
-              enctype="multipart/form-data" id="submitGpx">
-            @csrf
-            <div class="form-group">
+<div class="container mt-5 pt-5" id="importGpx">
+    <div class="row justify-content-center">
+        <h2>Importez vos données GPX</h2>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-6 col-md-12 offset-lg-3">
+            <div id="result"></div>
+            <form action="{{ route('add_gpx') }}" method="post"
+                  enctype="multipart/form-data" id="submitGpx">
+                @csrf
                 <div class="form-group">
-                    <input type="file" class="form-control-file"
-                           name="gpxFile">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file"
+                               name="gpxFile">
+                    </div>
+                    <div class="form-group">
+                        <label for="raceName">Nom de la course</label>
+                        <input id="raceName" type="text" class="form-control"
+                               name="raceName"
+                               value="Course {{ $numberOfRacesDone + 1 }}">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary d-block" type="submit">
+                            C'est parti !
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="">Nom de la course</label>
-                    <input id="raceName" type="text" class="form-control"
-                           name="raceName"
-                           value="Course {{ $numberOfRacesDone + 1 }}">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary d-block" type="submit">
-                        C'est parti !
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <script>
@@ -98,35 +101,54 @@
                                     },
                                     dataType: 'json',
                                     success: function (data) {
+                                        $('#result').empty();
+                                        $('#result').append($('<div>', {class: 'alert alert-success'}).html('Course bien envoyé'))
                                         if (data[0].hasOwnProperty('id')) {
-                                            var containerAlert='<div class="alert alert-primary successUnlocked" role="alert">';
+                                            var containerAlert = '<div class="alert alert-primary successUnlocked" role="alert">';
                                             var headerAlert = data[0].name;
                                             var bodyAlert = data[0].description;
 
 
                                             $('body').append(containerAlert);
-                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>') ;
-                                            $('body>div[role=alert]').append('<div class="imgAlert">') ;
-                                            $('body div[role=alert] div.imgAlert').append('<img src="{{asset("icons/medal.svg")}}" alt=">') ;
-                                            $('body>div[role=alert]').append('<div>'+ headerAlert +'</div>');
-                                            $('body>div[role=alert]').append('<div>'+bodyAlert+'</div>');
+                                            $('body>div[role=alert]').append('<div>Succès débloqué !</div>');
+                                            $('body>div[role=alert]').append('<div>' + headerAlert + '</div>');
+                                            $('body>div[role=alert]').append('<div>' + bodyAlert + '</div>');
 
-                                            setTimeout(function() {$('div[role=alert]').hide(400)}, 5000);
+                                            setTimeout(function () {
+                                                $('div[role=alert]').hide(400)
+                                            }, 5000);
                                         }
                                     }
                                 });
 
 
                             } else {
-                                window.alert('Directions request failed due to ' + status);
+                                $('#result').empty();
+                                $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Directions request failed due to ' + status));
                             }
                         });
                     }
+                    else if (data.status === 'KO') {
+                        $('#result').empty();
+                        if (data.errors.gpxFile !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.gpxFile))
+                        }
+                        if (data.errors.raceName !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.errors.raceName))
+                        }
+                        if (data.mimes !== undefined) {
+                            $('#result').append($('<div>', {class: 'alert alert-danger'}).html(data.mimes))
+                        }
+                    }
+                },
+                errors: function () {
+                    $('#result').empty();
+                    $('#result').append($('<div>', {class: 'alert alert-danger'}).html('Erreur lors de l\'envoi du fichier'))
                 }
-            })
+            });
         });
     }
-</script>
+    </script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0kAgeh9vgP7n8VUjo49LqK3I350pXnVs&callback=initMap">
 </script>
