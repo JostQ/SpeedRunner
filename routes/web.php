@@ -74,18 +74,13 @@ Route::delete('/friends/{id}', 'FriendsController@delete')
 
 // Messagerie
 
-Route::get('/messenger', 'MessengerController@index')
-    ->name('messenger')
-    ->middleware('auth');
-
-
-Route::post('/messenger/chat', 'MessengerController@conversation')
-    ->name('messenger_friend')
-    ->middleware('auth');
-
-Route::post('/messenger', 'MessengerController@send')
-    ->name('messenger_send_new')
-    ->middleware('auth');
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index'])->middleware('auth');
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create'])->middleware('auth');
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store'])->middleware('auth');
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show'])->middleware('auth');
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update'])->middleware('auth');
+});
 
 // Statistiques
 Route::get('/statistiques', 'StatisticsController@index')
