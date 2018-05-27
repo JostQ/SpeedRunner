@@ -31,6 +31,10 @@ body {
 
 .btn {
   border-radius: 0;
+}
+
+.btn-primary {
+  border-radius: 0;
   background-color: $primary-color;
   border-color: $accent-color;
   color: $white;

@@ -68,8 +68,10 @@ Route::get('/friends', 'FriendsController@index')
 Route::post('/friends', 'FriendsController@add')
     ->name('add_friend')
     ->middleware('auth');
-Route::delete('/friends/{id}', 'FriendsController@delete')
+Route::post('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
+    ->middleware('auth');
+Route::get('/friends_list', 'FriendsListController@index')
     ->middleware('auth');
 
 // Messagerie
@@ -86,10 +88,16 @@ Route::group(['prefix' => 'messages'], function () {
 Route::get('/statistiques', 'StatisticsController@index')
     ->name('statistics')
     ->middleware('auth');
+Route::get('/statistiques/{id}', 'StatisticsController@indexFriend')
+    ->name('statisticsFriend')
+    ->middleware('auth');
 
 // Fil actu
 Route::get('/actu', 'ActuController@index')
     ->name('actu')
+    ->middleware('auth');
+Route::get('/actu/{id}', 'ActuController@indexFriend')
+    ->name('actuFriend')
     ->middleware('auth');
 Route::post('/actu', 'ActuController@store')
     ->name('actu_post')
@@ -99,15 +107,25 @@ Route::post('/actu', 'ActuController@store')
 Route::get('/leaderboards', 'LeaderboardsController@index')
     ->name('leaderboards')
     ->middleware('auth');
+Route::get('/leaderboards/{id}', 'LeaderboardsController@indexFriend')
+    ->name('leaderboardsFriend')
+    ->middleware('auth');
 
 // Affichage des tracés effectués
 Route::get('/routes', 'RoutesController@index')
     ->name('routes')
     ->middleware('auth');
 
+Route::get('/routes/{id}', 'RoutesController@indexFriend')
+    ->name('routesFriend')
+    ->middleware('auth');
+
 // Affichage des succès
 Route::get('/succes', 'SuccessController@index')
     ->name('success')
+    ->middleware('auth');
+Route::get('/succes/{id}', 'SuccessController@indexFriend')
+    ->name('successFriend')
     ->middleware('auth');
 
 /////////////////////////////////////////

@@ -21,6 +21,7 @@
 </div>
 
 {{--Navigation entre les canaux actualité--}}
+@if(\Illuminate\Support\Facades\Request::is('actu'))
 <div class="container">
     <div class="row">
         <nav class="actu col-md-3 col-sm-12">
@@ -29,9 +30,6 @@
                    data-toggle="tab" href="#nav-home"
                    role="tab" aria-controls="nav-home"
                    aria-selected="true">#Général</a>
-                <a class="nav-link" id="nav-profile-tab" data-toggle="tab"
-                   href="#nav-profile"
-                   role="tab" aria-controls="nav-profile" aria-selected="false">#Amis</a>
                 <a class="nav-link" id="nav-contact-tab" data-toggle="tab"
                    href="#nav-contact"
                    role="tab" aria-controls="nav-contact" aria-selected="false">#Ligue</a>
@@ -44,11 +42,11 @@
 
 
             {{--Bouton de pop de la fenêtre modale--}}
-
+@endif
         </nav>
         {{--Fil général--}}
 
-        <div class="tab-content col-md-9 col-sm-12" id="nav-tabContent">
+        <div class="tab-content @if(\Illuminate\Support\Facades\Request::is('actu/*')) {{'col-12'}} @else col-md-9 col-sm-12  @endif " id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                  aria-labelledby="nav-home-tab">
                 @foreach($generales as $generale)
@@ -83,38 +81,6 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-
-
-            {{--Fil amis--}}
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                 aria-labelledby="nav-profile-tab">
-                {{--@foreach()--}}
-                <div class="card ">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-2">
-                                <img src="{{--img dans le bdd--}}" alt="profilPict">
-                            </div>
-                            <div class="col-10">
-                                <h5 class="card-title speedrun-title">Lorem
-                                    Ipsum{{--pseudo des utilisateurs--}}</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p class="card-text">Sed ut perspiciatis unde omnis iste
-                                natus error sit
-                                voluptatem
-                                accusantium doloremque laudantium, totam rem
-                                aperiam, eaque ipsa quae ab
-                                illo
-                                inventore veritatis et quasi architecto beatae vitae
-                                dicta sunt
-                                explicabo.{{--Statut des utilisateurs--}}</p>
-                        </div>
-                    </div>
-                </div>
-                {{--@endforeach--}}
             </div>
 
             {{--Fil ligue--}}

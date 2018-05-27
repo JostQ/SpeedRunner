@@ -10828,6 +10828,13 @@ a.text-dark:focus {
      object-fit: cover;
 }
 
+.imgprofil {
+  height: 75px;
+  width: 75px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 body {
   margin: 10px;
 }
@@ -10864,15 +10871,16 @@ body {
 .nav-pills .show > .nav-link,
 .successUnlocked {
   border-radius: 0;
+}
+
+.btn-primary {
+  border-radius: 0;
   background-color: #ff6e40;
   border-color: #c53d13;
   color: #fff;
 }
 
-.btn:hover,
-.nav-pills .nav-link.active:hover,
-.nav-pills .show > .nav-link:hover,
-.successUnlocked:hover {
+.btn-primary:hover {
   border-color: #ff6e40;
   background-color: #c53d13;
 }

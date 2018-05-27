@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Model\Actuality;
-use App\Model\Info;
 use App\Model\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use Redirect;
 use Validator;
-use Illuminate\Support\Facades\Request;
 
 class ActuController extends Controller
 {
@@ -25,14 +24,25 @@ class ActuController extends Controller
 
         return view('actu.index')
             ->with('generales',$bdd)
-//            ->with('namePost',$profil)
             ->with('profile_pict', $pict);
     }
 
-//    insert->statut
+    public function indexFriend(Request $request)
+    {
+        $info = User::find($request->id)->infos;
+        $bdd= Actuality::where('users_id', $request->id)->latest()->paginate(10);
+
+        $pict=$info['picture'];
+
+
+        return view('actu.index')
+            ->with('generales',$bdd)
+            ->with('profile_pict', $pict);
+    }
+
     public function store(Request $request)
     {
-        $data = Request::all();
+        $data = $request->all();
 
 //        validation des input
         $rules = ['message'=> 'string|required'];

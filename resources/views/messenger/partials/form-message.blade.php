@@ -9,10 +9,12 @@
     </div>
 
     @if($users->count() > 0)
+            <label>Ajoutez des participants </label>
         <div class="checkbox">
             @foreach($users as $user)
-                <label title="{{ $user->name }}">
-                    <input type="checkbox" name="recipients[]" value="{{ $user->id }}">{{ $user->name }}
+                <label class="mr-2" title="{{ $user->name }}">
+                    <input class="mr-2" type="checkbox" name="recipients[]" value="{{ $user->id }}">
+                    <span>{{ $user->name }}</span>
                 </label>
             @endforeach
         </div>

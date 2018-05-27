@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Actuality;
 use App\Model\Race;
+use App\Model\SuccessHasUser;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Eloquent;
-use App\Model\Friendship;
 use App\Model\League;
 use App\Model\Info;
 use Intervention\Image\Facades\Image;
@@ -58,7 +58,9 @@ class ProfileController extends Controller
 
         // Nombres de courses effectuées
         $race_done = Race::where('users_id', $user->id)->count();
-
+        $actus= Actuality::count();
+        $actus = intval($actus);
+        $success = SuccessHasUser::where('users_id', Auth::id())->count();
 
         return view('profile.index')
             ->with('userid', $user->id)
@@ -69,7 +71,9 @@ class ProfileController extends Controller
             ->with('list_league', $list_league)
             ->with('profile_pic', $profile_pic)
             ->with('all_races', $race_done)
-            ->with('allFriends', $friends);
+            ->with('allFriends', $friends)
+            ->with('success', $success)
+            ->with('actus', $actus);
     }
 
     public function edit(Request $request, $id)

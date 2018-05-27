@@ -21,15 +21,14 @@
                 </div>
 
                 @if($users->count() > 0)
-                    <div class="form-group">
-                        <label>Choisissez les participants ?</label>
-                        <div class="checkbox">
-                            @foreach($users as $user)
-                                <label class="pr-2" title="{{ $user->name }}"><input type="checkbox" name="recipients[]"
-                                                                                     value="{{ $user->id }}">{!!$user->name!!}
-                                </label>
-                            @endforeach
-                        </div>
+                    <label>Ajoutez des participants </label>
+                    <div class="checkbox">
+                        @foreach($users as $user)
+                            <label class="mr-2" title="{{ $user->name }}">
+                                <input class="mr-2" type="checkbox" name="recipients[]" value="{{ $user->id }}">
+                                <span>{{ $user->name }}</span>
+                            </label>
+                        @endforeach
                     </div>
             @endif
 

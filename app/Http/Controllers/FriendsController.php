@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Actuality;
+use App\Model\SuccessHasUser;
 use Illuminate\Http\Request;
 use App\Model\Race;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Eloquent;
 use App\Model\Friendship;
 use App\Model\League;
 use App\Model\Info;
 use Redirect;
-use Intervention\Image\Facades\Image;
 use App\Model\User;
 
 class FriendsController extends Controller
@@ -46,6 +46,10 @@ class FriendsController extends Controller
         // Nombres de courses effectuées
         $race_done = Race::where('users_id', $user->id)->count();
 
+        $actus= Actuality::where('users_id', $id)->count();
+        $actus = intval($actus);
+        $success = SuccessHasUser::where('users_id', $id)->count();
+
         return view('friends.index')
             ->with('userid', $user->id)
             ->with('user', $userCapitalized)
@@ -53,7 +57,9 @@ class FriendsController extends Controller
             ->with('level', $level)
             ->with('league', $league)
             ->with('profile_pic', $profile_pic)
-            ->with('all_races', $race_done);
+            ->with('all_races', $race_done)
+            ->with('success', $success)
+            ->with('actus', $actus);
     }
 
 
@@ -80,6 +86,13 @@ class FriendsController extends Controller
 
 
 
+    }
+
+    public function delete(Request $request)
+    {
+        Friendship::where('friend_id', $request->input('friends_id'))->where('users_id', Auth::id())->delete();
+
+        return json_encode(['errors' => "Vous n'êtes plus amis"]);
     }
 
 

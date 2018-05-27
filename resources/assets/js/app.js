@@ -60,3 +60,5 @@ function createChart(chart) {
     updateChartLabels(myChart);
     myChart.update();
 }
+
+

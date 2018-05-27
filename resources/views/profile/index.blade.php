@@ -6,18 +6,24 @@
             <div class="col-sm-2 col-lg-2 text-center">
 
                 <!-- Photo de profil -->
-
-                <img src="{{asset('avatars/' . $profile_pic)}}"
-                     alt="runneuse"
-                     class="rounded-circle mt-5 mb-4"
-                     id="imgprofil">
+                @if(isset($profile_pic))
+                    <img src="{{asset('images') . '/' . $profile_pic}}"
+                         alt="listrunner"
+                         class="rounded-circle img-thumbnail m-2"
+                         id="imgprofil">
+                @else
+                    <img src="{{asset('images/girlrun4.jpg')}}"
+                         alt="listrunner"
+                         class="rounded-circle img-thumbnail m-2"
+                         id="imgprofil">
+                @endif
                 <form method="post" id="CHAGASSE" enctype="multipart/form-data">
                     @csrf
                     <input type="file" required id="profilpic" class="image"
                            name="profilpic"/>
                     <label for="profilpic"
                            class="fileContainer btn btn-primary">
-                        Modifier <i class="fas fa-camera"></i>
+                        <i class="mr-2 fas fa-camera"></i>Modifier
                     </label>
                 </form>
             </div>
@@ -31,7 +37,8 @@
                 <p><i class="fas fa-user-friends"></i> Nombres d'amis : <span id="friends">{{ $friend }}</span></p>
                 <p><i class="fas fa-chart-line"></i> Niveau : <span id="level">{{ $level }}</span></p>
                 <p><i class="fas fa-list"></i> <span id="league">{{ $league }}</span></p>
-                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : <span id="races">{{ $all_races }}</span></p>
+                <p><i class="far fa-thumbs-up"></i> Nombre de courses effectuées : <span
+                            id="races">{{ $all_races }}</span></p>
 
             </div>
 
@@ -54,11 +61,11 @@
                                         @if(isset($item->picture))
                                             <img src="{{asset('images') . '/' . $item->picture}}"
                                                  alt="listrunner"
-                                                 class="listrun rounded-circle">
+                                                 class="rounded-circle img-thumbnail mx-2 imgprofil">
                                         @else
                                             <img src="{{asset('images/girlrun4.jpg')}}"
                                                  alt="listrunner"
-                                                 class="listrun rounded-circle">
+                                                 class="rounded-circle img-thumbnail mx-2 imgprofil">
                                         @endif
                                     </li>
                                 </a>
@@ -110,6 +117,11 @@
                            aria-controls="classement" aria-selected="false">Listes
                             des
                             courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="amis-tab" data-toggle="tab"
+                           href="#amis" role="tab"
+                           aria-controls="amis" aria-selected="false">Amis</a>
                     </li>
                 </ul>
             </div>
@@ -177,64 +189,164 @@
     <script>
         let pageToGet = 2;
         let actuToGet = 2;
-        // Load AJAX des différentes pages
-        // @TODO: Passer les .load() en .ajax().
+        let main = $('#home'); // Ahhh, si seulement j'avais déclaré cette variable plus tôt ...
+
+        /////////////////////////////////////////
+        ///
+        ///          LOAD ACTU INDEX
+        ///
+        /////////////////////////////////////////
 
         $.ajax({
             url: '{{route('actu')}}',
             data: 'html',
         })
-            .done(function (data) {
-                $('#home').addClass('active show')
-                $('#home').empty()
-                $('#home').append(data)
-                $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+            .done(function (data, response) {
+                if (response === 'success') {
+                    main.addClass('active show');
+                    main.empty();
+                    @if($actus === 0)
+                    main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                    @endif
+                    main.append(data);
+                    @if( $actus > 10)
+                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                    @endif
+                } else {
+                    main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                }
             });
 
+        /////////////////////////////////////////
+        ///
+        ///           TAB ACTUALITE
+        ///
+        /////////////////////////////////////////
+
         $('#actualite-tab').click(function (e) {
-            $('#home').addClass('active show')
+            main.addClass('active show')
             $.ajax({
                 url: '{{route('actu')}}',
                 data: 'html',
             })
-                .done(function (data) {
-                    $('#home').empty()
-                    $('#home').append(data)
-                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
-                });
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.empty();
+                        @if($actus === 0)
+                        main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                        @endif
+                        main.append(data);
+                        @if( $actus > 10)
+                        $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                        @endif
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
         });
+
+
+        /////////////////////////////////////////
+        ///
+        ///           TAB STATISTIQUES
+        ///
+        /////////////////////////////////////////
 
         $('#stats-tab').click(function (e) {
-            $('#home').addClass('active show')
-            $('#home').load('{{ route('statistics') }}');
-        });
-        $('#gpx-tab').click(function (e) {
-            $('#home').addClass('active show')
-            $('#home').load('{{ route('import_gpx') }}');
+            main.addClass('active show')
+            $.ajax({
+                url: '{{route('statistics')}}',
+                data: 'html',
+            })
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.empty();
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
         });
 
+
+        /////////////////////////////////////////
+        ///
+        ///           IMPORT GPX
+        ///
+        /////////////////////////////////////////
+
+        $('#gpx-tab').click(function (e) {
+            main.addClass('active show')
+            $.ajax({
+                url: '{{route('import_gpx')}}',
+                data: 'html',
+            })
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.empty();
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
+        });
+
+
+        /////////////////////////////////////////
+        ///
+        ///          TAB CLASSEMENTS
+        ///
+        /////////////////////////////////////////
+
+
         $('#classement-tab').click(function (e) {
-            $('#home').addClass('active show')
+            main.addClass('active show')
             $.ajax({
                 url: '{{route('leaderboards')}}',
                 data: 'html',
             })
-                .done(function (data) {
-                    $('#home').empty().append(data)
-                });
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.addClass('active show');
+                        main.empty();
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
         });
+
+
+        /////////////////////////////////////////
+        ///
+        ///           TAB SUCCES
+        ///
+        /////////////////////////////////////////
+
         $('#success-tab').click(function (e) {
             $.ajax({
                 url: '{{route('success')}}',
                 data: 'html',
             })
-                .done(function (data) {
-
-                    $('#home').addClass('active show');
-                    $('#home').empty();
-                    $('#home').append(data);
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.addClass('active show');
+                        main.empty();
+                        @if($success === 0)
+                        main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                        @endif
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
                 })
         });
+
+        /////////////////////////////////////////
+        ///
+        ///     AJAX DE LA PHOTO DE PROFIL
+        ///
+        /////////////////////////////////////////
 
         $('#profilpic').on('change', function (e) {
             var image = $('#profilpic')[0].files[0];
@@ -246,7 +358,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             // Affichage photo de profil
             $.ajax({
                 url: '{{ url('/profile/edit') }}/{{ $userid }}',
@@ -263,21 +374,38 @@
                 }
             })
         })
-        // Listes des courses effectuées par le coureur.
+
+        /////////////////////////////////////////
+        ///
+        ///           LISTE DES COURSES
+        ///
+        /////////////////////////////////////////
+
         $('#courses-tab').click(function (e) {
-            $('#home').addClass('active show')
+            main.addClass('active show')
             $.ajax({
                 url: "/routes",
                 dataType: 'html'
             })
                 .done(function (data) {
-                    $('#home').empty();
-                    $('#home').append(data);
-                    $('#home').append('<button id="loadNextRaces" class="btn btn-primary">Afficher les courses suivantes</button>')
-                    $
+                    main.empty();
+                    @if($all_races === 0)
+                    main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                    @endif
+                    main.append(data);
+                    @if ($all_races > 5)
+                    main.append('<button id="loadNextRaces" class="btn btn-primary">Afficher les courses suivantes</button>')
+                    @endif
                 })
         })
-        // Lazy loading des courses.
+
+        /////////////////////////////////////////
+        ///
+        ///           LAZY LOADING COURSES
+        ///
+        /////////////////////////////////////////
+
+
         $('body').on('click', '#loadNextRaces', function () {
 
             $.ajax({
@@ -290,7 +418,12 @@
             pageToGet++;
         })
 
-        // Lazy loading des actualités.
+        /////////////////////////////////////////
+        ///
+        ///           LAZY LOADING ACTU
+        ///
+        /////////////////////////////////////////
+
         $('body').on('click', '#loadNextActualities', function () {
 
             $.ajax({
@@ -304,8 +437,30 @@
             actuToGet++;
         })
 
+        /////////////////////////////////////////
+        ///
+        ///           TAB AMIS
+        ///
+        /////////////////////////////////////////
 
+        $('#amis-tab').click(function (e) {
+            $.ajax({
+                url: '{{ url('friends_list') }}',
+                dataType: 'html',
+            })
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.addClass('active show');
+                        main.empty();
+                        @if($friend === 0)
+                        main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                        @endif
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
 
-
+        })
     </script>
 @endsection
