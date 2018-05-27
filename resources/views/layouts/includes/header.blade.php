@@ -32,6 +32,7 @@
                                href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
                         </li>
                     @else
+                        <a href="{{route('messages')}}" class="speedrun-primary">Ma messagerie</a>
                         <a href="{{route('user_profile')}}"
                            class="speedrun-primary">Mon profil</a>
 

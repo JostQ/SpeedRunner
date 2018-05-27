@@ -4,7 +4,7 @@
             <div class="card-header" id="heading{{ $race->id }}" data-toggle="collapse"
                  data-target="#collapse{{ $race->id }}" aria-expanded="false"
                  aria-controls="collapse{{ $race->id }}">
-                <h2 >
+                <h2>
                     {{ $race->name }}
                 </h2>
             </div>
@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-
 @endforeach
 
 <script>
