@@ -17,13 +17,12 @@
                          class="rounded-circle img-thumbnail m-2"
                          id="imgprofil">
                 @endif
-                <div id="resultFriend"></div>
                 <form method="post" id="addfriend" class="d-inline">
                     @csrf
                     <input type="hidden" name="friends_id" value="{{ $userid }}">
 
                     @if (isset($friendship[0]->id))
-                        <div class="btn btn-primary"><i class="mr-2 fas fa-check"></i>Amis</div>
+                        <div class="d-inline speedrun-primary"><i class="mr-2 fas fa-check"></i>Amis</div>
                 </form>
                 <form method="post" id="removeFriend" class="d-inline">
                     @csrf
@@ -102,9 +101,8 @@
             </div>
 
         </div>
-
     </div>
-
+    <div id="resultFriend"></div>
 @endsection
 
 @section('page-specific-scripts')

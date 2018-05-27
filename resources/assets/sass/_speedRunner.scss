@@ -1,11 +1,12 @@
 // Classes spécifiques à SpeedRun
 body {
-  margin: 10px;
+  margin: 0;
 }
 
 .speedrun-title{
   color: $primary-color;
 }
+
 
 .speedrun-primary {
   color: $primary-color;
@@ -26,23 +27,36 @@ body {
 // Redéfinition des classes Bootstrap
 
 .card {
-  border-radius: 0;
+  border-radius: 0px;
 }
 
 .btn {
-  border-radius: 0;
+  border-radius: 0px;
 }
 
-.btn-primary {
+.btn-outline-primary {
   border-radius: 0;
-  background-color: $primary-color;
   border-color: $accent-color;
-  color: $white;
+  color: $primary-color;
   &:hover {
+    color: white;
     border-color: $primary-color;
     background-color: $accent-color;
   }
+  &:focus {
+    @extend .btn-outline-primary:hover;
+    outline: 0;
+  }
+  &:active {
+    @extend .btn-outline-primary:hover;
+    outline: 0;
+  }
+  &:not(:disabled):not(.disabled):active {
+    @extend .btn-outline-primary:hover;
+    outline: 0;
+  }
 }
+
 
 .nav-link {
   color: $primary-color;
@@ -59,8 +73,17 @@ body {
   outline: none;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.bg-primary {
+  background-color: $primary-color!important;
+}
+
+.bg-primary-muted {
+  background-color: darken($primary-color, 20%)!important;
+}
+
+.btn-primary,.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: $primary-color;
+  color: white;
   @extend .btn;
   &:hover {
   @extend .btn:hover;

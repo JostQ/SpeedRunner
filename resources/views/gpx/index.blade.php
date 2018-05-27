@@ -1,31 +1,33 @@
 <div class="row">
-    <div class="col-lg-6 col-md-12 mx-auto card">
-        <div class="card-header">
-            <h2>Importez vos données GPX</h2>
-        </div>
-        <div class="card-body">
-            <div id="result"></div>
-            <form action="{{ route('add_gpx') }}" method="post"
-                  enctype="multipart/form-data" id="submitGpx">
-                @csrf
-                <div class="form-group">
+    <div class="col-lg-6 col-md-12 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h2>Importez vos données GPX</h2>
+            </div>
+            <div class="card-body">
+                <div id="result"></div>
+                <form action="{{ route('add_gpx') }}" method="post"
+                      enctype="multipart/form-data" id="submitGpx">
+                    @csrf
                     <div class="form-group">
-                        <label for="">Nom de la course</label>
-                        <input id="raceName" type="text" class="form-control"
-                               name="raceName"
-                               value="Course {{ $numberOfRacesDone + 1 }}">
+                        <div class="form-group">
+                            <label for="">Nom de la course</label>
+                            <input id="raceName" type="text" class="form-control"
+                                   name="raceName"
+                                   value="Course {{ $numberOfRacesDone + 1 }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control-file"
+                                   name="gpxFile">
+                        </div>
+                        <div>
+                            <button class="btn btn-primary d-block" type="submit">
+                                C'est parti !
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="file" class="form-control-file"
-                               name="gpxFile">
-                    </div>
-                    <div>
-                        <button class="btn btn-primary d-block" type="submit">
-                            C'est parti !
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

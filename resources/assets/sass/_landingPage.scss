@@ -10,6 +10,16 @@
   }
 }
 
+.speedrun-hero {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-style : italic;
+  text-transform: uppercase;
+  color: $primary-color;
+  text-decoration: none;
+}
+
+
 #slider {
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
   clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);

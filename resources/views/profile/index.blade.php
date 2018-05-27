@@ -7,7 +7,7 @@
 
                 <!-- Photo de profil -->
                 @if(isset($profile_pic))
-                    <img src="{{asset('images') . '/' . $profile_pic}}"
+                    <img src="{{asset('avatars') . '/' . $profile_pic}}"
                          alt="listrunner"
                          class="rounded-circle img-thumbnail m-2"
                          id="imgprofil">
@@ -22,7 +22,7 @@
                     <input type="file" required id="profilpic" class="image"
                            name="profilpic"/>
                     <label for="profilpic"
-                           class="fileContainer btn btn-primary">
+                           class="fileContainer btn btn-outline-primary">
                         <i class="mr-2 fas fa-camera"></i>Modifier
                     </label>
                 </form>
@@ -146,9 +146,6 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalLabel">Publication
                         <i class="far fa-edit"></i></h5>
-                    <label for="custom-file-input" id="custom"
-                           class="btn btn-primary ml-1">Image<i
-                                class="far fa-images ml-1"></i></label>
 
                     <button type="submit" class="close"
                             data-dismiss="modal" aria-label="Close">
@@ -160,17 +157,19 @@
                       action="{{route('actu_post')}}">
                     @csrf
                     <div class="modal-body">
-
-                                        <textarea class="form-control"
-                                                  id="message-text"
-                                                  placeholder="Exprimez-vous..."
-                                                  name="message"
-                                                  required></textarea>
+                        <label for="custom-file-input" id="custom"
+                               class="btn btn-outline-primary ml-1">Image<i
+                                    class="far fa-images ml-1"></i></label>
+                        <textarea class="form-control"
+                                  id="message-text"
+                                  placeholder="Exprimez-vous..."
+                                  name="message"
+                                  required></textarea>
                         <input type="file" name="picture"
                                id="custom-file-input" class="join-file">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-outline-primary">
                             Publier
                         </button>
                     </div>
@@ -178,6 +177,8 @@
             </div>
         </div>
     </div>
+    <div id="resultImgChange"></div>
+
 @endsection
 
 @section('page-specific-scripts')
@@ -210,7 +211,7 @@
                     @endif
                     main.append(data);
                     @if( $actus > 10)
-                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                    $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-outline-primary mt-3">Actualités suivantes</button>')
                     @endif
                 } else {
                     main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
@@ -237,7 +238,7 @@
                         @endif
                         main.append(data);
                         @if( $actus > 10)
-                        $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-primary mt-3">Actualités suivantes</button>')
+                        $('#nav-tabContent').append('<button id="loadNextActualities" class="btn btn-outline-primary mt-3">Actualités suivantes</button>')
                         @endif
                     } else {
                         main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
@@ -366,11 +367,19 @@
                 dataType: 'json',
                 processData: false,
                 contentType: false,
-                success: function (data) {
+                success: function (data,) {
                     $('#imgprofil').attr('src', '{{asset('avatars')}}/' + data.picture);
                     if (Object.values($('.actuPic')).length > 2 && $('div[data-id]').data().id === {{\Illuminate\Support\Facades\Auth::user()->id}}) {
                         $('div[data-id={{\Illuminate\Support\Facades\Auth::user()->id}}] .actuPic').attr('src', '{{asset('avatars')}}/' + data.picture)
                     }
+                },
+                error: function (errors) {
+                    errors.responseJSON.errors.image.forEach(function (error) {
+                        $('#resultImgChange').append('<div class="alert alert-danger">' + error + '</div>');
+                        setTimeout(function () {
+                            $('#resultImgChange').hide(400)
+                        }, 5000);
+                    })
                 }
             })
         })
@@ -394,7 +403,7 @@
                     @endif
                     main.append(data);
                     @if ($all_races > 5)
-                    main.append('<button id="loadNextRaces" class="btn btn-primary">Afficher les courses suivantes</button>')
+                    main.append('<button id="loadNextRaces" class="btn btn-outline-primary">Afficher les courses suivantes</button>')
                     @endif
                 })
         })

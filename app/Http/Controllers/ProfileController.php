@@ -78,13 +78,8 @@ class ProfileController extends Controller
 
     public function edit(Request $request, $id)
     {
-        //$photoName = time().'.'.$request->image->getClientOriginalExtension();
-        //$request->image->move(public_path('avatars'), $photoName);
 
-        //DB::table('infos')->where('users_id', Auth::user()->id)->update(['picture' => $photoName]);
-
-
-        // redimmmmension images
+        // redimension image
         $this->validate($request,[
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

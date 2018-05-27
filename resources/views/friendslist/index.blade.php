@@ -1,6 +1,6 @@
 <div class="row">
     @foreach($listOfFriends as $friend)
-        <div class="col-md-3 col-12">
+        <div class="col-md-3 col-12 mb-3">
             <div class="card">
                 <div class="card-header">
                     @if(!empty($friend->user->infos->picture))
@@ -11,7 +11,7 @@
                              src="{{asset('images/girlrun4.jpg')}}" alt="{{ $friend->user->name }}">
                     @endif
 
-                    <a href="{{url('profile/'. $friend->user->id)}}">{{ $friend->user->name }}</a>
+                    <a class="speedrun-primary" href="{{url('profile/'. $friend->user->id)}}">{{ $friend->user->name }}</a>
                 </div>
             </div>
         </div>
