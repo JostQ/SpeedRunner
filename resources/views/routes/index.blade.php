@@ -13,8 +13,7 @@
                  data-parent="#accordion">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12 col-lg-8 map" style="width: 500px; height: 500px;"
-                             data-idrace="{{ $race->id }}">
+                        <div class="col-md-12 col-lg-8 map" style="width: 100%; height: 300px;" data-idrace="{{ $race->id }}">
                         </div>
                         <div class="col-md-12 col-lg-4">
                             <h3>Statistiques de la course</h3>
@@ -29,48 +28,54 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 @endforeach
 
 <script>
+    @foreach($racesDone as $race)
+        $('#collapse{{ $race->id }}').on('shown.bs.collapse', function () {
+            // Je stocke l'élement map dans une variable
+            var map = $(this.children[0].children[0].children[0]);
+            // Je rajoute un param a initMap
+            function initMap(data) {
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                //J'utilise le param ici pour faire référence à la map de la course cliquée
+                var map = new google.maps.Map(data[0], {
+                    zoom: 13
+                });
+                directionsDisplay.setMap(map);
+                var waypts = [];
 
+                @foreach(DB::table('waypoints')->where('gpx_id', DB::table('gpxs')->find($race->gpx_id)->id)->get() as $key => $waypoint)
 
-    // $('.collapse').on('hidden.bs.collapse', function (event) {
-    //     function initMap() {
-    //         var directionsService = new google.maps.DirectionsService;
-    //         var directionsDisplay = new google.maps.DirectionsRenderer;
-    //         var map = new google.maps.Map(event, {
-    //             zoom: 13,
-    //             center: {lat: 44.803467, lng: -0.614424}
-    //         });
-    //         directionsDisplay.setMap(map);
-    //     }
-    //     $.ajax({
-    //         url: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9u87B_PSlDMwKubnjUTRJJqpM33Jihhw&callback=initMap',
-    //         dataType: 'script'
-    //     })
-    //         .done(()=>initMap())
-    // })
+                    var point{{ $key }} = new google.maps.LatLng(parseFloat({{$waypoint->lat}}), parseFloat({{$waypoint->lon}}));
+                    waypts.push({
+                        location: point{{ $key }},
+                        stopover: false
+                    });
+                @endforeach
 
-    $('.collapse').on('shown.bs.collapse', function () {
-        var map = $(this.children[0].children[0].children[0]);
-        function initMap(data) {
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer;
-            var map = new google.maps.Map(data[0], {
-                zoom: 13,
-                center: {lat: 44.803467, lng: -0.614424}
-            });
-            directionsDisplay.setMap(map);
-        }
-        initMap(map)
-    })
+                var start = new google.maps.LatLng( parseFloat({{ DB::table('gpxs')->find($race->gpx_id)->startLat }}), parseFloat({{ DB::table('gpxs')->find($race->gpx_id)->startLon }}));
+                var end = new google.maps.LatLng( parseFloat({{ DB::table('gpxs')->find($race->gpx_id)->endLat }}), parseFloat({{ DB::table('gpxs')->find($race->gpx_id)->endLon }}));
+                directionsService.route({
+                    origin: start,
+                    destination:end,
+                    waypoints: waypts,
+                    optimizeWaypoints: true,
+                    travelMode: 'WALKING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+            initMap(map)
+        })
+    @endforeach
 </script>
 
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9u87B_PSlDMwKubnjUTRJJqpM33Jihhw">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAEI9baRRJttdnPqZFJPSFI1syDpHmgVA&callback=initMap">
 </script>
