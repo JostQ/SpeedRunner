@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Info extends Model
 {
 
+    protected $fillable = [
+        'firstname', 'lastname', 'users_id',
+    ];
+
     public function leagues(){
         return $this->belongsTo(League::class);
     }
