@@ -15,4 +15,12 @@ class FriendsListController extends Controller
         return view('friendsList.index')
         ->with('listOfFriends', $listOfFriends);
     }
+
+    public function indexFriends(Request $request)
+    {
+        $listOfFriends = Friendship::where('users_id', $request->id)->get();
+
+        return view('friendsList.index')
+            ->with('listOfFriends', $listOfFriends);
+    }
 }

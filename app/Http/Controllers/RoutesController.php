@@ -10,7 +10,7 @@ class RoutesController extends Controller
 {
     public function index(){
 
-        $racesDone = Race::where('users_id', Auth::user()->id)->paginate(5);
+        $racesDone = Race::where('users_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(5);
 
         return view('routes.index')
             ->with('racesDone', $racesDone);
@@ -18,7 +18,7 @@ class RoutesController extends Controller
 
     public function indexFriend(Request $request)
     {
-        $racesDone = Race::where('users_id', $request->id)->paginate(5);
+        $racesDone = Race::where('users_id', $request->id)->orderBy('id', 'desc')->paginate(5);
 
         return view('routes.index')
             ->with('racesDone', $racesDone);

@@ -18,7 +18,9 @@ class FriendsController extends Controller
 {
     public function index($id)
     {
-
+        if($id == Auth::id()) {
+            return Redirect::back();
+        }
         //nombre d'amis
         $user = User::find($id);
 
@@ -68,6 +70,16 @@ class FriendsController extends Controller
         // Ajout ami
 
         if(count(Friendship::where('friend_id', $request->input('friends_id'))->where('users_id', Auth::id())->get()) === 0){
+
+            $addMe = new Friendship();
+
+
+            $addMe->friend_id = Auth::id();
+
+            $addMe->users_id = $request->input('friends_id');
+
+            $addMe->save();
+
             $addFriend = new Friendship();
 
             $addFriend->friend_id = $request->input('friends_id');
@@ -90,6 +102,7 @@ class FriendsController extends Controller
 
     public function delete(Request $request)
     {
+
         Friendship::where('friend_id', $request->input('friends_id'))->where('users_id', Auth::id())->delete();
 
         return json_encode(['errors' => "Vous n'êtes plus amis"]);

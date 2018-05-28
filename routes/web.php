@@ -48,18 +48,15 @@ Route::post('profile/{friend_id}', 'FriendsController@add')
 
 // Page tutoriel
 Route::get('/tutoriel', 'TutorialController@index')
-    ->name('tutoriel')
-    ->middleware('auth');
+    ->name('tutoriel');
 
 // Page CGU
 Route::get('/cgu', 'CguController@index')
-    ->name('cgu')
-    ->middleware('auth');
+    ->name('cgu');
 
 // Page tuto GPX
 Route::get('/tutogpx', 'TutoGpxController@index')
-    ->name('tutogpx')
-    ->middleware('auth');
+    ->name('tutogpx');
 
 // Fonction Amis
 Route::get('/friends', 'FriendsController@index')
@@ -72,6 +69,8 @@ Route::post('/friends/{id}', 'FriendsController@delete')
     ->name('delete_friend')
     ->middleware('auth');
 Route::get('/friends_list', 'FriendsListController@index')
+    ->middleware('auth');
+Route::get('/friends_list/{id}', 'FriendsListController@indexFriends')
     ->middleware('auth');
 
 // Messagerie

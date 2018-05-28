@@ -11,7 +11,7 @@
     <tbody>
     @foreach($leaderboards as $user)
         <tr>
-            <td>{{$user->firstname}}</td>
+            <td><a href="{{url('/profile')}}/{{$user->users_id}}">{{DB::table('users')->where('id', $user->users_id)->get()[0]->name}}</a></td>
             <td>{{$user->level}}</td>
             <td>{{$user->exp}}</td>
             <td>{{ round($user->average_speed, 2) }}</td>

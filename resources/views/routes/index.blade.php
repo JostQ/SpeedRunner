@@ -18,7 +18,9 @@
                         <div class="col-md-12 col-lg-4">
                             <h3>Statistiques de la course</h3>
                             <p>Date : {{ $race->date_done }}</p>
-                            <p>Temps : {{ ($race->time) }} h</p>
+                            @if($race->time >60)<p>Temps : {{ substr((($race->time)/60), 0,4) }} h</p>
+                            @else <p>Temps : {{ $race->time }} min</p>
+                            @endif
                             <p>Distance parcourue : {{ $race->distance_done }}
                                 Km</p>
                             <p>Vitesse moyenne : {{ $race->speed }} Km/h</p>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Info;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,6 @@ class LeaderboardsController extends Controller
     public function index()
     {
 //        $usersLeague = Info::find(Auth::id())->leagues_id;
-
         $leaderboards = Info::orderBy('level', 'DESC')->orderBy('exp','desc')->get();
 
 

@@ -45,7 +45,7 @@
             <!--affichage ou non de la liste d'amis-->
             @if(empty ($list_league))
                 <div class="col-12 col-lg-4">
-                    <h5>Vous n'avez pas encore d'amis</h5>
+                    <h5>Vous êtes seul dans cette ligue.</h5>
                 </div>
             @else
                 <div class="col-12 col-lg-4" id="runfriend">

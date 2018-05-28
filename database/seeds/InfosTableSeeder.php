@@ -13,22 +13,22 @@ class InfosTableSeeder extends Seeder
     public function run()
     {
         DB::table('infos')->insert([
-           'lastname' => 'Caca',
+           'lastname' => 'Belmehdi',
            'firstname' => 'Bilal',
            'users_id' => 1
         ]);
         DB::table('infos')->insert([
-            'lastname' => 'Poux de lard',
-            'firstname' => 'Valentino',
+            'lastname' => 'Poulard',
+            'firstname' => 'Valentin',
             'users_id' => 2
         ]);
         DB::table('infos')->insert([
-            'lastname' => 'Dremsis',
-            'firstname' => 'Cookie',
+            'lastname' => 'Jost',
+            'firstname' => 'Quentin',
             'users_id' => 3
         ]);
         DB::table('infos')->insert([
-            'lastname' => 'Traing',
+            'lastname' => 'Simoncelli',
             'firstname' => 'Maxime',
             'users_id' => 4
         ]);

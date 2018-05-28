@@ -87,7 +87,7 @@ class ProfileController extends Controller
         $image = $request->file('image');
         $photoName = time().'.'.$request->image->getClientOriginalExtension();
 
-        $destinationPath = public_path('/avatars');
+        $destinationPath = public_path('avatars');
         $img = Image::make($image->getRealPath());
         $img->resize(200, 200, function($constraint){
             $constraint->aspectRatio();

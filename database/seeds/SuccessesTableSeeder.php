@@ -26,7 +26,7 @@ class SuccessesTableSeeder extends Seeder
         ]);
         DB::table('success')->insert([
             'name' => '15km/h',
-            'description' => 'Vous êtes un guerrier Masaï. Vous avez pensé à faire le marathon ?'
+            'description' => 'Rien ne vous arrête. Vous avez pensé à faire le marathon ?'
         ]);
     }
 }

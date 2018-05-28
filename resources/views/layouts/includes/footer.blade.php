@@ -18,8 +18,8 @@
                 </ul>
             </div>
         </div>
-        <div class="text-center">
-            &copy; Les choses se passes t'entends
+        <div class="text-center small">
+            &copy; Speedrun {{ date('Y') }}
         </div>
     </div>
 </footer>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,7 @@ class StatisticsController extends Controller
 {
     public function index()
     {
+
         // Récupère les données de la table info
         $user = DB::table('infos')->where('users_id', Auth::user()->id)->first();
 
@@ -20,6 +22,7 @@ class StatisticsController extends Controller
         return view('statistics.index')
             ->with('stats', $user)
             ->with('kmPerDay', $kmPerDay);
+
     }
 
     public function indexFriend(Request $request)

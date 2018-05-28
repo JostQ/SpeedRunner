@@ -55,8 +55,7 @@
                         <a class="nav-link active" id="actualite-tab"
                            data-toggle="tab"
                            href="#actualite" role="tab"
-                           aria-controls="actualite" aria-selected="true">Fil
-                            d'actualité</a>
+                           aria-controls="actualite" aria-selected="true">Son actualité</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="success-tab" data-toggle="tab"
@@ -84,7 +83,7 @@
                             courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="courses-tab" data-toggle="tab"
+                        <a class="nav-link" id="amis-tab" data-toggle="tab"
                            href="#amis" role="tab"
                            aria-controls="amis" aria-selected="false">Amis</a>
                     </li>
@@ -193,7 +192,7 @@
         $('#classement-tab').click(function (e) {
             main.addClass('active show')
             $.ajax({
-                url: '{{url('leaderboards')}}/{{$userid}}',
+                url: '{{url('leaderboards')}}',
                 data: 'html',
             })
                 .done(function (data) {
@@ -319,6 +318,32 @@
                     }
                 }
             })
+        })
+
+        /////////////////////////////////////////
+        ///
+        ///           TAB AMIS
+        ///
+        /////////////////////////////////////////
+
+        $('#amis-tab').click(function (e) {
+            $.ajax({
+                url: '{{ url('/friends_list') }}/{{ $userid }}',
+                dataType: 'html',
+            })
+                .done(function (data, response) {
+                    if (response === 'success') {
+                        main.addClass('active show');
+                        main.empty();
+                        @if(isset($friend) && $friend === 0)
+                        main.append('<div class="alert alert-primary">C\'est assez vide par ici ...</div>');
+                        @endif
+                        main.append(data);
+                    } else {
+                        main.prepend('<div class="alert alert-danger">Il semblerait qu\'il y ait eu une erreur dans notre machinerie ...</div')
+                    }
+                })
+
         })
     </script>
 @endsection
